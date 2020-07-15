@@ -13,7 +13,7 @@
     
     <categories>
       
-      <category>Study</category>
+      <category>Coursera-notebooks</category>
       
     </categories>
     
@@ -33,26 +33,52 @@
   
   
   <entry>
-    <title>Start with Me - Python - 词云</title>
+    <title>0 - 用 Python 制作词云</title>
     <link href="/2020/07/14/Start%20with%20Me%20-%20Python%20-%20%E8%AF%8D%E4%BA%91/"/>
     <url>/2020/07/14/Start%20with%20Me%20-%20Python%20-%20%E8%AF%8D%E4%BA%91/</url>
     
     <content type="html"><![CDATA[<h1 id="Start-with-Me-用-Python-制作词云-0-——-初印象"><a href="#Start-with-Me-用-Python-制作词云-0-——-初印象" class="headerlink" title="Start with Me | 用 Python 制作词云 0 —— 初印象"></a>Start with Me | 用 Python 制作词云 0 —— 初印象</h1><p>奥利奥同学的新系列，那就开始吧</p><p>这是第一次发学习历程的分享，一直在入门，初来乍到，请多指教呀</p><p>这篇是心血来潮，想要用 Python 制作一个词云，分析了很喜欢的一本书《我不喜欢这世界，我只喜欢你》的词频分布</p><p>下面的 Notebook 可以在 <a href="https://github.com/Oreoxmt/Start-with-Me/tree/master/Python-%E8%AF%8D%E4%BA%91" target="_blank" rel="noopener">这里</a> 访问，后续的学习进度也会在这里同步更新</p><iframe src="https://nbviewer.jupyter.org/github/Oreoxmt/Start-With-Me/blob/master/Python-%E8%AF%8D%E4%BA%91/Python%E8%AF%8D%E4%BA%910-%E5%88%9D%E5%8D%B0%E8%B1%A1.ipynb" width="100%" height="2000" style="border:none;"></iframe><p>比心</p>]]></content>
     
     
+    <categories>
+      
+      <category>Python</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Start with Me</tag>
+      
+      <tag>Python</tag>
+      
+    </tags>
     
   </entry>
   
   
   
   <entry>
-    <title>Move On Now / 0612</title>
+    <title>Move On Now / 0608</title>
     <link href="/2020/06/12/Move%20on%20now%200612/"/>
     <url>/2020/06/12/Move%20on%20now%200612/</url>
     
-    <content type="html"><![CDATA[<p>20 / 06 / 12  阴天傍晚车窗外 </p><p><strong><em>Study with me and move on now</em></strong> </p><p>打卡！</p><center>Oreo's To Do</center><br><ul><li><input checked disabled type="checkbox"> 《自控力》</li><li><input checked disabled type="checkbox"> 《自控力》记笔记</li><li><input checked disabled type="checkbox"> 冥想</li><li><input checked disabled type="checkbox"> 住宿统计表</li><li><input checked disabled type="checkbox"> Coursera课程规划</li><li><input checked disabled type="checkbox"> Coursera Machine Learning Introduction</li><li><input checked disabled type="checkbox"> forest 种树 6 h</li><li><input disabled type="checkbox"> 运营之光</li><li><input disabled type="checkbox"> Open Language</li><li><input disabled type="checkbox"> 明日todo</li></ul><center>碎碎念</center>最近在看《自控力》这本书，放在书桌上，书名似乎在表明我是一个没有自控力的人，但是事实的确如此。其实，可能，看起来，想要拥有自控力很简单，多运动、多睡觉、少吃垃圾食品，就能提高心率变异度，然后自控力就提高了。看起来很简单，可是最难的还是没有自控力去坚持。<br>会有一个你和我一同努力尝试吗？]]></content>
+    <content type="html"><![CDATA[<hr><h2 id="title-Move-On-Now-0612"><a href="#title-Move-On-Now-0612" class="headerlink" title="title: Move On Now / 0612"></a>title: Move On Now / 0612</h2><p>20 / 06 / 12  阴天傍晚车窗外 </p><p><strong><em>Study with me and move on now</em></strong> </p><p>打卡！</p><center>Oreo's To Do</center><br><ul><li><input checked disabled type="checkbox"> 《自控力》</li><li><input checked disabled type="checkbox"> 《自控力》记笔记</li><li><input checked disabled type="checkbox"> 冥想</li><li><input checked disabled type="checkbox"> 住宿统计表</li><li><input checked disabled type="checkbox"> Coursera课程规划</li><li><input checked disabled type="checkbox"> Coursera Machine Learning Introduction</li><li><input checked disabled type="checkbox"> forest 种树 6 h</li><li><input disabled type="checkbox"> 运营之光</li><li><input disabled type="checkbox"> Open Language</li><li><input disabled type="checkbox"> 明日todo</li></ul><center>碎碎念</center>最近在看《自控力》这本书，放在书桌上，书名似乎在表明我是一个没有自控力的人，但是事实的确如此。其实，可能，看起来，想要拥有自控力很简单，多运动、多睡觉、少吃垃圾食品，就能提高心率变异度，然后自控力就提高了。看起来很简单，可是最难的还是没有自控力去坚持。<br>会有一个你和我一同努力尝试吗？]]></content>
     
     
+    <categories>
+      
+      <category>Oreo&#39;s life</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Move On Now</tag>
+      
+    </tags>
     
   </entry>
   
@@ -60,12 +86,26 @@
   
   <entry>
     <title>Study With Me / 0612</title>
-    <link href="/2020/06/08/Study%20with%20me%200612/"/>
-    <url>/2020/06/08/Study%20with%20me%200612/</url>
+    <link href="/2020/06/12/Study%20with%20me%200612/"/>
+    <url>/2020/06/12/Study%20with%20me%200612/</url>
     
-    <content type="html"><![CDATA[<p>20 / 06 / 12  阴天傍晚车窗外 </p><p><strong><em>Study with me and move on now</em></strong> </p><p>列出你的To Do List，然后放下手机，让我们开始吧！</p><center>Oreo's To Do</center><br><ul><li><input disabled type="checkbox"> forest 种树 6 h</li><li><input disabled type="checkbox"> Open Language</li><li><input disabled type="checkbox"> 《自控力》</li><li><input disabled type="checkbox"> 运营之光</li><li><input disabled type="checkbox"> 记笔记</li><li><input disabled type="checkbox"> Coursera课程规划</li><li><input disabled type="checkbox"> 冥想</li><li><input disabled type="checkbox"> 明日todo</li></ul><center>今日小记</center>总是喜欢说，嘿，要加油哦，今天也是新的开始<br>喜欢强迫症地到整点开始做事情，把每个周一，每个月的一号作为新的开始<br>其实每天都是新的一天<br>可是每天也都需要努力<br>今天是等待结果的一天，我向来懒散，习惯一边焦虑地等待一边同时开三个设备追剧看直播<br>在我这，伴随焦虑的就是简单的颓废<br>所以今天依旧废着<br>to do list 鸽了很久<br>生活没有规划没有目标<br><p>可是<br><br>依旧是新的开始<br></p>]]></content>
+    <content type="html"><![CDATA[<hr><h2 id="title-Study-With-Me-0612"><a href="#title-Study-With-Me-0612" class="headerlink" title="title: Study With Me / 0612"></a>title: Study With Me / 0612</h2><p>20 / 06 / 12  阴天傍晚车窗外 </p><p><strong><em>Study with me and move on now</em></strong> </p><p>列出你的To Do List，然后放下手机，让我们开始吧！</p><center>Oreo's To Do</center><br><ul><li><input disabled type="checkbox"> forest 种树 6 h</li><li><input disabled type="checkbox"> Open Language</li><li><input disabled type="checkbox"> 《自控力》</li><li><input disabled type="checkbox"> 运营之光</li><li><input disabled type="checkbox"> 记笔记</li><li><input disabled type="checkbox"> Coursera课程规划</li><li><input disabled type="checkbox"> 冥想</li><li><input disabled type="checkbox"> 明日todo</li></ul><center>今日小记</center>总是喜欢说，嘿，要加油哦，今天也是新的开始<br>喜欢强迫症地到整点开始做事情，把每个周一，每个月的一号作为新的开始<br>其实每天都是新的一天<br>可是每天也都需要努力<br>今天是等待结果的一天，我向来懒散，习惯一边焦虑地等待一边同时开三个设备追剧看直播<br>在我这，伴随焦虑的就是简单的颓废<br>所以今天依旧废着<br>to do list 鸽了很久<br>生活没有规划没有目标<br><p>可是<br><br>依旧是新的开始<br></p>]]></content>
     
     
+    <categories>
+      
+      <category>Oreo&#39;s life</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Study with Me</tag>
+      
+      <tag>To Do List</tag>
+      
+    </tags>
     
   </entry>
   
@@ -76,9 +116,21 @@
     <link href="/2020/06/08/Move%20on%20now%200608/"/>
     <url>/2020/06/08/Move%20on%20now%200608/</url>
     
-    <content type="html"><![CDATA[<p>20 / 06 / 08  ☀  </p><p><strong><em>Study with me and move on now</em></strong> </p><p>我来打卡了</p><center>Oreo's To Do</center><br><ul><li><input checked disabled type="checkbox"> Oreo’s blog 部署</li><li><input checked disabled type="checkbox"> Oreo’s blog 架构设计</li><li><input checked disabled type="checkbox"> Open Language</li><li><input checked disabled type="checkbox"> 《自控力》</li><li><input checked disabled type="checkbox"> 社交网站的数据挖掘</li><li><input checked disabled type="checkbox"> 冥想</li><li><input checked disabled type="checkbox"> great domain really arrive </li><li><input checked disabled type="checkbox"> 明日todo</li><li><input disabled type="checkbox"> 利用Python进行数据分析</li><li><input disabled type="checkbox"> 域名</li></ul>]]></content>
+    <content type="html"><![CDATA[<hr><h2 id="title-Move-On-Now-0608"><a href="#title-Move-On-Now-0608" class="headerlink" title="title: Move On Now / 0608"></a>title: Move On Now / 0608</h2><p>20 / 06 / 08  ☀  </p><p><strong><em>Study with me and move on now</em></strong> </p><p>我来打卡了</p><center>Oreo's To Do</center><br><ul><li><input checked disabled type="checkbox"> Oreo’s blog 部署</li><li><input checked disabled type="checkbox"> Oreo’s blog 架构设计</li><li><input checked disabled type="checkbox"> Open Language</li><li><input checked disabled type="checkbox"> 《自控力》</li><li><input checked disabled type="checkbox"> 社交网站的数据挖掘</li><li><input checked disabled type="checkbox"> 冥想</li><li><input checked disabled type="checkbox"> great domain really arrive </li><li><input checked disabled type="checkbox"> 明日todo</li><li><input disabled type="checkbox"> 利用Python进行数据分析</li><li><input disabled type="checkbox"> 域名</li></ul>]]></content>
     
     
+    <categories>
+      
+      <category>Oreo&#39;s life</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Move On Now</tag>
+      
+    </tags>
     
   </entry>
   
@@ -89,9 +141,23 @@
     <link href="/2020/06/08/Study%20with%20me%200608/"/>
     <url>/2020/06/08/Study%20with%20me%200608/</url>
     
-    <content type="html"><![CDATA[<p>20 / 06 / 08  ☀  </p><p><strong><em>Study with me and move on now</em></strong> </p><p>列出你的To Do List，然后放下手机，让我们开始吧！</p><center>Oreo's To Do</center><br><ul><li><input disabled type="checkbox"> Oreo’s blog 部署</li><li><input disabled type="checkbox"> Oreo’s blog 架构设计</li><li><input disabled type="checkbox"> Open Language</li><li><input disabled type="checkbox"> 《自控力》</li><li><input disabled type="checkbox"> 利用Python进行数据分析</li><li><input disabled type="checkbox"> 社交网站的数据挖掘</li><li><input disabled type="checkbox"> 冥想</li><li><input disabled type="checkbox"> 域名</li><li><input disabled type="checkbox"> 明日todo</li></ul>]]></content>
+    <content type="html"><![CDATA[<hr><h2 id="title-Study-With-Me-0608"><a href="#title-Study-With-Me-0608" class="headerlink" title="title: Study With Me / 0608"></a>title: Study With Me / 0608</h2><p>20 / 06 / 08  ☀  </p><p><strong><em>Study with me and move on now</em></strong> </p><p>列出你的To Do List，然后放下手机，让我们开始吧！</p><center>Oreo's To Do</center><br><ul><li><input disabled type="checkbox"> Oreo’s blog 部署</li><li><input disabled type="checkbox"> Oreo’s blog 架构设计</li><li><input disabled type="checkbox"> Open Language</li><li><input disabled type="checkbox"> 《自控力》</li><li><input disabled type="checkbox"> 利用Python进行数据分析</li><li><input disabled type="checkbox"> 社交网站的数据挖掘</li><li><input disabled type="checkbox"> 冥想</li><li><input disabled type="checkbox"> 域名</li><li><input disabled type="checkbox"> 明日todo</li></ul>]]></content>
     
     
+    <categories>
+      
+      <category>Oreo&#39;s life</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Study with Me</tag>
+      
+      <tag>To Do List</tag>
+      
+    </tags>
     
   </entry>
   
