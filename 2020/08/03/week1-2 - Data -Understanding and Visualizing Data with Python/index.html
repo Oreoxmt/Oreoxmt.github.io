@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="Oreo">
+  <meta name="keywords" content="">
+  <title>week1-2 - Data -Understanding and Visualizing Data with Python - Oreo</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Fluid</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2020-08-03 12:03">
+      2020年8月3日 中午
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      3.9k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      50
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <h1 id="Start-with-Me-Coursera-Understanding-and-Visualizing-Data-with-Python-week-1-2-Data"><a href="#Start-with-Me-Coursera-Understanding-and-Visualizing-Data-with-Python-week-1-2-Data" class="headerlink" title="Start with Me | Coursera - Understanding and Visualizing Data with Python week 1-2 - Data"></a>Start with Me | Coursera - Understanding and Visualizing Data with Python week 1-2 - Data</h1><p><code>Start with Me</code> 系列终于又又更新啦，写到比较重要的部分才发现已经写了很多乱七八糟的，所以还是等下一次更新吧</p>
+<h2 id="Cool-Stuff-in-Data"><a href="#Cool-Stuff-in-Data" class="headerlink" title="Cool Stuff in Data"></a>Cool Stuff in Data</h2><p>Data can be anything.</p>
+<h3 id="Data-can-be-Numbers"><a href="#Data-can-be-Numbers" class="headerlink" title="Data can be Numbers"></a>Data can be Numbers</h3><blockquote>
+<p>This is what oftentimes people will think about when they think of data.</p>
+<p>You’ll think about a spreadsheet or something like that.</p>
+<p>Dataset in this course  – National Health and Nutrition Examination Survey </p>
+<ul>
+<li>a form that has a lot of numbers in it</li>
+<li>the third one stands for gender, and has numbers representing whether the person is female or male</li>
+</ul>
+</blockquote>
+<img src="/2020/08/03/week1-2%20-%20Data%20-Understanding%20and%20Visualizing%20Data%20with%20Python/Users\aolin\OneDrive\桌面\笔记本\新建文件夹\0720-1.png" srcset="/img/loading.gif" style="zoom:50%;">
+
+<h3 id="数据可以是数字"><a href="#数据可以是数字" class="headerlink" title="数据可以是数字"></a>数据可以是数字</h3><p><em>很多时候人们一想到数据就会想到一个电子表格或者类似的东西</em></p>
+<ul>
+<li>课程使用的一个数据集：国家健康和营养调查</li>
+<li>可以认为是一个表格，里面有很多数字</li>
+<li>例如第三个变量代表性别，由数字代表这个人是男性还是女性</li>
+</ul>
+<h2 id="Data-can-be-Images"><a href="#Data-can-be-Images" class="headerlink" title="Data can be Images"></a>Data can be Images</h2><blockquote>
+<p>If you have a lot of faces, there’s this idea called Eigenfaces.  This represents your faces in number.</p>
+<p>So researchers can look at the faces in an image and represent them in numbers, and do a lot of really neat things with them. </p>
+<ul>
+<li><p>Snapchat – face swapping</p>
+<p>These Eigenfaces are really helpful in identifying where faces are, and changing where those faces are on specific people.</p>
+<img src="/2020/08/03/week1-2%20-%20Data%20-Understanding%20and%20Visualizing%20Data%20with%20Python/Users\aolin\OneDrive\桌面\笔记本\新建文件夹\0702-3.png" srcset="/img/loading.gif" style="zoom:80%;">
+</li>
+<li><p>Smartphones taking pictures / Facebook– facial recognition</p>
+<p>When you’re taking pictures, they’ll put boxes around faces.</p>
+<p>When you upload pictures, you can use facial recognition software to tag the people who are in those images.</p>
+<img src="/2020/08/03/week1-2%20-%20Data%20-Understanding%20and%20Visualizing%20Data%20with%20Python/Users\aolin\OneDrive\桌面\笔记本\新建文件夹\0720-4.png" srcset="/img/loading.gif" style="zoom: 80%;">
+
+</li>
+</ul>
+<p><em>Using satellite images</em></p>
+<ul>
+<li><p>estimate where coastline is</p>
+<img src="/2020/08/03/week1-2%20-%20Data%20-Understanding%20and%20Visualizing%20Data%20with%20Python/Users\aolin\OneDrive\桌面\笔记本\新建文件夹\0702-5.png" srcset="/img/loading.gif" style="zoom:80%;">
+</li>
+<li><p>how much forest </p>
+</li>
+<li><p>track storm systems</p>
+<img src="/2020/08/03/week1-2%20-%20Data%20-Understanding%20and%20Visualizing%20Data%20with%20Python/Users\aolin\OneDrive\桌面\笔记本\新建文件夹\0720-6.png" srcset="/img/loading.gif" style="zoom:80%;">
+</li>
+</ul>
+</blockquote>
+<h3 id="数据可以是图像"><a href="#数据可以是图像" class="headerlink" title="数据可以是图像"></a>数据可以是图像</h3><p><strong>特征脸</strong> —— 寻找人脸图像分布的基本元素，即人脸图像样本集协方差矩阵的特征向量，用来近似地表征人脸图像，这些特征向量被称为特征脸</p>
+<ul>
+<li>Snapchat —— 换脸</li>
+<li>手机内置相机 / Facebook —— 面部识别</li>
+<li>利用卫星图像<ul>
+<li>估计海岸线在哪里</li>
+<li>在特定区域的土地有多少森林</li>
+<li>跟踪风暴系统的进展，回顾其所造成的破坏程度</li>
+</ul>
+</li>
+</ul>
+<p><strong>Quick Draw</strong> </p>
+<p>点击[这里]（<a href="https://quickdraw.withgoogle.com/），快速涂鸦" target="_blank" rel="noopener">https://quickdraw.withgoogle.com/），快速涂鸦</a></p>
+<blockquote>
+<p>神经网络能学会辨识涂鸦吗？</p>
+<p>只要将你的涂鸦作品添加到全球最大的涂鸦数据集，即可协助训练神经网络辨识涂鸦</p>
+</blockquote>
+<p>“你画我猜”， 快来贡献你的涂鸦作品吧</p>
+<h3 id="Data-can-be-Words"><a href="#Data-can-be-Words" class="headerlink" title="Data can be Words"></a>Data can be Words</h3><blockquote>
+<ul>
+<li><p>An idea of looking at the <strong>entire text of Harry Potter</strong>, and estimating what a sample chapter might be.</p>
+<img src="/2020/08/03/week1-2%20-%20Data%20-Understanding%20and%20Visualizing%20Data%20with%20Python/Users\aolin\OneDrive\桌面\笔记本\新建文件夹\0720-7.png" srcset="/img/loading.gif" style="zoom:80%;">
+
+<ul>
+<li><p>Botnet generated Harry Potter and the portrait of what looked like a large pile of ash. </p>
+</li>
+<li><p>What they did is they went through the entire text of all seven Harry Potter books and used various algorithms and predictive text forms to generate a new chapter in Harry Potter. </p>
+</li>
+</ul>
+</li>
+<li><p>An idea of <strong>electronic health records</strong>.</p>
+<img src="/2020/08/03/week1-2%20-%20Data%20-Understanding%20and%20Visualizing%20Data%20with%20Python/Users\aolin\OneDrive\桌面\笔记本\新建文件夹\0720-8.png" srcset="/img/loading.gif" style="zoom:80%;">
+
+<ul>
+<li><p>There are a lot of words in your health records, but they do contain a lot of different data about you. </p>
+</li>
+<li><p><strong>match your health records</strong> between different locations based on name and other identifying characteristics</p>
+</li>
+<li><p>allow somebody to <strong>get a really good sense of your entire health history</strong> from different locations of your health records</p>
+</li>
+</ul>
+</li>
+<li><p>An idea of *<em>document classification *</em>     </p>
+<img src="/2020/08/03/week1-2%20-%20Data%20-Understanding%20and%20Visualizing%20Data%20with%20Python/Users\aolin\OneDrive\桌面\笔记本\新建文件夹\0720-9.png" srcset="/img/loading.gif" style="zoom: 50%;">
+
+<ul>
+<li>if you look through a newspaper and you’re trying to classify</li>
+<li>you can look at the words that are used, and estimate whether it belongs in the business, the sports, or the local section based on the words that are used. </li>
+</ul>
+</li>
+<li><p>An idea of <strong>debiasing word embeddings</strong></p>
+<img src="/2020/08/03/week1-2%20-%20Data%20-Understanding%20and%20Visualizing%20Data%20with%20Python/Users\aolin\OneDrive\桌面\笔记本\新建文件夹\0720-10.png" srcset="/img/loading.gif" style="zoom: 50%;">
+
+<ul>
+<li>Weird papers like Man is to Computer Programmer as Women is to Homemaker. </li>
+<li>We want to try to make those word embeddings potentially debiased if there are some biases located in them. </li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<h3 id="数据可以是文字"><a href="#数据可以是文字" class="headerlink" title="数据可以是文字"></a>数据可以是文字</h3><ul>
+<li><p>看《哈利波特》的整个文本，估计一个样本章节可能是什么</p>
+<ul>
+<li>Botnet 翻阅了全部七本《哈利波特》的文本，并使用各种算法和预测文本来生成新章节</li>
+</ul>
+</li>
+<li><p>电子健康记录</p>
+<ul>
+<li><p>你的健康记录里面有很多字，包含了很多关于你的不同数据</p>
+</li>
+<li><p>根据姓名和其他特征在不同位置之间匹配你的健康记录</p>
+</li>
+<li><p>有人可以从你的健康记录的不同位置，对你的整个健康史有一个好的认识</p>
+</li>
+</ul>
+</li>
+<li><p>文件分类</p>
+<ul>
+<li>查看整个文档，例如报纸，看看使用的词</li>
+</ul>
+</li>
+<li><p>根据使用的词来判断它是属于商业版、体育版还是地方版</p>
+<ul>
+<li>所有的词都有含义和嵌入在其中，在读到这些词的时候，它们有不同的内涵</li>
+</ul>
+</li>
+<li><p>去掉词嵌入</p>
+<ul>
+<li>像 “男人之于程序员，女人之于家庭主妇” 这样的奇怪论文</li>
+<li>如果词中有一些偏见，尝试去掉这些词</li>
+</ul>
+</li>
+</ul>
+<h3 id="Data-can-be-Audio"><a href="#Data-can-be-Audio" class="headerlink" title="Data can be Audio"></a>Data can be Audio</h3><blockquote>
+<p>You can think of all of the sound that you’re creating as various data formats.</p>
+<ul>
+<li><p><strong>voice identify</strong></p>
+</li>
+<li><p>if you’ve heard a song on the radio and you want to know what it is</p>
+<ul>
+<li>some applications can identify where that sound is coming from</li>
+<li>giving you the song title and artist.</li>
+</ul>
+</li>
+<li><p><strong>voice editing</strong></p>
+<ul>
+<li><p>use various Adobe Suite applications</p>
+</li>
+<li><p>allow you to change how your voice sounds</p>
+</li>
+<li><p>relocate various aspects of your voice</p>
+</li>
+</ul>
+</li>
+<li><p><strong>voice replication</strong></p>
+<ul>
+<li>if you have a clip of a person saying something like 50 words</li>
+<li>You can do some edits and create a voice that sounds like the person saying everything that they need to say. </li>
+<li>You can have this theoretical person saying all sorts of clips and changing their voice around so it sounds like somebody is saying something when they’re not.</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<h3 id="数据可以是音频"><a href="#数据可以是音频" class="headerlink" title="数据可以是音频"></a>数据可以是音频</h3><ul>
+<li>语音识别<ul>
+<li>听到一首歌，想知道它是什么</li>
+<li>通过一些应用识别这个音乐来自哪里</li>
+<li>给出歌名和歌手</li>
+</ul>
+</li>
+<li>语音编辑<ul>
+<li>使用Adobe套件应用对语音进行编辑</li>
+<li>改变你的声音听起来的方式</li>
+<li>重新定位你声音的各个方面</li>
+</ul>
+</li>
+<li>语音复制<ul>
+<li>有一个人的语音片段</li>
+<li>对这个片段编辑，并创建一个声音，听起来就像这个人说的</li>
+</ul>
+</li>
+</ul>
+<h3 id="A-historical-example-–-Florence-Nightingale"><a href="#A-historical-example-–-Florence-Nightingale" class="headerlink" title="A historical example – Florence Nightingale"></a>A historical example – Florence Nightingale</h3><img src="/2020/08/03/week1-2%20-%20Data%20-Understanding%20and%20Visualizing%20Data%20with%20Python/Users\aolin\OneDrive\桌面\笔记本\210-1.png" srcset="/img/loading.gif" style="zoom: 33%;">
+
+<blockquote>
+<p>Many people know Florence Nightingale as <em>the founder of nursing.</em> She was a nurse in the Crimean War. </p>
+<p>One of the things that a lot of people don’t realize is that she also is one of the big <em>founders of statistics</em>. </p>
+<p>So when she was going through and doing her nursing, she really advocated for <strong>collecting a lot of information on the patients</strong> as well as understanding what all of this data has contained within it. </p>
+<p>One of the things that Florence Nightingale did is that she systematically <strong>recorded information</strong> about each of the soldier patients that she had. She looked at then, a <strong>Coxcomb graph</strong> is what she called it. </p>
+<p>It’s really the <strong>foundation for a lot of the graphs</strong> that we use currently, whether it’s <em>time series</em>, <em>box plots</em>, or <em>pie charts</em>, and she looked at the causes of mortalities in the army. </p>
+<img src="/2020/08/03/week1-2%20-%20Data%20-Understanding%20and%20Visualizing%20Data%20with%20Python/Users\aolin\OneDrive\桌面\笔记本\210-2.png" srcset="/img/loading.gif" style="zoom:38%;">
+
+<p>Looking at <strong>causes</strong> including preventable <strong>deaths</strong> from <em>diseases</em>, deaths that occurred from <em>wounds</em>, and <em>overall mortality</em>, and comparing how these <strong>mortality rates changed</strong> both over <em>time</em>, and how these different death rates changed based on the <em>season</em>. </p>
+</blockquote>
+<h3 id="一个例子-——-弗洛伦斯-·-南丁格尔"><a href="#一个例子-——-弗洛伦斯-·-南丁格尔" class="headerlink" title="一个例子 —— 弗洛伦斯 · 南丁格尔"></a>一个例子 —— 弗洛伦斯 · 南丁格尔</h3><ul>
+<li><p>护理事业创始人</p>
+</li>
+<li><p>统计学的奠基人之一</p>
+</li>
+<li><p>主张收集大量病人信息，了解这些数据都包含哪些内容</p>
+</li>
+<li><p>南丁格尔玫瑰图<em>Coxcomb graph</em> 是目前使用的很多图表的基础</p>
+<p>如 ：时间序列、箱形图、饼状图</p>
+</li>
+<li><p>观察了军队中的死亡原因：可预防的疾病死亡、因伤发生的死亡、整体的死亡率</p>
+</li>
+<li><p>比较了这些死亡率在时间、季节上的变化</p>
+</li>
+</ul>
+<p>今天的数据有很多非常酷的应用，数据真的在你身边无处不在</p>
+<h2 id="Where-Do-Data-Come-From"><a href="#Where-Do-Data-Come-From" class="headerlink" title="Where Do Data Come From?"></a>Where Do Data Come From?</h2><blockquote>
+<p>So going into a data analysis, we really want to have a good sense of <strong>where the data come from</strong> and there are some important questions that we need to ask when thinking about <strong>what process generated the data</strong>.</p>
+</blockquote>
+<h3 id="Different-Types-of-Data"><a href="#Different-Types-of-Data" class="headerlink" title="Different Types of Data"></a>Different Types of Data</h3><blockquote>
+<p>There are different types of data that we may ultimately be collecting in any kind of research study.</p>
+<p>*<em>Two key types of data : *</em></p>
+<ol>
+<li><p>Organic / Process Data  </p>
+</li>
+<li><p>“Designed” Data Collection</p>
+</li>
+</ol>
+</blockquote>
+<h3 id="数据的不同类型"><a href="#数据的不同类型" class="headerlink" title="数据的不同类型"></a>数据的不同类型</h3><ol>
+<li><p>有机/过程数据</p>
+</li>
+<li><p>设计数据的收集</p>
+</li>
+</ol>
+<h3 id="Organic-Process-Data"><a href="#Organic-Process-Data" class="headerlink" title="Organic / Process Data"></a>Organic / Process Data</h3><blockquote>
+<p>Examples : </p>
+<ul>
+<li><p>Financial or Point-of-sale transactions </p>
+</li>
+<li><p>Stock market exchanges</p>
+</li>
+<li><p><em>Netflix viewing history</em> - predict what people may be interested in watching</p>
+</li>
+<li><p>Web browser activity</p>
+</li>
+<li><p>Sporting events</p>
+</li>
+<li><p>Temperature / pollution sensors</p>
+</li>
+</ul>
+<p>These processes generate <strong>massive quantities of data</strong> –&gt; <strong>“Big Data”</strong></p>
+<ul>
+<li><p>baseball game</p>
+<p>meals ordered at McDonald’s on a given day</p>
+<p>changes in temperature on a given day in a particular city</p>
+</li>
+<li><p>processing requires significant computational resources</p>
+</li>
+<li><p><strong>data scientists “mine”</strong> these data to study trends and uncover interesting relationships</p>
+</li>
+</ul>
+</blockquote>
+<h3 id="有机-过程数据"><a href="#有机-过程数据" class="headerlink" title="有机 / 过程数据"></a>有机 / 过程数据</h3><p><em>是一个自然的有机的过程</em></p>
+<p>是由<em>计算机信息系统</em>产生的数据；或许是从<em>视频或音频记录</em>提取的数据</p>
+<p>共同点：它们是作为一些过程的结果而<strong>有机产生</strong>的，而且通常是<strong>随着时间的推移</strong>而产生的</p>
+<p>例如：</p>
+<ul>
+<li><p>金融/销售点交易、股票市场的交易</p>
+<p>这些交易中，随着<strong>时间的推移</strong>会发生很多事件，所有这些不同的事件都会被记录下来，从而产生<strong>非常大的数据集</strong></p>
+</li>
+<li><p>由 Netflix 的观看历史，预测用户可能对什么感兴趣</p>
+<p>Netflix 对用户的整个观看历史进行记录，这创造了一个非常大的数据集，但它是有机地产生的，是根据用户的个人观看历史自然而然地产生的，结果是一个<strong>非常大的数据集</strong></p>
+</li>
+<li><p>网页浏览器的活动记录</p>
+<p>一个用户在各个网页上花了多少时间，访问了哪些网页，访问频率，这些数据都可以被记录下来，把所有这些不同的事件乘以所有不同的人，就会发生一系列巨大的事件和交易</p>
+</li>
+<li><p>体育赛事</p>
+<p>体育赛事的结果、个人表现、不同的团队，这些数据都是作为一些<strong>过程的结果</strong>而有机产生的，这就形成了<strong>非常大的数据集</strong></p>
+</li>
+<li><p>温度、污染传感器</p>
+<p>如果试图了解一个大城市的污染问题或温度的变化，研究人员可能会在不同地点设置气象站或温度检测器，并收集一段时间的数据。每秒钟在特定区域对温度或污染的各种测量数据可以展示随着<strong>时间的推移</strong>可能会发生什么</p>
+</li>
+</ul>
+<p>上面的这些过程，都会产生海量的数据  –&gt;  <strong>大数据</strong></p>
+<ul>
+<li><p>大数据其实指的是这些类型的数据集，这些数据集来自于有机的过程，随着时间的推移，有很多的交易或有兴趣分析的事件的趋势，但是这些数据集是海量的</p>
+</li>
+<li><p>棒球比赛；某一天某一家麦当劳点餐情况；某一个城市某一天的温度变化</p>
+</li>
+<li><p>数据的处理需要大量的计算资源</p>
+</li>
+<li><p>数据科学家要做的就是挖掘这些数据来研究趋势/发现有趣的关系</p>
+</li>
+<li><p>仅仅是把数据转换为适合分析的格式，这个过程就需要非常多的资源</p>
+</li>
+<li><p>需要很多受过计算机科学和统计方法学训练的人，才能真正形成对分析有用的数据集</p>
+<h3 id="“Designed”-Data-Collection"><a href="#“Designed”-Data-Collection" class="headerlink" title="“Designed” Data Collection"></a>“Designed” Data Collection</h3></li>
+</ul>
+<blockquote>
+<p>Designed to specifically address a stated research objective</p>
+<ul>
+<li><p>Individuals sampled from a population, interviewed about opinions on a particular topic</p>
+<img src="/2020/08/03/week1-2%20-%20Data%20-Understanding%20and%20Visualizing%20Data%20with%20Python/Users\aolin\OneDrive\桌面\笔记本\新建文件夹\0721-1.png" srcset="/img/loading.gif" style="zoom:80%;">
+</li>
+<li><p><strong>Common features of “designed” data</strong></p>
+<ul>
+<li>Sampling from populations, administration of carefully designed questions</li>
+<li>Typically data sets much smaller compared to organic data sets</li>
+<li>Data collected for very specific reasons, rather than simple reflections of ongoing natural process</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<h3 id="设计数据的收集"><a href="#设计数据的收集" class="headerlink" title="设计数据的收集"></a>设计数据的收集</h3><p><em>是特定的研究，旨在专门解决一个特定的研究目标</em></p>
+<ul>
+<li><p>可以是人群中<strong>抽样调查</strong>的个体，然后采访他们对某一特定话题的看法</p>
+<p>因为在目标人群中可能很难衡量每个人，所以可以设计个体样本，向个体提问，试图了解更多关于目标人群的信息</p>
+</li>
+<li><p>可以从Twitter上获取推文，然后对其进行编码</p>
+<p>分析人们可能对某个特定主题表达意见的频率</p>
+</li>
+<li><p>这些都是非常<strong>严格设计</strong>的数据集合，而不是仅仅是人们可能有兴趣看的有机的大型数据集</p>
+</li>
+<li><p>设计数据的共同特点是，从人群中进行<strong>抽样</strong>，或者从较大的人群中对<strong>小样本</strong>进行精心设计的调查问题的管理</p>
+</li>
+<li><p>设计的数据集 VS 有机/过程数据集</p>
+<ul>
+<li><p>设计的数据集</p>
+<p>一般要小得多，更容易处理，数据的收集是出于非常具体的原因</p>
+</li>
+<li><p>有机数据集<br>非常大，简单地反映一个持续的自然过程</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="Are-the-Data-IID"><a href="#Are-the-Data-IID" class="headerlink" title="Are the Data IID ?"></a>Are the Data IID ?</h3><blockquote>
+<p>IID : independently identically distribution</p>
+<p>For analyzing data, regardless of source, an important question:</p>
+<p><em>Can the Data be considered IID ?</em></p>
+<ul>
+<li><p>independent</p>
+<p><strong>no correlation</strong> between the different measurements</p>
+</li>
+<li><p>identically distribution</p>
+<p>the values that we observe arise from some <strong>common statistical distribution</strong></p>
+</li>
+<li><p>IID</p>
+<p>no correlation + common statistical distribution</p>
+</li>
+<li><p>Example: Final exam scores   </p>
+<p>from a large Intro to Stats class at a university are <strong>independent observations</strong> from a <strong>common normal distribution</strong></p>
+<img src="/2020/08/03/week1-2%20-%20Data%20-Understanding%20and%20Visualizing%20Data%20with%20Python/Users\aolin\OneDrive\桌面\笔记本\新建文件夹\0803-1.png" srcset="/img/loading.gif" style="zoom: 80%;">
+</li>
+</ul>
+</blockquote>
+<h3 id="数据是独立同分布的吗？"><a href="#数据是独立同分布的吗？" class="headerlink" title="数据是独立同分布的吗？"></a>数据是独立同分布的吗？</h3><p>对于数据分析来说，不管数据来源是什么，都需要问一个重要的问题</p>
+<p><em>“ 数据是否可以认为是独立同分布的？”</em></p>
+<ul>
+<li><p>独立</p>
+<p><em>观测值之间没有相关性</em></p>
+<ul>
+<li>在独立同分布情况下，对一个感兴趣的变量的观测是完全 <em>独立于</em> 所有观测值</li>
+<li>从人口中的不同单位、不同的股市交易所、不同的棒球比赛、不同的个人回答调查的不同测量值之间<strong>没有相关性</strong></li>
+<li>所有这些观测值都是<strong>独立</strong>于所有其他观测值的，这些观测值可能最终构成一个<strong>数据集</strong></li>
+</ul>
+</li>
+<li><p>同分布</p>
+<p><em>观测值来自于共同的统计分布</em></p>
+<ul>
+<li>实际观察到的所有数值都来自于一些共同的统计分布，所以这就是独立同分布的<strong>同分布</strong>部分</li>
+</ul>
+</li>
+<li><p>独立同分布</p>
+<p>所有的观测值都是独立于其他所有的观测值的，而要看的值都是由一些共同的统计分布产生的，这就是<strong>独立同分布</strong></p>
+</li>
+<li><p>例子：大学统计学导论的期末考试成绩</p>
+<p>独立的观测值 + 来自于共同的正态分布</p>
+<ul>
+<li>可以把这些成绩看成是 <em>独立</em> 的观测值，每个学生都在提供自己的答案，每个学生的成绩都在被单独评分，这些考试成绩是独立的观测值</li>
+<li>代表这些期末考试成绩的值，可能会 <em>遵循一个自然的正态分布</em> （钟形曲线）</li>
+<li>给定这些独立同分布数据，可以估计出这个分布的特征，比如考试分数的平均数、方差，然后对这些特征进行推断</li>
+</ul>
+</li>
+<li><p>独立同分布是一个重要的假设，可以使得我们对人群特征进行推断</p>
+</li>
+</ul>
+<h3 id="What-if-Data-are-NOT-IID"><a href="#What-if-Data-are-NOT-IID" class="headerlink" title="What if Data are NOT IID?"></a>What if Data are NOT IID?</h3><blockquote>
+<p>Examples:</p>
+<ul>
+<li>Students sitting next to each other tend to have similar scores</li>
+</ul>
+<p>break the assumption of independence</p>
+<ul>
+<li>Males and females might have different means</li>
+</ul>
+<p>not arise from an identical distribution</p>
+<p>Dependencies and differences need to be accounted for in analysis</p>
+<p><strong>Need different analytic procedures</strong></p>
+<p>We need to consider where the data came from</p>
+<ul>
+<li>Did they come from some organic process ?</li>
+<li>Could that process have introduced dependencies in the data ? </li>
+<li>Did they come from a design data collection ?</li>
+<li>Where we may need to account for the features of that design ? </li>
+</ul>
+</blockquote>
+<h3 id="如果数据不是独立同分布"><a href="#如果数据不是独立同分布" class="headerlink" title="如果数据不是独立同分布"></a>如果数据不是独立同分布</h3><p>例子：</p>
+<ul>
+<li><p>坐在一起的同学可能会互相作弊，有相似的分数</p>
+<p>打破了独立性假设，坐在同一区域的学生可能会有相似的分数，这些分数依赖于其他学生的分数</p>
+</li>
+<li><p>男性和女性的考试分数平均值可能不同</p>
+<p>遵循不同的分布，打破了同分布假设</p>
+</li>
+</ul>
+<p>在上面这些例子中，比如，临近同学成绩的相似性、男性和女性之间的差异，这些数据可能不是完全独立、不是相同的分布</p>
+<p>当数据不是独立同分布的时候，在分析时就需要考虑到这些依赖性和差异，需要不同的分析程序</p>
+<p>需要考虑<strong>数据的来源</strong>：</p>
+<ul>
+<li>是否来自于一些有机过程 ？在这个过程中是否会在数据中引入依赖性 ？</li>
+<li>是否来自于一个设计数据的收集？考虑这个设计的特点</li>
+</ul>
+<p>在之后的课程中，会在讲抽样的时候提供更多关于独立同分布思想中设计数据收集的细节，以及在设计样本的情况下会使用的分析程序</p>
+<h3 id="End"><a href="#End" class="headerlink" title="End"></a>End</h3><ol>
+<li><p>Data can be anything</p>
+<p>数字、图像、文字、音频</p>
+</li>
+<li><p>Types of Data</p>
+<ul>
+<li><p>有机的数据</p>
+<p>非常大数据集、有机产生、反应持续的自然的过程</p>
+</li>
+<li><p>设计的数据</p>
+<p>数据集小、易处理、针对特定的研究目标</p>
+</li>
+</ul>
+</li>
+<li><p>IID</p>
+<p>独立同分布</p>
+</li>
+</ol>
+
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Coursera-notebooks/">Coursera-notebooks</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Start-with-Me/">Start with Me</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Coursera/">Coursera</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Python/">Python</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2020/07/20/week1-1-Statistics-Understanding-and-Visualizing-Data-with-Python/">
+                        <span class="hidden-mobile">week1-1 -Statistics-Understanding and Visualizing Data with Python</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: 'article.markdown-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "week1-2 - Data -Understanding and Visualizing Data with Python&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 80,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
