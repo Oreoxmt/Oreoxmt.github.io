@@ -160,12 +160,18 @@
                 
 
 <div class="list-group">
-  <p class="h4">共计 10 篇文章</p>
+  <p class="h4">共计 11 篇文章</p>
   <hr>
   
     
       
       <p class="h5">2020</p>
+    
+    <a href="/2020/08/08/week2-1-Understanding-and-Visualizing-Data/" class="list-group-item list-group-item-action">
+      <span class="archive-post-title">week2-1- Understanding and Visualizing Data</span>
+      <span style="float: right;">08-08</span>
+    </a>
+  
     
     <a href="/2020/08/07/week1-4-Using-Python-to-read-data-files/" class="list-group-item list-group-item-action">
       <span class="archive-post-title">week1-4-Using Python to read data files</span>
@@ -220,13 +226,19 @@
       <span style="float: right;">06-08</span>
     </a>
   
-    
-    <a href="/2020/06/08/Study%20with%20me%200608/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Study With Me / 0608</span>
-      <span style="float: right;">06-08</span>
-    </a>
-  
 </div>
+
+  <nav aria-label="navigation">
+    <span class="pagination" id="pagination">
+      <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="extend next" rel="next" href="/archives/page/2/"><i class="iconfont icon-arrowright"></i></a>
+    </span>
+  </nav>
+  
+  <script>
+    for (ele of document.getElementById("pagination").getElementsByTagName("a")) {
+      ele.href += '#board';
+    }
+  </script>
 
 
 

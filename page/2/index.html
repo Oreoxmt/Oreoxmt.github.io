@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="Oreo">
   <meta name="keywords" content="">
-  <title>标签 - Python - Oreo</title>
+  <title>Oreo</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -42,7 +42,7 @@
 
 
 <body>
-  <header style="height: 80vh;">
+  <header style="height: 100vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -143,6 +143,10 @@
           </div>
 
           
+            <div class="scroll-down-bar">
+              <i class="iconfont icon-arrowdown"></i>
+            </div>
+          
         </div>
       </div>
     </div>
@@ -152,63 +156,82 @@
     
       <div class="container nopadding-md">
         <div class="py-5" id="board"
-          >
+          style=margin-top:0>
           
           <div class="container">
             <div class="row">
               <div class="col-12 col-md-10 m-auto">
                 
 
-<div class="list-group">
-  <p class="h4">共计 7 篇文章</p>
-  <hr>
-  
+
+  <div class="row mx-auto index-card">
     
-      
-      <p class="h5">2020</p>
     
-    <a href="/2020/08/08/week2-1-Understanding-and-Visualizing-Data/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">week2-1- Understanding and Visualizing Data</span>
-      <span style="float: right;">08-08</span>
-    </a>
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2020/06/08/Study%20with%20me%200608/">Study With Me / 0608</a>
+
+      <a href="/2020/06/08/Study%20with%20me%200608/" class="index-excerpt">
+        
+        
+          
+        
+        <div>
+title: Study With Me / 060820 / 06 / 08  ☀  
+Study with me and move on now 
+列出你的To Do List，然后放下手机，让我们开始吧！
+Oreo's To Do
+
+
+
+ Oreo’s blog 部署
+ Oreo’s blog 架构设计
+ Open Language
+ 《自控力》
+ 利用Python进行数据分析
+ 社交网站</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2020-06-08
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Oreo-s-life/">Oreo's life</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Study-with-Me/">Study with Me</a>
+            
+              <a href="/tags/To-Do-List/">To Do List</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+
+
+  <nav aria-label="navigation">
+    <span class="pagination" id="pagination">
+      <a class="extend prev" rel="prev" href="/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    </span>
+  </nav>
   
-    
-    <a href="/2020/08/07/week1-4-Using-Python-to-read-data-files/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">week1-4-Using Python to read data files</span>
-      <span style="float: right;">08-07</span>
-    </a>
-  
-    
-    <a href="/2020/08/04/week1-3-Variable-Types-Understanding-and-Visualizing-Data-with-Python/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">week1-3 - Variable Types - Understanding and Visualizing Data with Python</span>
-      <span style="float: right;">08-04</span>
-    </a>
-  
-    
-    <a href="/2020/08/03/week1-2%20-%20Data%20-Understanding%20and%20Visualizing%20Data%20with%20Python/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">week1-2 - Data -Understanding and Visualizing Data with Python</span>
-      <span style="float: right;">08-03</span>
-    </a>
-  
-    
-    <a href="/2020/07/20/week1-1-Statistics-Understanding-and-Visualizing-Data-with-Python/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">week1-1 -Statistics-Understanding and Visualizing Data with Python</span>
-      <span style="float: right;">07-20</span>
-    </a>
-  
-    
-    <a href="/2020/07/15/week0%20-%20Understanding%20and%20Visualizing%20Data%20with%20Python/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">week0 - Understanding and Visualizing Data with Python</span>
-      <span style="float: right;">07-15</span>
-    </a>
-  
-    
-    <a href="/2020/07/14/Start%20with%20Me%20-%20Python%20-%20%E8%AF%8D%E4%BA%91/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">0 - 用 Python 制作词云</span>
-      <span style="float: right;">07-14</span>
-    </a>
-  
-</div>
+  <script>
+    for (ele of document.getElementById("pagination").getElementsByTagName("a")) {
+      ele.href += '#board';
+    }
+  </script>
 
 
 
@@ -301,7 +324,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "标签 - Python&nbsp;",
+        "这里是奥利奥的生活小记<br>Study With Oreo<br>Move On Now&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 80,
