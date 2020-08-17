@@ -1,3 +1,11 @@
 .katex {
     font-size: 1.0em !important;
 }
+
+figure {
+    text-align: center;
+}
+
+figure figcaption {
+    display: none;
+}
