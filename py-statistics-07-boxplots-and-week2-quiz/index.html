@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="Oreo">
+  <meta name="keywords" content="">
+  <title>week2-3- Boxplot and Quiz - Oreo</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script  src="/js/utils.js" ></script>
+<meta name="generator" content="Hexo 5.0.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>奥利奥小屋</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2020-08-16 12:50">
+      2020年8月16日 下午
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.6k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      31
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <html><head></head><body><h2 id="start-with-me-coursera---understanding-and-visualizing-data-with-python-week-2-3---boxplot-and-quiz">Start with Me | Coursera - Understanding and Visualizing Data with Python week 2-3 - boxplot and quiz</h2>
+<h2 id="quantitative-data-boxplots">Quantitative Data : Boxplots</h2>
+<blockquote>
+<p>What is a Boxplot?</p>
+<ul>
+<li><p>Five Number Summary</p>
+<ul>
+<li><p>Min</p></li>
+<li><p>Q1</p></li>
+<li><p>Median</p></li>
+<li><p>Q3</p></li>
+<li><p>Max</p></li>
+</ul></li>
+<li><p>Boxplot is basically going to take this five number summary and give a visual picture of it.</p></li>
+<li><p>A boxplot would be started by taking our quartiles Q1 and Q3 to form the edge of the boxes.</p></li>
+<li><p>the <strong>length of the box</strong> is our <strong>interquartile range</strong>, a nice measure of spread</p></li>
+<li><p>the <strong>median location</strong> would be marked in the <strong>middle of the box</strong> at the right location</p></li>
+<li><p>the <strong>min and max</strong> would be drawn by taking lines and extending them out from the box, these are sometimes called <strong>whiskers</strong></p></li>
+<li><p>Boxplots can help <strong>identify outliers</strong></p></li>
+<li><p>Boxplots can <strong>hide gaps and clusters</strong></p></li>
+<li><p>Boxplots are useful for <strong>comparing sets of observations</strong></p></li>
+</ul>
+</blockquote>
+<h2 id="&#x6570;&#x503C;&#x6570;&#x636E;-&#x7BB1;&#x7EBF;&#x56FE;">&#x6570;&#x503C;&#x6570;&#x636E; &#xFF1A; &#x7BB1;&#x7EBF;&#x56FE;</h2>
+<center>
+<img src="0816-1.png" srcset="/img/loading.gif" style="zoom:50%;">
+</center>
+<ul>
+<li><p>&#x6570;&#x503C;&#x6458;&#x8981;&#xFF1A;</p>
+<ul>
+<li>&#x6700;&#x5C0F;&#x503C;</li>
+<li>&#x7B2C;&#x4E00;&#x56DB;&#x5206;&#x4F4D;&#x6570;</li>
+<li>&#x4E2D;&#x4F4D;&#x6570;<br>
+</li>
+<li>&#x7B2C;&#x4E09;&#x56DB;&#x5206;&#x4F4D;&#x6570;</li>
+<li>&#x6700;&#x5927;&#x503C;</li>
+</ul></li>
+<li><p>&#x4E2D;&#x4F4D;&#x6570; - &#x4E2D;&#x5FC3;</p></li>
+<li><p>&#x4E24;&#x4E2A;&#x56DB;&#x5206;&#x4F4D;&#x6570;Q1&#x3001;Q3 - IQR</p>
+<p>Q1&#x3001;Q3&#x4E4B;&#x95F4;&#x7684;&#x8DDD;&#x79BB;&#x63D0;&#x4F9B;&#x4E86;&#x4E2D;&#x95F4;50%&#x7684;&#x6570;&#x636E;&#xFF0C;&#x7528;&#x4E8E;&#x8861;&#x91CF;&#x6570;&#x636E;&#x4E2D;&#x95F4;50%&#x7684;&#x5206;&#x5E03;&#x60C5;&#x51B5;</p></li>
+<li><p>&#x6700;&#x5927;&#x503C;&#x548C;&#x6700;&#x5C0F;&#x503C; - &#x5168;&#x8DDD;</p>
+<p>&#x6570;&#x636E;&#x7684;&#x6574;&#x4F53;&#x8303;&#x56F4;</p></li>
+<li><p>&#x7BB1;&#x7EBF;&#x56FE;</p>
+<p>&#x5C06;&#x4E94;&#x4E2A;&#x6570;&#x503C;&#x6458;&#x8981;&#x53EF;&#x89C6;&#x5316;</p>
+<ul>
+<li>&#x4E00;&#x4E2A;&#x7BB1;&#x7EBF;&#x56FE;&#x4F1A;&#x4ECE;Q1&#x3001;13&#x5F00;&#x59CB;&#xFF0C;&#x5F62;&#x6210;box&#x7684;&#x8FB9;&#x7F18;</li>
+<li>box&#x7684;&#x957F;&#x5EA6;&#x5C31;&#x662F;&#x56DB;&#x5206;&#x4F4D;&#x6570;&#x7684;&#x8303;&#x56F4;</li>
+<li>&#x4E2D;&#x4F4D;&#x6570;&#x7684;&#x4F4D;&#x7F6E;&#x4F1A;&#x88AB;&#x6807;&#x8BB0;&#x5728;box&#x4E2D;&#x95F4;&#x7684;&#x4F4D;&#x7F6E;</li>
+<li>&#x6700;&#x5927;&#x503C;&#x548C;&#x6700;&#x5C0F;&#x503C;&#x4F1A;&#x901A;&#x8FC7;&#x4ECE;box&#x4E2D;&#x5EF6;&#x4F38;&#x51FA;&#x6765;&#x6765;&#x7ED8;&#x5236;&#xFF0C;&#x6709;&#x65F6;&#x5019;&#x88AB;&#x79F0;&#x4E3A;&#x80E1;&#x987B;</li>
+</ul></li>
+</ul>
+<h3 id="&#x6210;&#x5E74;&#x7537;&#x5B50;&#x7684;&#x8EAB;&#x9AD8;">&#x6210;&#x5E74;&#x7537;&#x5B50;&#x7684;&#x8EAB;&#x9AD8;</h3>
+<center>
+<img src="0816-2.png" srcset="/img/loading.gif" style="zoom:50%;">
+</center>
+<ul>
+<li>&#x6570;&#x503C;&#x6458;&#x8981;&#xFF1A;
+<ul>
+<li>Min : 61.7</li>
+<li>Q1 : 66.5</li>
+<li>Median : 68.3</li>
+<li>Q3 : 70.1</li>
+<li>Max : 75.1</li>
+</ul></li>
+<li>box &#x957F;&#x5EA6; = IQR = Q3 - Q1 = 3.6</li>
+<li>box &#x4E2D;&#x5FC3; = Median = 68.3</li>
+<li>box min = 61.7</li>
+<li>box max = 75.1</li>
+</ul>
+<h3 id="&#x6536;&#x7F29;&#x538B;">&#x6536;&#x7F29;&#x538B;</h3>
+<center>
+<img src="0816-3.png" srcset="/img/loading.gif" style="zoom:50%;">
+</center>
+<ul>
+<li><p>&#x8FD9;&#x4E2A;&#x5206;&#x5E03;&#x4E0D;&#x662F;&#x5BF9;&#x79F0;&#x7684;&#xFF0C;&#x662F;&#x53F3;&#x504F;&#x7684;</p></li>
+<li><p>&#x7BB1;&#x7EBF;&#x56FE;&#x7684;&#x53F3;&#x8FB9;&#x663E;&#x793A;&#x4E86;&#x8840;&#x538B;&#x7684;&#x51E0;&#x4E2A;&#x7279;&#x522B;&#x5927;&#x7684;&#x5F02;&#x5E38;&#x503C;&#xFF0C;&#x5373;&#x79BB;&#x7FA4;&#x503C;</p>
+<p><strong>&#x7BB1;&#x7EBF;&#x56FE;&#x53EF;&#x4EE5;&#x8BC6;&#x522B;&#x79BB;&#x7FA4;&#x503C;</strong></p></li>
+</ul>
+<h3 id="&#x8003;&#x8BD5;&#x5206;&#x6570;">&#x8003;&#x8BD5;&#x5206;&#x6570;</h3>
+<center>
+<img src="0816-4.png" srcset="/img/loading.gif" style="zoom:50%;">
+</center>
+<ul>
+<li>&#x53EF;&#x4EE5;&#x770B;&#x51FA;&#x6709;&#x4E00;&#x4E9B;&#x5B66;&#x751F;&#x8003;&#x8BD5;&#x7684;&#x6210;&#x7EE9;&#x5F88;&#x597D;&#xFF0C;&#x6709;&#x4E00;&#x4E9B;&#x5B66;&#x751F;&#x6210;&#x7EE9;&#x4E0D;&#x592A;&#x597D;&#xFF0C;&#x800C;&#x4E2D;&#x95F4;&#x6CA1;&#x6709;&#x4EBA;</li>
+<li>&#x7531;&#x5C0F;&#x6570;&#x636E;&#x96C6;&#x5236;&#x6210;&#x7684;&#x7BB1;&#x578B;&#x56FE;&#xFF0C;&#x4ECD;&#x7136;&#x662F;&#x4E00;&#x4E2A;box</li>
+<li>&#x4ECE;&#x7BB1;&#x578B;&#x56FE;&#x4E2D;&#x5E76;&#x4E0D;&#x80FD;&#x770B;&#x51FA;&#x6570;&#x636E;&#x96C6;&#x4E2D;&#x95F4;&#x662F;&#x6709;&#x95F4;&#x9694;&#x7684;&#xFF0C;&#x800C;&#x4E14;&#x6709;&#x51E0;&#x4E2A;&#x7FA4;</li>
+<li>&#x7BB1;&#x7EBF;&#x56FE;&#x7684;&#x7F3A;&#x70B9;&#xFF1A;<strong>&#x4E0D;&#x80FD;&#x770B;&#x5230;&#x5206;&#x5E03;&#x7684;&#x5F62;&#x72B6;&#x7684;&#x4E00;&#x4E9B;&#x7279;&#x5F81;</strong></li>
+</ul>
+<h3 id="&#x591A;&#x4E2A;&#x7BB1;&#x7EBF;&#x56FE;">&#x591A;&#x4E2A;&#x7BB1;&#x7EBF;&#x56FE;</h3>
+<center>
+<img src="0816-5.png" srcset="/img/loading.gif" style="zoom:50%;">
+</center>
+<ul>
+<li><p>&#x5E74;&#x9F84;</p>
+<p>&#x5E74;&#x9F84;&#x8D8A;&#x5927;&#xFF0C;&#x8840;&#x538B;&#x8D8A;&#x9AD8;&#xFF0C;&#x79BB;&#x5DEE;&#x8D8A;&#x5927;</p></li>
+<li><p>&#x6027;&#x522B;</p>
+<p>&#x76F8;&#x6BD4;&#x8F83;&#x6765;&#x8BF4;&#xFF0C;&#x5E74;&#x8F7B;&#x5973;&#x58EB;&#x7684;&#x8840;&#x538B;&#x6BD4;&#x5E74;&#x8F7B;&#x7537;&#x58EB;&#x7684;&#x8840;&#x538B;&#x4F4E;&#xFF1B;&#x5E74;&#x957F;&#x5973;&#x58EB;&#x7684;&#x8840;&#x538B;&#x6BD4;&#x5E74;&#x957F;&#x7537;&#x58EB;&#x7684;&#x8840;&#x538B;&#x9AD8;</p></li>
+<li><p>&#x7BB1;&#x7EBF;&#x56FE;&#x5BF9;&#x4E8E;&#x89C2;&#x6D4B;<strong>&#x6570;&#x636E;&#x96C6;&#x7684;&#x6BD4;&#x8F83;</strong>&#x975E;&#x5E38;&#x6709;&#x7528;</p></li>
+</ul>
+<h3 id="&#x603B;&#x7ED3;">&#x603B;&#x7ED3;</h3>
+<ul>
+<li>&#x7BB1;&#x7EBF;&#x56FE;&#x63D0;&#x4F9B;&#x4E86;&#x4E00;&#x4E2A;&#x975E;&#x5E38;&#x6F02;&#x4EAE;&#x7684;&#x4E94;&#x4F4D;&#x6570;&#x503C;&#x6458;&#x8981;&#x7684;&#x56FE;&#x5F62;</li>
+<li>&#x901A;&#x8FC7;&#x4E2D;&#x4F4D;&#x6570;&#x5C55;&#x793A;&#x4E86;&#x4E2D;&#x5FC3;&#x70B9;</li>
+<li>&#x901A;&#x8FC7;&#x56DB;&#x5206;&#x4F4D;&#x6570;&#x8303;&#x56F4;&#xFF0C;&#x5373;&#x76D2;&#x5B50;&#x7684;&#x957F;&#x5EA6;&#xFF0C;&#x4EE5;&#x53CA;&#x5168;&#x8DDD;&#x6765;&#x8861;&#x91CF;&#x79BB;&#x6563;&#x7A0B;&#x5EA6;</li>
+<li>&#x53EF;&#x4EE5;&#x8BC6;&#x522B;&#x6F5C;&#x5728;&#x7684;&#x5F02;&#x5E38;&#x503C;&#x3001;&#x79BB;&#x7FA4;&#x503C;</li>
+<li>&#x9690;&#x85CF;&#x4E86;&#x5206;&#x5E03;&#x7684;&#x5F62;&#x72B6;&#x7684;&#x4E00;&#x4E9B;&#x7279;&#x5F81;&#xFF0C;&#x8FD9;&#x65B9;&#x9762;&#x76F4;&#x65B9;&#x56FE;&#x66F4;&#x597D;</li>
+<li>&#x6709;&#x4E24;&#x7EC4;&#x6216;&#x66F4;&#x591A;&#x7684;&#x89C2;&#x6D4B;&#x503C;&#x65F6;&#xFF0C;&#x5E76;&#x6392;&#x663E;&#x793A;&#x7BB1;&#x7EBF;&#x56FE;&#x5BF9;&#x4E8E;&#x6BD4;&#x8F83;&#x5F88;&#x6709;&#x7528;</li>
+</ul>
+<h2 id="practice-quiz-summarizing-graphs-in-words">Practice Quiz : Summarizing Graphs in Words</h2>
+<blockquote>
+<p>The following graphs show the distributions for number of sandwiches sold per day at delis managed by the same owner and in the same region. Match these graphs to the appropriate sentence describing them.</p>
+<center>
+<img src="0816-6.jpg" srcset="/img/loading.gif" style="zoom:50%;">
+</center>
+<p>A. The number of sandwiches sold is bimodal with peaks around 300 and 400. The number of sandwiches vary from around 250 to around 450. There do not appear to be outliers.</p>
+<p>B. The number of sandwiches sold is slightly skewed left and unimodal, with a center around 500 and a range from around 200 to around 800. There do not appear to be outliers.</p>
+<p>C. The number of sandwiches sold is skewed right with a peak around 200. The number of sandwiches vary from around 125 to around 325. There do not appear to be outliers.</p>
+<p>D. The number of sandwiches sold has a bell shaped distribution, with a peak around 500 and with values varying from around 460 to around 540. There do not appear to be outliers.</p>
+<ol type="1">
+<li><strong>Which of these statements best summarizes Deli A?</strong></li>
+<li><strong>Which of these statements best summarizes Deli B?</strong></li>
+<li><strong>Which of these statements best summarizes Deli C?</strong></li>
+<li><strong>Which of these statements best summarizes Deli D?</strong></li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="5" type="1">
+<li><strong>Which Deli has the smallest range?</strong></li>
+</ol>
+<p>A. Deli A</p>
+<p>B. Deli B</p>
+<p>C. Deli C</p>
+<p>D. Deli D</p>
+<p>E. Can&apos;t tell</p>
+<ol start="6" type="1">
+<li><strong>Which is larger for Deli C?</strong></li>
+</ol>
+<p>A. The mean</p>
+<p>B. The median</p>
+<p>C. They are the same</p>
+<p>D. Can&apos;t tell</p>
+</blockquote>
+<blockquote>
+<p>The following graph shows the service time for customers at five delis.</p>
+<center>
+<img src="0816-7.jpeg" srcset="/img/loading.gif" style="zoom:90%;">
+</center>
+<ol start="7" type="1">
+<li><p><strong>What approximate proportion of customers are waiting for more than 12 minutes for their sandwich at Deli A?</strong></p>
+<p>A. 25%</p>
+<p>B.30%</p>
+<p>C.50%</p>
+<p>D.75%</p></li>
+<li><p><strong>Which deli&apos;s service time distribution has the smallest mean?</strong></p>
+<p>A. Deli A</p>
+<p>B. Deli B</p>
+<p>C. Deli C</p>
+<p>D. Deli D</p>
+<p>E. Deli E</p></li>
+<li><p><strong>Which deli&apos;s service time distribution has the smallest median?</strong></p>
+<p>A. Deli A</p>
+<p>B. Deli B</p>
+<p>C. Deli C</p>
+<p>D. Deli D</p>
+<p>E. Deli E</p>
+<p>F. Can&apos;t tell</p></li>
+<li><p><strong>What kind of distribution does Deli A&apos;s service time follow?</strong></p>
+<p>A. Normal</p>
+<p>B. Skewed right</p>
+<p>C. Uniform</p>
+<p>D. Can&apos;t tell</p></li>
+</ol>
+</blockquote>
+<blockquote>
+<p>The manager is also interested in looking at the distribution of the types of sandwiches ordered before placing the next order for food supplies.</p>
+<center>
+<img src="0816-8.jpeg" srcset="/img/loading.gif" style="zoom:80%;">
+</center>
+<ol start="11" type="1">
+<li><p><strong>Which is the distribution shape of the types of sandwiches ordered?</strong></p>
+<p>A. Uniform</p>
+<p>B. Normal</p>
+<p>C. Skewed right</p>
+<p>D. Skewed left</p>
+<p>E. Can&apos;t tell</p></li>
+<li><p><strong>Which type of sandwich is ordered the most?</strong></p>
+<p>A. Turkey</p>
+<p>B. Roast Beef</p>
+<p>C. Ham</p>
+<p>D. Vegetarian</p>
+<p>E. Can&apos;t tell</p></li>
+</ol>
+</blockquote>
+<p>&#x53C2;&#x8003;&#x7B54;&#x6848;&#xFF1A;</p>
+<ol type="1">
+<li><p>D</p></li>
+<li><p>B</p></li>
+<li><p>C</p></li>
+<li><p>A</p></li>
+<li><p>A</p></li>
+<li><p>A</p></li>
+<li><p>C</p></li>
+<li><p>C</p></li>
+<li><p>C</p></li>
+<li><p>D</p>
+<p>We can&apos;t see the underlying distribution from a box plot. We can only see five numbers and any outliers rather than being able to see the entire distribution.</p></li>
+<li><p>D</p>
+<p>Because the type of sandwich ordered is a categorical variable, we can not label the distribution type. Would this graph still make sense if we rearranged the bars? Would the shape be the same if we rearranged them?</p></li>
+<li><p>A</p></li>
+</ol>
+<h2 id="assessment-numerical-summaries">Assessment : Numerical Summaries</h2>
+<blockquote>
+<p>Yanis is training for a stair climbing competition. He&apos;s interested in information from his training and those of his competitors. For his most recent training session, Yanis kept track of the time to complete each flight of stairs (16 steps). His distribution is shown here.</p>
+<center>
+<img src="0816-10.jpeg" srcset="/img/loading.gif" style="zoom:80%;">
+</center>
+<ol type="1">
+<li><p><strong>Which will be larger of time to complete each flight of stairs: the mean or the median?</strong></p>
+<p>A. The mean</p>
+<p>B. The median</p>
+<p>C. They are the same</p>
+<p>D. Can&apos;t tell</p></li>
+</ol>
+</blockquote>
+<blockquote>
+<p>Yanis trains by climbing stairs 4 days out of the week. These box plots show the distribution of the number of flights of stairs climbed during his workouts for the past year.</p>
+<center>
+<img src="0816-11.jpeg" srcset="/img/loading.gif" style="zoom:80%;">
+</center>
+<ol start="2" type="1">
+<li><p><strong>Which day of the week has the largest third quartile?</strong></p>
+<p>A. Monday</p>
+<p>B. Wednesday</p>
+<p>C. Friday</p>
+<p>D. Sunday</p>
+<p>E. Can&apos;t tell</p></li>
+<li><p><strong>Which day has the largest IQR&#xFF1F;</strong></p>
+<p>A. Monday</p>
+<p>B. Wednesday</p>
+<p>C. Friday</p>
+<p>D. Sunday</p>
+<p>E. Can&apos;t tell</p></li>
+</ol>
+</blockquote>
+<blockquote>
+<p>Yanis is able to see how many flights of stairs his competitors climb in a week. The box plot shows the distribution of the flights of stairs climbed by his competitors over the last week. Yanis climbed 1375 flights of stairs last week.</p>
+<center>
+<img src="0816-12.jpeg" srcset="/img/loading.gif" style="zoom:80%;">
+</center>
+<ol start="4" type="1">
+<li><p><strong>Approximately what proportion of competitors climbed more flights of stairs than Yanis?</strong></p>
+<p>A. 50%</p>
+<p>B. 30%</p>
+<p>C. 25%</p>
+<p>D. 10%</p>
+<p>E. 0%</p>
+<p>F. Can&apos;t tell</p></li>
+</ol>
+</blockquote>
+<p>&#x53C2;&#x8003;&#x7B54;&#x6848;&#xFF1A;</p>
+<ol type="1">
+<li><p>B</p>
+<p>Since this distribution is skewed left, the mean will be pulled to the right while the median remains larger.</p></li>
+<li><p>D</p>
+<p>The third quartile, which is represented by the top of the box, is the highest for Sunday.</p></li>
+<li><p>C</p>
+<p>The IQR is represented by the length of the box. The box for Friday is the widest.</p></li>
+<li><p>E</p>
+<p>The maximum is represented by the top of the whisker in this boxplot. The maximum appears to be around 1375, the number of flights of stairs climbed by Yanis. Thus, approximately 0% seem to have climbed more flights of stairs than Yanis in this week.</p></li>
+</ol>
+</body></html>
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Coursera-notebooks/">Coursera-notebooks</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Start-with-Me/">Start with Me</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Python/">Python</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Coursera/">Coursera</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                      <a href="/py-statistics-08-numpy-scipy-matplotlib-seaborn/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">week2-4- NumPy、Scipy、MatPlotLib、Seaborn</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/py-statistics-06-numerical-summaries-and-standard-score/">
+                        <span class="hidden-mobile">week2-2- Numerical Summaries and Standard Score</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: 'article.markdown-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "week2-3- Boxplot and Quiz&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 80,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

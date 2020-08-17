@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="Oreo">
+  <meta name="keywords" content="">
+  <title>week2-1- Tables、Bar Chart、Pie Chart、Histograms - Oreo</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script  src="/js/utils.js" ></script>
+<meta name="generator" content="Hexo 5.0.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>奥利奥小屋</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2020-08-08 21:57">
+      2020年8月8日 晚上
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.9k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      37
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <html><head></head><body><h2 id="start-with-me-coursera---understanding-and-visualizing-data-with-python-week-2-1---tablesbar-chartpie-charthistograms">Start with Me | Coursera - Understanding and Visualizing Data with Python week 2-1 - Tables&#x3001;Bar Chart&#x3001;Pie Chart&#x3001;Histograms</h2>
+<p>&#x7EC8;&#x4E8E;&#x6709;&#x4E86;&#x65B0;&#x7684;&#x8FDB;&#x5EA6;&#xFF0C;&#x5F00;&#x542F; week2 &#x5566;</p>
+<h2 id="categorical-data-tables-bar-charts-pie-charts">Categorical Data : Tables, Bar Charts &amp; Pie Charts</h2>
+<blockquote>
+<p>About categorical data and the different ways we can summarize and view it.</p>
+</blockquote>
+<blockquote>
+<ul>
+<li><p>Frequency Table -- Great for numerical summaries</p>
+<ul>
+<li><p>Counts</p></li>
+<li><p>Percentages</p></li>
+</ul></li>
+<li><p>Bar Chart -- Great for visualization</p></li>
+<li><p>Pie Chart</p></li>
+</ul>
+</blockquote>
+<h2 id="&#x5206;&#x7C7B;&#x6570;&#x636E;">&#x5206;&#x7C7B;&#x6570;&#x636E;</h2>
+<ul>
+<li>&#x5206;&#x7C7B;&#x6570;&#x636E;&#x53EA;&#x662F;&#x5C06;&#x4E2A;&#x4EBA;/&#x9879;&#x76EE;&#x5206;&#x4E3A;&#x4E0D;&#x540C;&#x7684;&#x7EC4;&#x522B;</li>
+</ul>
+<center>
+<img src="0808-1.png" srcset="/img/loading.gif" style="zoom:50%;">
+</center>
+<p>&#x4E0A;&#x56FE;&#x662F;&#x4EE5;&#x516D;&#x4E2A;&#x4E0D;&#x540C;&#x4E2A;&#x4F53;&#x548C;&#x4ED6;&#x4EEC;&#x7684;&#x5A5A;&#x59FB;&#x72B6;&#x51B5;&#x4E3A;&#x4F8B;&#xFF0C;&#x5BF9;&#x5A5A;&#x59FB;&#x72B6;&#x51B5;&#x8FDB;&#x884C;&#x5206;&#x7EC4;&#xFF0C;&#x7F16;&#x7801;&#xFF1A;</p>
+<p>1&#xFF1A;&#x5DF2;&#x5A5A;</p>
+<p>2&#xFF1A;&#x4E27;&#x5076;</p>
+<p>3&#xFF1A;&#x79BB;&#x5A5A;</p>
+<p>4&#xFF1A;&#x5206;&#x5C45;</p>
+<p>5&#xFF1A;&#x4ECE;&#x672A;&#x7ED3;&#x5A5A;</p>
+<p>6&#xFF1A;&#x4E0E;&#x4F34;&#x4FA3;&#x540C;&#x5C45;</p>
+<p>7&#xFF1A;&#x62D2;&#x7EDD;</p>
+<p>8&#xFF1A;&#x4E0D;&#x77E5;&#x9053;</p>
+<h3 id="&#x9891;&#x7387;&#x8868;">&#x9891;&#x7387;&#x8868;</h3>
+<ul>
+<li><strong>&#x603B;&#x7ED3;</strong>&#x8FD9;&#x4E9B;&#x6570;&#x636E;&#x65F6;&#xFF0C;&#x6700;&#x5E38;&#x89C1;&#x7684;&#x65B9;&#x6CD5;&#x662F;&#x7528; <strong>&#x9891;&#x7387;&#x8868;</strong> &#xFF0C; &#x53EF;&#x4EE5;&#x662F;<strong>&#x8BA1;&#x6570;</strong>&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x662F;<strong>&#x767E;&#x5206;&#x6BD4;</strong></li>
+</ul>
+<center>
+<img src="0808-2.png" srcset="/img/loading.gif" style="zoom:50%;">
+</center>
+<ul>
+<li>&#x5728;&#x8FD9;&#x4E2A;&#x9891;&#x7387;&#x8868;&#x4E2D;&#xFF0C;&#x5BF9;&#x4E0D;&#x540C;&#x5A5A;&#x59FB;&#x72B6;&#x51B5;&#x7C7B;&#x522B;&#x8FDB;&#x884C;&#x76F8;&#x5E94;&#x7684;&#x8BA1;&#x6570;&#xFF0C;&#x4EE5;&#x53CA;&#x8FD9;&#x4E9B;&#x7C7B;&#x522B;&#x76F8;&#x5E94;&#x7684;&#x767E;&#x5206;&#x6BD4;
+<ul>
+<li>&#x603B;&#x5171;&#x8C03;&#x67E5;&#x4E86;5560&#x4E2A;&#x6837;&#x672C;</li>
+<li>&#x6709;2683&#x4EBA;&#x5DF2;&#x5A5A;&#xFF0C;&#x5360;&#x6BD4;48.3% = 2683/5560</li>
+<li>&#x6709;467&#x4EBA;&#x4E27;&#x5076;&#xFF0C;&#x5360;&#x6BD4;8.4% = 467/5560</li>
+</ul></li>
+</ul>
+<h3 id="&#x6761;&#x5F62;&#x56FE;&#x67F1;&#x72B6;&#x56FE;">&#x6761;&#x5F62;&#x56FE;/&#x67F1;&#x72B6;&#x56FE;</h3>
+<ul>
+<li>&#x663E;&#x793A;&#x5206;&#x7C7B;&#x6570;&#x636E;&#x65F6;&#xFF0C;&#x6700;&#x5E38;&#x7528;&#x7684;&#x65B9;&#x6CD5;&#x662F; <strong>&#x6761;&#x5F62;&#x56FE;</strong> &#xFF0C; &#x53EF;&#x4EE5;&#x662F;&#x8BA1;&#x6570;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x662F;&#x767E;&#x5206;&#x6BD4;</li>
+</ul>
+<center>
+<img src="0808-3.png" srcset="/img/loading.gif" style="zoom:50%;">
+</center>
+<ul>
+<li>&#x8FD9;&#x4E2A;&#x6761;&#x5F62;&#x56FE;&#x5C55;&#x73B0;&#x4E86;&#x4E0D;&#x540C;&#x5A5A;&#x59FB;&#x72B6;&#x6001;&#x7684;&#x4EBA;&#x6570;
+<ul>
+<li>x &#x8F74;&#x4E3A;&#x5A5A;&#x59FB;&#x72B6;&#x6001;&#xFF0C;&#x6709;&#x516B;&#x7C7B;&#x4E0D;&#x540C;&#x7684;&#x5A5A;&#x59FB;&#x5206;&#x7C7B;</li>
+<li>y &#x8F74;&#x4E3A;&#x6BCF;&#x4E00;&#x7C7B;&#x5A5A;&#x59FB;&#x72B6;&#x6001;&#x5BF9;&#x5E94;&#x7684;&#x9891;&#x6570;/&#x603B;&#x6570;</li>
+<li>&#x7B2C;&#x4E00;&#x4E2A;&#x6761;&#x5F62;&#x8868;&#x660E;&#x4E86;&#x6570;&#x636E;&#x96C6;&#x4E2D;&#x6709;2683&#x4EBA;&#x5DF2;&#x5A5A;</li>
+</ul></li>
+</ul>
+<center>
+<img src="0808-4.png" srcset="/img/loading.gif" style="zoom:50%;">
+</center>
+<ul>
+<li>&#x8FD9;&#x4E2A;&#x6761;&#x5F62;&#x56FE;&#x5C55;&#x73B0;&#x4E86;&#x4E0D;&#x540C;&#x5A5A;&#x59FB;&#x72B6;&#x6001;&#x7684;&#x6BD4;&#x4F8B;
+<ul>
+<li>x &#x8F74;&#x4E3A;&#x5A5A;&#x59FB;&#x72B6;&#x6001;</li>
+<li>y &#x8F74;&#x4E3A;&#x6BCF;&#x4E00;&#x7C7B;&#x5A5A;&#x59FB;&#x72B6;&#x6001;&#x5BF9;&#x5E94;&#x7684;&#x767E;&#x5206;&#x6BD4;</li>
+<li>&#x7B2C;&#x4E00;&#x4E2A;&#x6761;&#x5F62;&#x8868;&#x660E;&#x4E86;&#x6570;&#x636E;&#x96C6;&#x4E2D;&#x6709;48.3%&#x4EBA;&#x5DF2;&#x5A5A;</li>
+</ul></li>
+</ul>
+<center>
+<img src="0808-5.png" srcset="/img/loading.gif" style="zoom:50%;">
+</center>
+<ul>
+<li><p>&#x6309;&#x7167;&#x964D;&#x5E8F;&#x91CD;&#x65B0;&#x6392;&#x5217;&#x6761;&#x5F62;&#x56FE;</p></li>
+<li><p>&#x8FD9;&#x5BF9;&#x4E8E;&#x7814;&#x7A76;&#x54EA;&#x4E2A;&#x7FA4;&#x4F53;&#x5728;&#x8C03;&#x67E5;&#x4E2D;&#x6240;&#x5360;&#x6BD4;&#x4F8B;&#x6700;&#x5927;&#x66F4;&#x6709;&#x5E2E;&#x52A9;</p></li>
+<li><p>&#x53EF;&#x4EE5;&#x770B;&#x51FA;&#xFF0C;&#x5DF2;&#x5A5A;&#x3001;&#x4ECE;&#x672A;&#x7ED3;&#x5A5A;&#x3001;&#x79BB;&#x5A5A;&#x662F;&#x5360;&#x6BD4;&#x6700;&#x9AD8;&#x7684;&#x4E09;&#x7C7B;</p></li>
+<li><p>&#x5BF9;&#x4E8E;&#x540D;&#x4E49;&#x5206;&#x7C7B;&#x53D8;&#x91CF;&#xFF0C;&#x53EF;&#x4EE5;&#x7528;&#x66F4;&#x6709;&#x7528;&#x7684;&#x65B9;&#x5F0F;&#x91CD;&#x65B0;&#x6392;&#x5217;&#x6761;&#x5F62;&#x56FE;</p></li>
+</ul>
+<h3 id="&#x997C;&#x56FE;">&#x997C;&#x56FE;</h3>
+<center>
+<img src="0808-6.png" srcset="/img/loading.gif" style="zoom:50%;">
+</center>
+<p>&#x4E0D;&#x63A8;&#x8350;&#x4F7F;&#x7528;&#x997C;&#x56FE;&#x7684;&#x539F;&#x56E0;&#xFF1A;</p>
+<ul>
+<li>&#x6709;&#x65F6;&#x5BF9;&#x4E8E;&#x975E;&#x5E38;&#x975E;&#x5E38;&#x5C0F;&#x7684;&#x5207;&#x7247;&#x6765;&#x8BF4;&#xFF0C;&#x4F1A;&#x6709;&#x91CD;&#x53E0;&#xFF0C;&#x5176;&#x4E2D;&#x201C;&#x62D2;&#x7EDD;&#x201D;&#x548C;&#x201C;&#x4E0D;&#x77E5;&#x9053;&#x201D;&#x6807;&#x7B7E;&#x76F8;&#x4E92;&#x91CD;&#x53E0;&#xFF0C;&#x96BE;&#x4EE5;&#x9605;&#x8BFB;</li>
+<li>&#x5982;&#x679C;&#x6CA1;&#x6709;&#x4F7F;&#x7528;&#x9002;&#x5F53;&#x7684;&#x6807;&#x7B7E;&#xFF0C;&#x5C31;&#x5F88;&#x96BE;&#x770B;&#x51FA;&#x997C;&#x56FE;&#x7684;&#x54EA;&#x4E00;&#x5757;&#x6BD4;&#x5176;&#x4ED6;&#x7684;&#x5927;&#xFF0C;&#x201C;&#x4E27;&#x5076;&#x201D;&#x3001;&#x201C;&#x79BB;&#x5A5A;&#x201D;&#x3001;&#x201C;&#x4E0E;&#x4F34;&#x4FA3;&#x540C;&#x5C45;&#x201D;&#x90FD;&#x975E;&#x5E38;&#x76F8;&#x4F3C;&#xFF0C;&#x5982;&#x679C;&#x6CA1;&#x6709;&#x6807;&#x8BB0;&#x767E;&#x5206;&#x6BD4;&#xFF0C;&#x53EF;&#x80FD;&#x5C31;&#x4E0D;&#x77E5;&#x9053;&#x54EA;&#x4E2A;&#x90E8;&#x5206;&#x5728;&#x6574;&#x4E2A;&#x56FE;&#x8868;&#x4E2D;&#x5360;&#x6BD4;&#x4F8B;&#x66F4;&#x5927;</li>
+<li>&#x5C3D;&#x91CF;&#x5C11;&#x4F7F;&#x7528;&#x997C;&#x56FE;&#xFF0C;&#x591A;&#x4F7F;&#x7528;&#x6761;&#x5F62;&#x56FE;</li>
+</ul>
+<h3 id="&#x603B;&#x7ED3;">&#x603B;&#x7ED3;</h3>
+<p>&#x5BF9;&#x4E8E;&#x5206;&#x7C7B;&#x6570;&#x636E;&#xFF1A;</p>
+<ul>
+<li>&#x6700;&#x597D;&#x7684;&#x603B;&#x7ED3;&#x65B9;&#x6CD5;&#x662F;&#x9891;&#x7387;&#x8868;&#xFF0C;&#x8981;&#x4E48;&#x662F;&#x8BA1;&#x6570;&#xFF0C;&#x8981;&#x4E48;&#x662F;&#x767E;&#x5206;&#x6BD4;&#xFF0C;&#x6216;&#x4E24;&#x8005;&#x90FD;&#x6709;</li>
+<li>&#x6761;&#x5F62;&#x56FE;&#x4E5F;&#x662F;&#x4E00;&#x4E2A;&#x5F88;&#x597D;&#x7684;&#x53EF;&#x89C6;&#x5316;&#x65B9;&#x6CD5;&#xFF0C;&#x540C;&#x6837;&#x662F;&#x7528;&#x8BA1;&#x6570;/&#x767E;&#x5206;&#x6BD4;</li>
+<li>&#x5982;&#x679C;&#x9009;&#x62E9;&#x4F7F;&#x7528;&#x997C;&#x56FE;&#xFF0C;&#x8BF7;&#x8C28;&#x614E;&#x4F7F;&#x7528;</li>
+</ul>
+<h2 id="quantitative-data---histograms">Quantitative Data - Histograms</h2>
+<blockquote>
+<ul>
+<li><p>What are Quantitative Variables?</p>
+<p>Variables that have a numerical value that we can perform mathematical operations on</p></li>
+<li><p>Examples:</p>
+<ul>
+<li><p>height</p></li>
+<li><p>weight</p></li>
+<li><p>income</p></li>
+<li><p>test scores</p></li>
+<li><p>shoe size</p></li>
+<li><p>number of &quot;heads&quot; after 10 coin flips</p></li>
+</ul></li>
+<li><p>Why Use Histograms?</p>
+<p>We can get a quick view of what our data looks like and what we might want to go on to analyze with our data.</p>
+<p>Histograms allow us to display data graphically</p></li>
+<li><p>4 Main Aspects</p>
+<ul>
+<li><p>Shape</p>
+<p>overall appearance of histograms</p>
+<p>can be symmetric, bell-shaped, left skewed, right skewed</p></li>
+<li><p>Center</p>
+<p>Mean or Median</p></li>
+<li><p>Spread</p>
+<p>how far our data spreads</p>
+<p>range</p>
+<p>Interquartile Range (IQR)</p>
+<p>standard deviation</p>
+<p>variance</p></li>
+<li><p>Outliers</p>
+<p>data points that fall far from the bulk of the data</p></li>
+</ul></li>
+<li><p>Your one sentence summary should allow for any person to read it and have a general understand of what your data looks like. ## &#x6570;&#x503C;&#x6570;&#x636E; - &#x76F4;&#x65B9;&#x56FE;</p></li>
+</ul>
+</blockquote>
+<p>&#x4EC0;&#x4E48;&#x662F;&#x6570;&#x503C;&#x6570;&#x636E;&#xFF1F;</p>
+<p>&#x4F8B;&#x5982;&#xFF1A;&#x8EAB;&#x9AD8;&#x3001;&#x4F53;&#x91CD;&#x3001;&#x6536;&#x5165;&#x3001;&#x8003;&#x8BD5;&#x5206;&#x6570;&#x3001;&#x978B;&#x5B50;&#x5927;&#x5C0F;</p>
+<h3 id="&#x76F4;&#x65B9;&#x56FE;">&#x76F4;&#x65B9;&#x56FE;</h3>
+<p>&#x53EF;&#x4EE5;&#x5FEB;&#x901F;&#x4E86;&#x89E3;&#x6570;&#x636E;&#x662F;&#x4EC0;&#x4E48;&#x6837;&#x5B50;&#x7684;</p>
+<center>
+<img src="0808-7.png" srcset="/img/loading.gif" style="zoom:50%;">
+</center>
+<ul>
+<li><p>&#x5DE6;&#x56FE;&#x662F;100&#x4E2A;&#x6837;&#x672C;&#x4E2D;&#xFF0C;&#x90E8;&#x5206;&#x6210;&#x5E74;&#x7537;&#x5B50;&#x7684;&#x8EAB;&#x9AD8;</p></li>
+<li><p>&#x53F3;&#x56FE;&#x662F;100&#x4E2A;&#x6837;&#x672C;&#x7684;&#x76F4;&#x65B9;&#x56FE;</p></li>
+<li><p>&#x53F3;&#x56FE;&#x7684;&#x76F4;&#x65B9;&#x56FE;&#x6709;&#x949F;&#x5F62;&#x7684;&#x5916;&#x89C2;</p></li>
+<li><p>y&#x8F74; - &#x9891;&#x7387;</p></li>
+<li><p>x&#x8F74; - &#x53D8;&#x91CF;&#xFF0C;&#x9AD8;&#x5EA6;&#xFF08;&#x82F1;&#x5BF8;&#xFF09;</p></li>
+<li><p>&#x6BCF;&#x4E00;&#x4E2A;&#x5C0F;&#x77E9;&#x5F62;&#x662F;bin</p></li>
+<li><p>&#x5728;&#x7B2C;&#x4E00;&#x4E2A;bin&#x53EF;&#x4EE5;&#x770B;&#x51FA;&#xFF0C;&#x8EAB;&#x9AD8;&#x5728;62&#x82F1;&#x5BF8;&#x5DE6;&#x53F3;&#x7684;&#x5927;&#x7EA6;&#x6709;3&#x4E2A;&#x4EBA;</p></li>
+<li><p>&#x56DB;&#x4E2A;&#x4E3B;&#x8981;&#x65B9;&#x9762;</p>
+<ul>
+<li><p>&#x5F62;&#x72B6;</p>
+<ul>
+<li><p>&#x76F4;&#x65B9;&#x56FE;&#x7684;&#x6574;&#x4F53;&#x5916;&#x89C2;</p></li>
+<li><p>&#x53EF;&#x4EE5;&#x662F;&#x5BF9;&#x79F0;&#x7684;&#x3001;&#x6B63;&#x6001;&#x5206;&#x5E03;&#x3001;&#x5DE6;&#x504F;&#x7684;&#x3001;&#x53F3;&#x504F;&#x7684;</p></li>
+</ul></li>
+<li><p>&#x4E2D;&#x5FC3;</p>
+<ul>
+<li><p>&#x5E73;&#x5747;&#x503C;</p></li>
+<li><p>&#x4E2D;&#x4F4D;&#x6570;</p></li>
+</ul></li>
+<li><p>&#x79BB;&#x6563;&#x7A0B;&#x5EA6;</p>
+<ul>
+<li><p>&#x6570;&#x636E;&#x5206;&#x5E03;&#x60C5;&#x51B5;&#x5982;&#x4F55;</p></li>
+<li><p>&#x5168;&#x8DDD; range</p></li>
+<li><p>&#x56DB;&#x5206;&#x4F4D;&#x8DDD; IQR</p></li>
+<li><p>&#x6807;&#x51C6;&#x5DEE; standard deviation</p></li>
+<li><p>&#x65B9;&#x5DEE; variance</p></li>
+</ul></li>
+<li><p>&#x79BB;&#x7FA4;&#x503C;</p>
+<ul>
+<li>&#x4E0E;&#x5176;&#x4ED6;&#x89C2;&#x5BDF;&#x503C;&#x7531;&#x663E;&#x8457;&#x5DEE;&#x5F02;&#x7684;&#x6570;&#x636E;&#x70B9; ### &#x76F4;&#x65B9;&#x56FE;&#x5206;&#x6790;&#x6848;&#x4F8B;</li>
+</ul></li>
+</ul></li>
+</ul>
+<h4 id="&#x6210;&#x5E74;&#x7537;&#x5B50;&#x7684;&#x8EAB;&#x9AD8;&#x5206;&#x5E03;">&#x6210;&#x5E74;&#x7537;&#x5B50;&#x7684;&#x8EAB;&#x9AD8;&#x5206;&#x5E03;</h4>
+<center>
+<img src="0808-8.png" srcset="/img/loading.gif" style="zoom:50%;">
+</center>
+<ul>
+<li><p>&#x5F62;&#x72B6;</p>
+<p>&#x5927;&#x81F4;&#x662F;&#x6B63;&#x6001;&#x5206;&#x5E03;&#xFF0C;&#x6B63;&#x6001;&#x5206;&#x5E03;&#x5728;&#x7EDF;&#x8BA1;&#x5B66;&#x4E2D;&#x662F;&#x975E;&#x5E38;&#x5E38;&#x89C1;&#x7684;&#xFF0C;&#x5BF9;&#x4E8E;&#x7EDF;&#x8BA1;&#x5206;&#x6790;&#x975E;&#x5E38;&#x53CB;&#x597D;</p></li>
+<li><p>&#x4E2D;&#x5FC3;</p>
+<p>&#x6B63;&#x6001;&#x5206;&#x5E03;&#xFF0C;&#x4E14;&#x5355;&#x5CF0;&#xFF0C;&#x6240;&#x4EE5;&#x662F;&#x5BF9;&#x79F0;&#x7684;&#xFF0C;&#x4E2D;&#x5FC3;&#x70B9;&#x5C31;&#x5728;&#x4E2D;&#x95F4;&#xFF0C;68&#x82F1;&#x5BF8;&#xFF0C;&#x5E73;&#x5747;&#x503C;&#x5927;&#x6982;&#x4E5F;&#x662F;68&#x82F1;&#x5BF8;</p></li>
+<li><p>&#x79BB;&#x6563;&#x7A0B;&#x5EA6;</p>
+<ul>
+<li><p>&#x5168;&#x8DDD; = &#x6700;&#x5927;&#x503C; - &#x6700;&#x5C0F;&#x503C;</p>
+<p>&#x6700;&#x5927;&#x503C;&#x5927;&#x7EA6;75&#xFF0C;&#x6700;&#x5C0F;&#x503C;&#x5927;&#x7EA6;62&#xFF0C;&#x6240;&#x4EE5;&#x5168;&#x5C40;&#x5927;&#x7EA6;&#x4E3A;13</p></li>
+</ul></li>
+<li><p>&#x79BB;&#x7FA4;&#x503C;</p>
+<p>&#x5BF9;&#x4E8E;&#x4E0A;&#x56FE;&#xFF0C;&#x6CA1;&#x6709;&#x660E;&#x663E;&#x7684;&#x79BB;&#x7FA4;&#x503C; #### &#x65E7;&#x91D1;&#x5C71;&#x7684;&#x5DE5;&#x8D44;&#x5206;&#x5E03;</p>
+<center>
+<p><img src="0808-9.png" srcset="/img/loading.gif" style="zoom:50%;"></p>
+</center></li>
+<li><p>&#x5F62;&#x72B6;</p>
+<p>&#x53F3;&#x504F; + &#x53CC;&#x5CF0;</p>
+<p>&#x6709;&#x4E24;&#x4E2A;&#x5CF0;&#xFF0C;&#x957F;&#x957F;&#x7684;&#x53F3;&#x5C3E;&#xFF0C;&#x662F;&#x53F3;&#x504F;&#x5206;&#x5E03;&#xFF0C;&#x4E24;&#x4E2A;&#x5CF0;&#x4E00;&#x4E2A;&#x5927;&#x7EA6;&#x5728;0&#xFF0C;&#x4E00;&#x4E2A;&#x5927;&#x7EA6;&#x5728;60000&#x5DE6;&#x53F3;&#xFF0C;&#x53CC;&#x5CF0;&#x5206;&#x5E03;</p></li>
+<li><p>&#x4E2D;&#x5FC3;</p>
+<ul>
+<li><p>&#x4E2D;&#x4F4D;&#x6570; Median &#x2248; $80,000</p>
+<p>&#x5982;&#x679C;&#x5728;80000&#x5DE6;&#x53F3;&#x753B;&#x4E00;&#x6761;&#x5782;&#x76F4;&#x7EBF;&#xFF0C;&#x90A3;&#x4E48;&#x5DE6;&#x8FB9;bins&#x548C;&#x53F3;&#x8FB9;&#x7684;bins&#x540C;&#x7B49;&#x5927;&#x5C0F;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x5DE6;&#x8FB9;&#x9762;&#x79EF;&#x548C;&#x53F3;&#x8FB9;&#x9762;&#x79EF;&#x5DEE;&#x4E0D;&#x591A;</p>
+<p>&#x6240;&#x4EE5;&#x53EF;&#x4EE5;&#x8BF4;&#x4E2D;&#x4F4D;&#x6570;&#x662F;8&#x4E07;&#x7F8E;&#x5143;&#x5DE6;&#x53F3;</p></li>
+<li><p>&#x5E73;&#x5747;&#x6570; Mean &#x2248; $ 85,000</p>
+<p>&#x56E0;&#x4E3A;&#x662F;&#x53F3;&#x504F;&#x5206;&#x5E03;&#xFF0C;&#x6240;&#x4EE5;&#x5E73;&#x5747;&#x6570;&#x5C06;&#x4F1A;&#x88AB;&#x62C9;&#x5230;&#x53F3;&#x8FB9;&#xFF0C;&#x5927;&#x4E8E;&#x4E2D;&#x4F4D;&#x6570;</p>
+<p>&#x53EF;&#x4EE5;&#x79F0;8.5&#x4E07;&#x7F8E;&#x5143;&#x662F;&#x8BE5;&#x6570;&#x636E;&#x7684;&#x5E73;&#x5747;&#x6570;</p></li>
+</ul></li>
+<li><p>&#x79BB;&#x6563;&#x7A0B;&#x5EA6;</p>
+<ul>
+<li><p>&#x5168;&#x8DDD; Range &#x2248; $ 600,000</p>
+<p>&#x6700;&#x5927;&#x503C;&#x5927;&#x6982;60&#x4E07;&#xFF0C;&#x6700;&#x5C0F;&#x503C;&#x662F;0&#xFF0C;&#x6240;&#x4EE5;&#x5168;&#x8DDD;&#x5927;&#x6982;&#x662F;60&#x4E07;&#x7F8E;&#x5143;</p></li>
+</ul></li>
+<li><p>&#x79BB;&#x7FA4;&#x503C;</p>
+<ul>
+<li><p>&#x5F53;&#x6709;&#x504F;&#x6001;&#x5206;&#x5E03;&#x65F6;&#xFF0C;&#x4E5F;&#x4F1A;&#x6709;&#x79BB;&#x7FA4;&#x503C;</p></li>
+<li><p>&#x53EF;&#x4EE5;&#x8BA4;&#x4E3A;&#x8FC7;&#x4E86;20&#x4E07;&#xFF0C;&#x5C31;&#x662F;&#x79BB;&#x7FA4;&#x503C;</p></li>
+</ul></li>
+<li><p>&#x603B;&#x7ED3;</p>
+<p>&#x65E7;&#x91D1;&#x5C71;&#x7684;&#x5DE5;&#x8D44;&#x5206;&#x5E03;&#x662F;<strong>&#x53CC;&#x5CF0;</strong>&#x578B;&#x7684;&#xFF0C;&#x5E76;&#x4E14;<strong>&#x53F3;&#x504F;</strong>&#xFF0C;&#x4EE5;8&#x4E07;&#x7F8E;&#x5143;&#x5DE6;&#x53F3;&#x4E3A;&#x4E2D;&#x5FC3;&#xFF0C;&#x5927;&#x90E8;&#x5206;&#x6570;&#x636E;&#x5728;4&#x4E07;-12&#x4E07;&#x7F8E;&#x5143;&#x4E4B;&#x95F4;&#xFF0C;&#x5168;&#x8DDD;&#x662F;60&#x4E07;&#x7F8E;&#x5143;&#xFF0C;&#x79BB;&#x7FA4;&#x503C;&#x51FA;&#x73B0;&#x5728;&#x9AD8;&#x7AEF;&#xFF0C;&#x5927;&#x4E8E;20&#x4E07;&#x3002;</p></li>
+</ul>
+<h4 id="&#x8003;&#x8BD5;&#x6210;&#x7EE9;&#x7684;&#x5206;&#x5E03;">&#x8003;&#x8BD5;&#x6210;&#x7EE9;&#x7684;&#x5206;&#x5E03;</h4>
+<cenetr><img src="0808-10.png" srcset="/img/loading.gif" style="zoom:50%;">
+
+<p><em>&#x81EA;&#x5DF1;&#x5148;&#x8BD5;&#x7740;&#x5206;&#x6790;&#x4E00;&#x4E0B;</em></p>
+<ul>
+<li><p>&#x5F62;&#x72B6;</p>
+<p>&#x5C3E;&#x90E8;&#x662F;&#x5411;&#x5DE6;&#x7684;&#xFF0C;&#x5DE6;&#x504F;&#x5206;&#x5E03;&#xFF0C;&#x5355;&#x5CF0;</p></li>
+<li><p>&#x4E2D;&#x5FC3;</p>
+<ul>
+<li><p>&#x4E2D;&#x4F4D;&#x6570;</p>
+<p>&#x53EF;&#x4EE5;&#x5C1D;&#x8BD5;&#x753B;&#x4E00;&#x6761;&#x5782;&#x76F4;&#x7EBF;&#xFF0C;&#x5C06;&#x5176;&#x5206;&#x4E3A;&#x4E24;&#x4E2A;&#x76F8;&#x7B49;&#x7684;&#x90E8;&#x5206;&#xFF0C;&#x5927;&#x7EA6;&#x662F;80</p></li>
+<li><p>&#x5E73;&#x5747;&#x6570;</p>
+<p>&#x56E0;&#x4E3A;&#x662F;&#x5DE6;&#x504F;&#xFF0C;&#x6240;&#x4EE5;&#x5E73;&#x5747;&#x6570;&#x5C0F;&#x4E8E;&#x4E2D;&#x4F4D;&#x6570;&#xFF0C;&#x53EF;&#x4EE5;&#x8BA4;&#x4E3A;&#x662F;75&#x5DE6;&#x53F3;</p></li>
+</ul></li>
+<li><p>&#x79BB;&#x6563;&#x7A0B;&#x5EA6;</p>
+<ul>
+<li><p>&#x5168;&#x8DDD;</p>
+<p>&#x6700;&#x5927;&#x503C;&#x662F;100&#xFF0C;&#x6700;&#x5C0F;&#x503C;&#x5927;&#x7EA6;&#x662F;15&#xFF0C;&#x6240;&#x4EE5;&#x5168;&#x8DDD;&#x5927;&#x7EA6;&#x662F;85</p></li>
+</ul></li>
+<li><p>&#x79BB;&#x7FA4;&#x503C;</p>
+<p>&#x4F4E;&#x7AEF;&#x6709;&#x79BB;&#x7FA4;&#x503C;&#xFF0C;&#x53EF;&#x4EE5;&#x8BA4;&#x4E3A;&#x5927;&#x6982;&#x4F4E;&#x4E8E;50&#x4EE5;&#x4E0B;&#x662F;&#x79BB;&#x7FA4;&#x503C;&#xFF0C;&#x56E0;&#x4E3A;&#x5728;&#x8003;&#x8BD5;&#x4E2D;&#x6210;&#x7EE9;&#x5C0F;&#x4E8E;50&#x7684;&#x4EBA;&#x6570;&#x8F83;&#x5C11;</p></li>
+<li><p>&#x603B;&#x7ED3;</p>
+<p>&#x8003;&#x8BD5;&#x5206;&#x6570;&#x7684;&#x5206;&#x5E03;&#x662F;&#x5DE6;&#x504F;&#x7684;&#xFF0C;&#x4EE5;80&#x5206;&#x5DE6;&#x53F3;&#x4E3A;&#x4E2D;&#x5FC3;&#xFF0C;&#x5927;&#x90E8;&#x5206;&#x5728;65-90&#x5206;&#x4E4B;&#x95F4;&#xFF0C;&#x5168;&#x8DDD;&#x662F;85&#x5206;&#x5DE6;&#x53F3;&#xFF0C;50&#x5206;&#x4EE5;&#x4E0B;&#x5B58;&#x5728;&#x4E00;&#x4E9B;&#x79BB;&#x7FA4;&#x503C;</p></li>
+</ul>
+<h3 id="&#x76F4;&#x65B9;&#x56FE;&#x7684;&#x603B;&#x7ED3;">&#x76F4;&#x65B9;&#x56FE;&#x7684;&#x603B;&#x7ED3;</h3>
+<ul>
+<li><p>&#x53EF;&#x4EE5;&#x7528;&#x76F4;&#x65B9;&#x56FE;&#x6765;&#x521D;&#x6B65;&#x5C55;&#x793A;&#x6570;&#x636E;&#x7684;&#x56FE;&#x5F62;&#x5316;</p></li>
+<li><p>&#x4E3B;&#x8981;&#x6709;&#x56DB;&#x4E2A;&#x65B9;&#x9762;</p>
+<ul>
+<li><p>&#x5F62;&#x72B6;</p></li>
+<li><p>&#x4E2D;&#x5FC3;</p></li>
+<li><p>&#x79BB;&#x6563;&#x7A0B;&#x5EA6;</p></li>
+<li><p>&#x79BB;&#x7FA4;&#x503C;</p></li>
+</ul></li>
+<li><p>&#x901A;&#x8FC7;&#x8FD9;&#x56DB;&#x4E2A;&#x65B9;&#x9762;&#x7684;&#x63CF;&#x8FF0;&#xFF0C;&#x53EF;&#x4EE5;&#x6784;&#x5EFA;&#x4E00;&#x53E5;&#x8BDD;&#x7684;&#x603B;&#x7ED3;&#xFF0C;&#x8FD9;&#x4E2A;&#x4E00;&#x53E5;&#x8BDD;&#x603B;&#x7ED3;&#x53EF;&#x4EE5;&#x8BA9;&#x4EFB;&#x4F55;&#x4EBA;&#x660E;&#x767D;&#x4F60;&#x7684;&#x6570;&#x636E;&#x662F;&#x4EC0;&#x4E48;&#x3001;&#x5927;&#x6982;&#x662F;&#x4EC0;&#x4E48;&#x6837;&#x5B50;&#x7684;</p></li>
+</ul>
+</cenetr></body></html>
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Coursera-notebooks/">Coursera-notebooks</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Start-with-Me/">Start with Me</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Python/">Python</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Coursera/">Coursera</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                      <a href="/py-statistics-06-numerical-summaries-and-standard-score/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">week2-2- Numerical Summaries and Standard Score</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/py-statistics-04-read-data-files/">
+                        <span class="hidden-mobile">week1-4-Using Python to read data files</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: 'article.markdown-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "week2-1- Tables、Bar Chart、Pie Chart、Histograms&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 80,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="Oreo">
+  <meta name="keywords" content="">
+  <title>week1-2 - Data - Oreo</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script  src="/js/utils.js" ></script>
+<meta name="generator" content="Hexo 5.0.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>奥利奥小屋</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2020-08-03 12:03">
+      2020年8月3日 中午
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      4.1k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      81
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <html><head></head><body><h1 id="start-with-me-coursera---understanding-and-visualizing-data-with-python-week-1-2---data">Start with Me | Coursera - Understanding and Visualizing Data with Python week 1-2 - Data</h1>
+<p><code>Start with Me</code> &#x7CFB;&#x5217;&#x7EC8;&#x4E8E;&#x53C8;&#x53C8;&#x66F4;&#x65B0;&#x5566;&#xFF0C;&#x5199;&#x5230;&#x6BD4;&#x8F83;&#x91CD;&#x8981;&#x7684;&#x90E8;&#x5206;&#x624D;&#x53D1;&#x73B0;&#x5DF2;&#x7ECF;&#x5199;&#x4E86;&#x5F88;&#x591A;&#x4E71;&#x4E03;&#x516B;&#x7CDF;&#x7684;&#xFF0C;&#x6240;&#x4EE5;&#x8FD8;&#x662F;&#x7B49;&#x4E0B;&#x4E00;&#x6B21;&#x66F4;&#x65B0;&#x5427;</p>
+<h2 id="cool-stuff-in-data">Cool Stuff in Data</h2>
+<p>Data can be anything.</p>
+<h3 id="data-can-be-numbers">Data can be Numbers</h3>
+<blockquote>
+<p>This is what oftentimes people will think about when they think of data.</p>
+<p>You&apos;ll think about a spreadsheet or something like that.</p>
+<p>Dataset in this course -- National Health and Nutrition Examination Survey</p>
+<ul>
+<li>a form that has a lot of numbers in it</li>
+<li>the third one stands for gender, and has numbers representing whether the person is female or male</li>
+</ul>
+</blockquote>
+<center>
+<img src="0720-1.png" srcset="/img/loading.gif" style="zoom:50%;">
+</center>
+<h3 id="&#x6570;&#x636E;&#x53EF;&#x4EE5;&#x662F;&#x6570;&#x5B57;">&#x6570;&#x636E;&#x53EF;&#x4EE5;&#x662F;&#x6570;&#x5B57;</h3>
+<p><em>&#x5F88;&#x591A;&#x65F6;&#x5019;&#x4EBA;&#x4EEC;&#x4E00;&#x60F3;&#x5230;&#x6570;&#x636E;&#x5C31;&#x4F1A;&#x60F3;&#x5230;&#x4E00;&#x4E2A;&#x7535;&#x5B50;&#x8868;&#x683C;&#x6216;&#x8005;&#x7C7B;&#x4F3C;&#x7684;&#x4E1C;&#x897F;</em></p>
+<ul>
+<li>&#x8BFE;&#x7A0B;&#x4F7F;&#x7528;&#x7684;&#x4E00;&#x4E2A;&#x6570;&#x636E;&#x96C6;&#xFF1A;&#x56FD;&#x5BB6;&#x5065;&#x5EB7;&#x548C;&#x8425;&#x517B;&#x8C03;&#x67E5;</li>
+<li>&#x53EF;&#x4EE5;&#x8BA4;&#x4E3A;&#x662F;&#x4E00;&#x4E2A;&#x8868;&#x683C;&#xFF0C;&#x91CC;&#x9762;&#x6709;&#x5F88;&#x591A;&#x6570;&#x5B57;</li>
+<li>&#x4F8B;&#x5982;&#x7B2C;&#x4E09;&#x4E2A;&#x53D8;&#x91CF;&#x4EE3;&#x8868;&#x6027;&#x522B;&#xFF0C;&#x7531;&#x6570;&#x5B57;&#x4EE3;&#x8868;&#x8FD9;&#x4E2A;&#x4EBA;&#x662F;&#x7537;&#x6027;&#x8FD8;&#x662F;&#x5973;&#x6027;</li>
+</ul>
+<h2 id="data-can-be-images">Data can be Images</h2>
+<blockquote>
+<p>If you have a lot of faces, there&apos;s this idea called Eigenfaces. This represents your faces in number.</p>
+<p>So researchers can look at the faces in an image and represent them in numbers, and do a lot of really neat things with them.</p>
+<ul>
+<li><p>Snapchat -- face swapping</p>
+<p>These Eigenfaces are really helpful in identifying where faces are, and changing where those faces are on specific people.</p>
+<center>
+<p><img src="0702-3.png" srcset="/img/loading.gif" style="zoom:80%;"></p>
+</center></li>
+<li><p>Smartphones taking pictures / Facebook-- facial recognition</p>
+<p>When you&apos;re taking pictures, they&apos;ll put boxes around faces.</p>
+<p>When you upload pictures, you can use facial recognition software to tag the people who are in those images.</p>
+<center>
+<p><img src="0720-4.png" srcset="/img/loading.gif" style="zoom: 80%;"></p>
+</center></li>
+</ul>
+<p><em>Using satellite images</em></p>
+<ul>
+<li><p>estimate where coastline is</p>
+<center>
+<p><img src="0702-5.png" srcset="/img/loading.gif" style="zoom:80%;"></p>
+</center></li>
+<li><p>how much forest</p></li>
+<li><p>track storm systems</p>
+<center>
+<p><img src="0720-6.png" srcset="/img/loading.gif" style="zoom:80%;"></p>
+</center></li>
+</ul>
+</blockquote>
+<h3 id="&#x6570;&#x636E;&#x53EF;&#x4EE5;&#x662F;&#x56FE;&#x50CF;">&#x6570;&#x636E;&#x53EF;&#x4EE5;&#x662F;&#x56FE;&#x50CF;</h3>
+<p><strong>&#x7279;&#x5F81;&#x8138;</strong> &#x2014;&#x2014; &#x5BFB;&#x627E;&#x4EBA;&#x8138;&#x56FE;&#x50CF;&#x5206;&#x5E03;&#x7684;&#x57FA;&#x672C;&#x5143;&#x7D20;&#xFF0C;&#x5373;&#x4EBA;&#x8138;&#x56FE;&#x50CF;&#x6837;&#x672C;&#x96C6;&#x534F;&#x65B9;&#x5DEE;&#x77E9;&#x9635;&#x7684;&#x7279;&#x5F81;&#x5411;&#x91CF;&#xFF0C;&#x7528;&#x6765;&#x8FD1;&#x4F3C;&#x5730;&#x8868;&#x5F81;&#x4EBA;&#x8138;&#x56FE;&#x50CF;&#xFF0C;&#x8FD9;&#x4E9B;&#x7279;&#x5F81;&#x5411;&#x91CF;&#x88AB;&#x79F0;&#x4E3A;&#x7279;&#x5F81;&#x8138;</p>
+<ul>
+<li>Snapchat &#x2014;&#x2014; &#x6362;&#x8138;</li>
+<li>&#x624B;&#x673A;&#x5185;&#x7F6E;&#x76F8;&#x673A; / Facebook &#x2014;&#x2014; &#x9762;&#x90E8;&#x8BC6;&#x522B;</li>
+<li>&#x5229;&#x7528;&#x536B;&#x661F;&#x56FE;&#x50CF;
+<ul>
+<li>&#x4F30;&#x8BA1;&#x6D77;&#x5CB8;&#x7EBF;&#x5728;&#x54EA;&#x91CC;</li>
+<li>&#x5728;&#x7279;&#x5B9A;&#x533A;&#x57DF;&#x7684;&#x571F;&#x5730;&#x6709;&#x591A;&#x5C11;&#x68EE;&#x6797;</li>
+<li>&#x8DDF;&#x8E2A;&#x98CE;&#x66B4;&#x7CFB;&#x7EDF;&#x7684;&#x8FDB;&#x5C55;&#xFF0C;&#x56DE;&#x987E;&#x5176;&#x6240;&#x9020;&#x6210;&#x7684;&#x7834;&#x574F;&#x7A0B;&#x5EA6;</li>
+</ul></li>
+</ul>
+<p><strong>Quick Draw</strong></p>
+<p>&#x70B9;&#x51FB;<a target="_blank" rel="noopener" href="https://quickdraw.withgoogle.com/">&#x8FD9;&#x91CC;</a>&#xFF0C;&#x5FEB;&#x901F;&#x6D82;&#x9E26;</p>
+<blockquote>
+<p>&#x795E;&#x7ECF;&#x7F51;&#x7EDC;&#x80FD;&#x5B66;&#x4F1A;&#x8FA8;&#x8BC6;&#x6D82;&#x9E26;&#x5417;&#xFF1F;</p>
+<p>&#x53EA;&#x8981;&#x5C06;&#x4F60;&#x7684;&#x6D82;&#x9E26;&#x4F5C;&#x54C1;&#x6DFB;&#x52A0;&#x5230;&#x5168;&#x7403;&#x6700;&#x5927;&#x7684;&#x6D82;&#x9E26;&#x6570;&#x636E;&#x96C6;&#xFF0C;&#x5373;&#x53EF;&#x534F;&#x52A9;&#x8BAD;&#x7EC3;&#x795E;&#x7ECF;&#x7F51;&#x7EDC;&#x8FA8;&#x8BC6;&#x6D82;&#x9E26;</p>
+</blockquote>
+<p>&#x201C;&#x4F60;&#x753B;&#x6211;&#x731C;&#x201D;&#xFF0C; &#x5FEB;&#x6765;&#x8D21;&#x732E;&#x4F60;&#x7684;&#x6D82;&#x9E26;&#x4F5C;&#x54C1;&#x5427;</p>
+<h3 id="data-can-be-words">Data can be Words</h3>
+<blockquote>
+<ul>
+<li><p>An idea of looking at the <strong>entire text of Harry Potter</strong>, and estimating what a sample chapter might be.</p>
+<center>
+<p><img src="0720-7.png" srcset="/img/loading.gif" style="zoom:80%;"></p>
+</center>
+<ul>
+<li><p>Botnet generated Harry Potter and the portrait of what looked like a large pile of ash.</p></li>
+<li><p>What they did is they went through the entire text of all seven Harry Potter books and used various algorithms and predictive text forms to generate a new chapter in Harry Potter.</p></li>
+</ul></li>
+<li><p>An idea of <strong>electronic health records</strong>.</p>
+<center>
+<p><img src="0720-8.png" srcset="/img/loading.gif" style="zoom:80%;"></p>
+</center>
+<blockquote>
+
+</blockquote>
+<ul>
+<li><p>There are a lot of words in your health records, but they do contain a lot of different data about you.</p></li>
+<li><p><strong>match your health records</strong> between different locations based on name and other identifying characteristics</p></li>
+<li><p>allow somebody to <strong>get a really good sense of your entire health history</strong> from different locations of your health records</p></li>
+</ul></li>
+<li><p>An idea of <strong>document classification</strong></p>
+<center>
+<p><img src="0720-9.png" srcset="/img/loading.gif" style="zoom: 50%;"></p>
+</center></li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li><p>if you look through a newspaper and you&apos;re trying to classify</p></li>
+<li><p>you can look at the words that are used, and estimate whether it belongs in the business, the sports, or the local section based on the words that are used.</p></li>
+<li><p>An idea of <strong>debiasing word embeddings</strong></p>
+<center>
+<p><img src="0720-10.png" srcset="/img/loading.gif" style="zoom: 50%;"></p>
+</center>
+<ul>
+<li>Weird papers like Man is to Computer Programmer as Women is to Homemaker.</li>
+<li>We want to try to make those word embeddings potentially debiased if there are some biases located in them.</li>
+</ul></li>
+</ul>
+</blockquote>
+<h3 id="&#x6570;&#x636E;&#x53EF;&#x4EE5;&#x662F;&#x6587;&#x5B57;">&#x6570;&#x636E;&#x53EF;&#x4EE5;&#x662F;&#x6587;&#x5B57;</h3>
+<ul>
+<li><p>&#x770B;&#x300A;&#x54C8;&#x5229;&#x6CE2;&#x7279;&#x300B;&#x7684;&#x6574;&#x4E2A;&#x6587;&#x672C;&#xFF0C;&#x4F30;&#x8BA1;&#x4E00;&#x4E2A;&#x6837;&#x672C;&#x7AE0;&#x8282;&#x53EF;&#x80FD;&#x662F;&#x4EC0;&#x4E48;</p>
+<ul>
+<li>Botnet &#x7FFB;&#x9605;&#x4E86;&#x5168;&#x90E8;&#x4E03;&#x672C;&#x300A;&#x54C8;&#x5229;&#x6CE2;&#x7279;&#x300B;&#x7684;&#x6587;&#x672C;&#xFF0C;&#x5E76;&#x4F7F;&#x7528;&#x5404;&#x79CD;&#x7B97;&#x6CD5;&#x548C;&#x9884;&#x6D4B;&#x6587;&#x672C;&#x6765;&#x751F;&#x6210;&#x65B0;&#x7AE0;&#x8282;</li>
+</ul></li>
+<li><p>&#x7535;&#x5B50;&#x5065;&#x5EB7;&#x8BB0;&#x5F55;</p>
+<ul>
+<li><p>&#x4F60;&#x7684;&#x5065;&#x5EB7;&#x8BB0;&#x5F55;&#x91CC;&#x9762;&#x6709;&#x5F88;&#x591A;&#x5B57;&#xFF0C;&#x5305;&#x542B;&#x4E86;&#x5F88;&#x591A;&#x5173;&#x4E8E;&#x4F60;&#x7684;&#x4E0D;&#x540C;&#x6570;&#x636E;</p></li>
+<li><p>&#x6839;&#x636E;&#x59D3;&#x540D;&#x548C;&#x5176;&#x4ED6;&#x7279;&#x5F81;&#x5728;&#x4E0D;&#x540C;&#x4F4D;&#x7F6E;&#x4E4B;&#x95F4;&#x5339;&#x914D;&#x4F60;&#x7684;&#x5065;&#x5EB7;&#x8BB0;&#x5F55;</p></li>
+<li><p>&#x6709;&#x4EBA;&#x53EF;&#x4EE5;&#x4ECE;&#x4F60;&#x7684;&#x5065;&#x5EB7;&#x8BB0;&#x5F55;&#x7684;&#x4E0D;&#x540C;&#x4F4D;&#x7F6E;&#xFF0C;&#x5BF9;&#x4F60;&#x7684;&#x6574;&#x4E2A;&#x5065;&#x5EB7;&#x53F2;&#x6709;&#x4E00;&#x4E2A;&#x597D;&#x7684;&#x8BA4;&#x8BC6;</p></li>
+</ul></li>
+<li><p>&#x6587;&#x4EF6;&#x5206;&#x7C7B;</p>
+<ul>
+<li>&#x67E5;&#x770B;&#x6574;&#x4E2A;&#x6587;&#x6863;&#xFF0C;&#x4F8B;&#x5982;&#x62A5;&#x7EB8;&#xFF0C;&#x770B;&#x770B;&#x4F7F;&#x7528;&#x7684;&#x8BCD;</li>
+</ul></li>
+<li><p>&#x6839;&#x636E;&#x4F7F;&#x7528;&#x7684;&#x8BCD;&#x6765;&#x5224;&#x65AD;&#x5B83;&#x662F;&#x5C5E;&#x4E8E;&#x5546;&#x4E1A;&#x7248;&#x3001;&#x4F53;&#x80B2;&#x7248;&#x8FD8;&#x662F;&#x5730;&#x65B9;&#x7248;</p>
+<ul>
+<li>&#x6240;&#x6709;&#x7684;&#x8BCD;&#x90FD;&#x6709;&#x542B;&#x4E49;&#x548C;&#x5D4C;&#x5165;&#x5728;&#x5176;&#x4E2D;&#xFF0C;&#x5728;&#x8BFB;&#x5230;&#x8FD9;&#x4E9B;&#x8BCD;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x5B83;&#x4EEC;&#x6709;&#x4E0D;&#x540C;&#x7684;&#x5185;&#x6DB5;</li>
+</ul></li>
+<li><p>&#x53BB;&#x6389;&#x8BCD;&#x5D4C;&#x5165;</p>
+<ul>
+<li>&#x50CF; &#x201C;&#x7537;&#x4EBA;&#x4E4B;&#x4E8E;&#x7A0B;&#x5E8F;&#x5458;&#xFF0C;&#x5973;&#x4EBA;&#x4E4B;&#x4E8E;&#x5BB6;&#x5EAD;&#x4E3B;&#x5987;&#x201D; &#x8FD9;&#x6837;&#x7684;&#x5947;&#x602A;&#x8BBA;&#x6587;</li>
+<li>&#x5982;&#x679C;&#x8BCD;&#x4E2D;&#x6709;&#x4E00;&#x4E9B;&#x504F;&#x89C1;&#xFF0C;&#x5C1D;&#x8BD5;&#x53BB;&#x6389;&#x8FD9;&#x4E9B;&#x8BCD;</li>
+</ul></li>
+</ul>
+<h3 id="data-can-be-audio">Data can be Audio</h3>
+<blockquote>
+<p>You can think of all of the sound that you&apos;re creating as various data formats.</p>
+<ul>
+<li><p><strong>voice identify</strong></p></li>
+<li><p>if you&apos;ve heard a song on the radio and you want to know what it is</p>
+<ul>
+<li>some applications can identify where that sound is coming from</li>
+<li>giving you the song title and artist.</li>
+</ul></li>
+<li><p><strong>voice editing</strong></p>
+<ul>
+<li><p>use various Adobe Suite applications</p></li>
+<li><p>allow you to change how your voice sounds</p></li>
+<li><p>relocate various aspects of your voice</p></li>
+</ul></li>
+<li><p><strong>voice replication</strong></p>
+<ul>
+<li>if you have a clip of a person saying something like 50 words</li>
+<li>You can do some edits and create a voice that sounds like the person saying everything that they need to say.</li>
+<li>You can have this theoretical person saying all sorts of clips and changing their voice around so it sounds like somebody is saying something when they&apos;re not.</li>
+</ul></li>
+</ul>
+</blockquote>
+<h3 id="&#x6570;&#x636E;&#x53EF;&#x4EE5;&#x662F;&#x97F3;&#x9891;">&#x6570;&#x636E;&#x53EF;&#x4EE5;&#x662F;&#x97F3;&#x9891;</h3>
+<ul>
+<li>&#x8BED;&#x97F3;&#x8BC6;&#x522B;
+<ul>
+<li>&#x542C;&#x5230;&#x4E00;&#x9996;&#x6B4C;&#xFF0C;&#x60F3;&#x77E5;&#x9053;&#x5B83;&#x662F;&#x4EC0;&#x4E48;</li>
+<li>&#x901A;&#x8FC7;&#x4E00;&#x4E9B;&#x5E94;&#x7528;&#x8BC6;&#x522B;&#x8FD9;&#x4E2A;&#x97F3;&#x4E50;&#x6765;&#x81EA;&#x54EA;&#x91CC;</li>
+<li>&#x7ED9;&#x51FA;&#x6B4C;&#x540D;&#x548C;&#x6B4C;&#x624B;</li>
+</ul></li>
+<li>&#x8BED;&#x97F3;&#x7F16;&#x8F91;
+<ul>
+<li>&#x4F7F;&#x7528;Adobe&#x5957;&#x4EF6;&#x5E94;&#x7528;&#x5BF9;&#x8BED;&#x97F3;&#x8FDB;&#x884C;&#x7F16;&#x8F91;</li>
+<li>&#x6539;&#x53D8;&#x4F60;&#x7684;&#x58F0;&#x97F3;&#x542C;&#x8D77;&#x6765;&#x7684;&#x65B9;&#x5F0F;</li>
+<li>&#x91CD;&#x65B0;&#x5B9A;&#x4F4D;&#x4F60;&#x58F0;&#x97F3;&#x7684;&#x5404;&#x4E2A;&#x65B9;&#x9762;</li>
+</ul></li>
+<li>&#x8BED;&#x97F3;&#x590D;&#x5236;
+<ul>
+<li>&#x6709;&#x4E00;&#x4E2A;&#x4EBA;&#x7684;&#x8BED;&#x97F3;&#x7247;&#x6BB5;</li>
+<li>&#x5BF9;&#x8FD9;&#x4E2A;&#x7247;&#x6BB5;&#x7F16;&#x8F91;&#xFF0C;&#x5E76;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x58F0;&#x97F3;&#xFF0C;&#x542C;&#x8D77;&#x6765;&#x5C31;&#x50CF;&#x8FD9;&#x4E2A;&#x4EBA;&#x8BF4;&#x7684;</li>
+</ul></li>
+</ul>
+<h3 id="a-historical-example----florence-nightingale">A historical example -- Florence Nightingale</h3>
+<center>
+<img src="210-1.png" srcset="/img/loading.gif" style="zoom: 33%;">
+</center>
+<blockquote>
+<p>Many people know Florence Nightingale as <em>the founder of nursing.</em> She was a nurse in the Crimean War.</p>
+<p>One of the things that a lot of people don&apos;t realize is that she also is one of the big <em>founders of statistics</em>.</p>
+<p>So when she was going through and doing her nursing, she really advocated for <strong>collecting a lot of information on the patients</strong> as well as understanding what all of this data has contained within it.</p>
+<p>One of the things that Florence Nightingale did is that she systematically <strong>recorded information</strong> about each of the soldier patients that she had. She looked at then, a <strong>Coxcomb graph</strong> is what she called it.</p>
+<p>It&apos;s really the <strong>foundation for a lot of the graphs</strong> that we use currently, whether it&apos;s <em>time series</em>, <em>box plots</em>, or <em>pie charts</em>, and she looked at the causes of mortalities in the army.</p>
+<center>
+<img src="210-2.png" srcset="/img/loading.gif" style="zoom:38%;">
+</center>
+<p>Looking at <strong>causes</strong> including preventable <strong>deaths</strong> from <em>diseases</em>, deaths that occurred from <em>wounds</em>, and <em>overall mortality</em>, and comparing how these <strong>mortality rates changed</strong> both over <em>time</em>, and how these different death rates changed based on the <em>season</em>.</p>
+</blockquote>
+<h3 id="&#x4E00;&#x4E2A;&#x4F8B;&#x5B50;-&#x5F17;&#x6D1B;&#x4F26;&#x65AF;-&#x5357;&#x4E01;&#x683C;&#x5C14;">&#x4E00;&#x4E2A;&#x4F8B;&#x5B50; &#x2014;&#x2014; &#x5F17;&#x6D1B;&#x4F26;&#x65AF; &#xB7; &#x5357;&#x4E01;&#x683C;&#x5C14;</h3>
+<ul>
+<li><p>&#x62A4;&#x7406;&#x4E8B;&#x4E1A;&#x521B;&#x59CB;&#x4EBA;</p></li>
+<li><p>&#x7EDF;&#x8BA1;&#x5B66;&#x7684;&#x5960;&#x57FA;&#x4EBA;&#x4E4B;&#x4E00;</p></li>
+<li><p>&#x4E3B;&#x5F20;&#x6536;&#x96C6;&#x5927;&#x91CF;&#x75C5;&#x4EBA;&#x4FE1;&#x606F;&#xFF0C;&#x4E86;&#x89E3;&#x8FD9;&#x4E9B;&#x6570;&#x636E;&#x90FD;&#x5305;&#x542B;&#x54EA;&#x4E9B;&#x5185;&#x5BB9;</p></li>
+<li><p>&#x5357;&#x4E01;&#x683C;&#x5C14;&#x73AB;&#x7470;&#x56FE;<em>Coxcomb graph</em> &#x662F;&#x76EE;&#x524D;&#x4F7F;&#x7528;&#x7684;&#x5F88;&#x591A;&#x56FE;&#x8868;&#x7684;&#x57FA;&#x7840;</p>
+<p>&#x5982; &#xFF1A;&#x65F6;&#x95F4;&#x5E8F;&#x5217;&#x3001;&#x7BB1;&#x5F62;&#x56FE;&#x3001;&#x997C;&#x72B6;&#x56FE;</p></li>
+<li><p>&#x89C2;&#x5BDF;&#x4E86;&#x519B;&#x961F;&#x4E2D;&#x7684;&#x6B7B;&#x4EA1;&#x539F;&#x56E0;&#xFF1A;&#x53EF;&#x9884;&#x9632;&#x7684;&#x75BE;&#x75C5;&#x6B7B;&#x4EA1;&#x3001;&#x56E0;&#x4F24;&#x53D1;&#x751F;&#x7684;&#x6B7B;&#x4EA1;&#x3001;&#x6574;&#x4F53;&#x7684;&#x6B7B;&#x4EA1;&#x7387;</p></li>
+<li><p>&#x6BD4;&#x8F83;&#x4E86;&#x8FD9;&#x4E9B;&#x6B7B;&#x4EA1;&#x7387;&#x5728;&#x65F6;&#x95F4;&#x3001;&#x5B63;&#x8282;&#x4E0A;&#x7684;&#x53D8;&#x5316;</p></li>
+</ul>
+<p>&#x4ECA;&#x5929;&#x7684;&#x6570;&#x636E;&#x6709;&#x5F88;&#x591A;&#x975E;&#x5E38;&#x9177;&#x7684;&#x5E94;&#x7528;&#xFF0C;&#x6570;&#x636E;&#x771F;&#x7684;&#x5728;&#x4F60;&#x8EAB;&#x8FB9;&#x65E0;&#x5904;&#x4E0D;&#x5728;</p>
+<h2 id="where-do-data-come-from">Where Do Data Come From?</h2>
+<blockquote>
+<p>So going into a data analysis, we really want to have a good sense of <strong>where the data come from</strong> and there are some important questions that we need to ask when thinking about <strong>what process generated the data</strong>.</p>
+</blockquote>
+<h3 id="different-types-of-data">Different Types of Data</h3>
+<blockquote>
+<p>There are different types of data that we may ultimately be collecting in any kind of research study.</p>
+<p><strong>Two key types of data :</strong></p>
+<ol type="1">
+<li><p>Organic / Process Data</p></li>
+<li><p>&quot;Designed&quot; Data Collection</p></li>
+</ol>
+</blockquote>
+<h3 id="&#x6570;&#x636E;&#x7684;&#x4E0D;&#x540C;&#x7C7B;&#x578B;">&#x6570;&#x636E;&#x7684;&#x4E0D;&#x540C;&#x7C7B;&#x578B;</h3>
+<ol type="1">
+<li><p>&#x6709;&#x673A;/&#x8FC7;&#x7A0B;&#x6570;&#x636E;</p></li>
+<li><p>&#x8BBE;&#x8BA1;&#x6570;&#x636E;&#x7684;&#x6536;&#x96C6;</p></li>
+</ol>
+<h3 id="organic-process-data">Organic / Process Data</h3>
+<blockquote>
+<p>Examples :</p>
+<ul>
+<li><p>Financial or Point-of-sale transactions</p></li>
+<li><p>Stock market exchanges</p></li>
+<li><p><em>Netflix viewing history</em> - predict what people may be interested in watching</p></li>
+<li><p>Web browser activity</p></li>
+<li><p>Sporting events</p></li>
+<li><p>Temperature / pollution sensors</p></li>
+</ul>
+<p>These processes generate <strong>massive quantities of data</strong> --&gt; <strong>&quot;Big Data&quot;</strong></p>
+<ul>
+<li><p>baseball game</p>
+<p>meals ordered at McDonald&apos;s on a given day</p>
+<p>changes in temperature on a given day in a particular city</p></li>
+<li><p>processing requires significant computational resources</p></li>
+<li><p><strong>data scientists &quot;mine&quot;</strong> these data to study trends and uncover interesting relationships</p></li>
+</ul>
+</blockquote>
+<h3 id="&#x6709;&#x673A;-&#x8FC7;&#x7A0B;&#x6570;&#x636E;">&#x6709;&#x673A; / &#x8FC7;&#x7A0B;&#x6570;&#x636E;</h3>
+<p><em>&#x662F;&#x4E00;&#x4E2A;&#x81EA;&#x7136;&#x7684;&#x6709;&#x673A;&#x7684;&#x8FC7;&#x7A0B;</em></p>
+<p>&#x662F;&#x7531;<em>&#x8BA1;&#x7B97;&#x673A;&#x4FE1;&#x606F;&#x7CFB;&#x7EDF;</em>&#x4EA7;&#x751F;&#x7684;&#x6570;&#x636E;&#xFF1B;&#x6216;&#x8BB8;&#x662F;&#x4ECE;<em>&#x89C6;&#x9891;&#x6216;&#x97F3;&#x9891;&#x8BB0;&#x5F55;</em>&#x63D0;&#x53D6;&#x7684;&#x6570;&#x636E;</p>
+<p>&#x5171;&#x540C;&#x70B9;&#xFF1A;&#x5B83;&#x4EEC;&#x662F;&#x4F5C;&#x4E3A;&#x4E00;&#x4E9B;&#x8FC7;&#x7A0B;&#x7684;&#x7ED3;&#x679C;&#x800C;<strong>&#x6709;&#x673A;&#x4EA7;&#x751F;</strong>&#x7684;&#xFF0C;&#x800C;&#x4E14;&#x901A;&#x5E38;&#x662F;<strong>&#x968F;&#x7740;&#x65F6;&#x95F4;&#x7684;&#x63A8;&#x79FB;</strong>&#x800C;&#x4EA7;&#x751F;&#x7684;</p>
+<p>&#x4F8B;&#x5982;&#xFF1A;</p>
+<ul>
+<li><p>&#x91D1;&#x878D;/&#x9500;&#x552E;&#x70B9;&#x4EA4;&#x6613;&#x3001;&#x80A1;&#x7968;&#x5E02;&#x573A;&#x7684;&#x4EA4;&#x6613;</p>
+<p>&#x8FD9;&#x4E9B;&#x4EA4;&#x6613;&#x4E2D;&#xFF0C;&#x968F;&#x7740;<strong>&#x65F6;&#x95F4;&#x7684;&#x63A8;&#x79FB;</strong>&#x4F1A;&#x53D1;&#x751F;&#x5F88;&#x591A;&#x4E8B;&#x4EF6;&#xFF0C;&#x6240;&#x6709;&#x8FD9;&#x4E9B;&#x4E0D;&#x540C;&#x7684;&#x4E8B;&#x4EF6;&#x90FD;&#x4F1A;&#x88AB;&#x8BB0;&#x5F55;&#x4E0B;&#x6765;&#xFF0C;&#x4ECE;&#x800C;&#x4EA7;&#x751F;<strong>&#x975E;&#x5E38;&#x5927;&#x7684;&#x6570;&#x636E;&#x96C6;</strong></p></li>
+<li><p>&#x7531; Netflix &#x7684;&#x89C2;&#x770B;&#x5386;&#x53F2;&#xFF0C;&#x9884;&#x6D4B;&#x7528;&#x6237;&#x53EF;&#x80FD;&#x5BF9;&#x4EC0;&#x4E48;&#x611F;&#x5174;&#x8DA3;</p>
+<p>Netflix &#x5BF9;&#x7528;&#x6237;&#x7684;&#x6574;&#x4E2A;&#x89C2;&#x770B;&#x5386;&#x53F2;&#x8FDB;&#x884C;&#x8BB0;&#x5F55;&#xFF0C;&#x8FD9;&#x521B;&#x9020;&#x4E86;&#x4E00;&#x4E2A;&#x975E;&#x5E38;&#x5927;&#x7684;&#x6570;&#x636E;&#x96C6;&#xFF0C;&#x4F46;&#x5B83;&#x662F;&#x6709;&#x673A;&#x5730;&#x4EA7;&#x751F;&#x7684;&#xFF0C;&#x662F;&#x6839;&#x636E;&#x7528;&#x6237;&#x7684;&#x4E2A;&#x4EBA;&#x89C2;&#x770B;&#x5386;&#x53F2;&#x81EA;&#x7136;&#x800C;&#x7136;&#x5730;&#x4EA7;&#x751F;&#x7684;&#xFF0C;&#x7ED3;&#x679C;&#x662F;&#x4E00;&#x4E2A;<strong>&#x975E;&#x5E38;&#x5927;&#x7684;&#x6570;&#x636E;&#x96C6;</strong></p></li>
+<li><p>&#x7F51;&#x9875;&#x6D4F;&#x89C8;&#x5668;&#x7684;&#x6D3B;&#x52A8;&#x8BB0;&#x5F55;</p>
+<p>&#x4E00;&#x4E2A;&#x7528;&#x6237;&#x5728;&#x5404;&#x4E2A;&#x7F51;&#x9875;&#x4E0A;&#x82B1;&#x4E86;&#x591A;&#x5C11;&#x65F6;&#x95F4;&#xFF0C;&#x8BBF;&#x95EE;&#x4E86;&#x54EA;&#x4E9B;&#x7F51;&#x9875;&#xFF0C;&#x8BBF;&#x95EE;&#x9891;&#x7387;&#xFF0C;&#x8FD9;&#x4E9B;&#x6570;&#x636E;&#x90FD;&#x53EF;&#x4EE5;&#x88AB;&#x8BB0;&#x5F55;&#x4E0B;&#x6765;&#xFF0C;&#x628A;&#x6240;&#x6709;&#x8FD9;&#x4E9B;&#x4E0D;&#x540C;&#x7684;&#x4E8B;&#x4EF6;&#x4E58;&#x4EE5;&#x6240;&#x6709;&#x4E0D;&#x540C;&#x7684;&#x4EBA;&#xFF0C;&#x5C31;&#x4F1A;&#x53D1;&#x751F;&#x4E00;&#x7CFB;&#x5217;&#x5DE8;&#x5927;&#x7684;&#x4E8B;&#x4EF6;&#x548C;&#x4EA4;&#x6613;</p></li>
+<li><p>&#x4F53;&#x80B2;&#x8D5B;&#x4E8B;</p>
+<p>&#x4F53;&#x80B2;&#x8D5B;&#x4E8B;&#x7684;&#x7ED3;&#x679C;&#x3001;&#x4E2A;&#x4EBA;&#x8868;&#x73B0;&#x3001;&#x4E0D;&#x540C;&#x7684;&#x56E2;&#x961F;&#xFF0C;&#x8FD9;&#x4E9B;&#x6570;&#x636E;&#x90FD;&#x662F;&#x4F5C;&#x4E3A;&#x4E00;&#x4E9B;<strong>&#x8FC7;&#x7A0B;&#x7684;&#x7ED3;&#x679C;</strong>&#x800C;&#x6709;&#x673A;&#x4EA7;&#x751F;&#x7684;&#xFF0C;&#x8FD9;&#x5C31;&#x5F62;&#x6210;&#x4E86;<strong>&#x975E;&#x5E38;&#x5927;&#x7684;&#x6570;&#x636E;&#x96C6;</strong></p></li>
+<li><p>&#x6E29;&#x5EA6;&#x3001;&#x6C61;&#x67D3;&#x4F20;&#x611F;&#x5668;</p>
+<p>&#x5982;&#x679C;&#x8BD5;&#x56FE;&#x4E86;&#x89E3;&#x4E00;&#x4E2A;&#x5927;&#x57CE;&#x5E02;&#x7684;&#x6C61;&#x67D3;&#x95EE;&#x9898;&#x6216;&#x6E29;&#x5EA6;&#x7684;&#x53D8;&#x5316;&#xFF0C;&#x7814;&#x7A76;&#x4EBA;&#x5458;&#x53EF;&#x80FD;&#x4F1A;&#x5728;&#x4E0D;&#x540C;&#x5730;&#x70B9;&#x8BBE;&#x7F6E;&#x6C14;&#x8C61;&#x7AD9;&#x6216;&#x6E29;&#x5EA6;&#x68C0;&#x6D4B;&#x5668;&#xFF0C;&#x5E76;&#x6536;&#x96C6;&#x4E00;&#x6BB5;&#x65F6;&#x95F4;&#x7684;&#x6570;&#x636E;&#x3002;&#x6BCF;&#x79D2;&#x949F;&#x5728;&#x7279;&#x5B9A;&#x533A;&#x57DF;&#x5BF9;&#x6E29;&#x5EA6;&#x6216;&#x6C61;&#x67D3;&#x7684;&#x5404;&#x79CD;&#x6D4B;&#x91CF;&#x6570;&#x636E;&#x53EF;&#x4EE5;&#x5C55;&#x793A;&#x968F;&#x7740;<strong>&#x65F6;&#x95F4;&#x7684;&#x63A8;&#x79FB;</strong>&#x53EF;&#x80FD;&#x4F1A;&#x53D1;&#x751F;&#x4EC0;&#x4E48;</p></li>
+</ul>
+<p>&#x4E0A;&#x9762;&#x7684;&#x8FD9;&#x4E9B;&#x8FC7;&#x7A0B;&#xFF0C;&#x90FD;&#x4F1A;&#x4EA7;&#x751F;&#x6D77;&#x91CF;&#x7684;&#x6570;&#x636E; --&gt; <strong>&#x5927;&#x6570;&#x636E;</strong></p>
+<ul>
+<li><p>&#x5927;&#x6570;&#x636E;&#x5176;&#x5B9E;&#x6307;&#x7684;&#x662F;&#x8FD9;&#x4E9B;&#x7C7B;&#x578B;&#x7684;&#x6570;&#x636E;&#x96C6;&#xFF0C;&#x8FD9;&#x4E9B;&#x6570;&#x636E;&#x96C6;&#x6765;&#x81EA;&#x4E8E;&#x6709;&#x673A;&#x7684;&#x8FC7;&#x7A0B;&#xFF0C;&#x968F;&#x7740;&#x65F6;&#x95F4;&#x7684;&#x63A8;&#x79FB;&#xFF0C;&#x6709;&#x5F88;&#x591A;&#x7684;&#x4EA4;&#x6613;&#x6216;&#x6709;&#x5174;&#x8DA3;&#x5206;&#x6790;&#x7684;&#x4E8B;&#x4EF6;&#x7684;&#x8D8B;&#x52BF;&#xFF0C;&#x4F46;&#x662F;&#x8FD9;&#x4E9B;&#x6570;&#x636E;&#x96C6;&#x662F;&#x6D77;&#x91CF;&#x7684;</p></li>
+<li><p>&#x68D2;&#x7403;&#x6BD4;&#x8D5B;&#xFF1B;&#x67D0;&#x4E00;&#x5929;&#x67D0;&#x4E00;&#x5BB6;&#x9EA6;&#x5F53;&#x52B3;&#x70B9;&#x9910;&#x60C5;&#x51B5;&#xFF1B;&#x67D0;&#x4E00;&#x4E2A;&#x57CE;&#x5E02;&#x67D0;&#x4E00;&#x5929;&#x7684;&#x6E29;&#x5EA6;&#x53D8;&#x5316;</p></li>
+<li><p>&#x6570;&#x636E;&#x7684;&#x5904;&#x7406;&#x9700;&#x8981;&#x5927;&#x91CF;&#x7684;&#x8BA1;&#x7B97;&#x8D44;&#x6E90;</p></li>
+<li><p>&#x6570;&#x636E;&#x79D1;&#x5B66;&#x5BB6;&#x8981;&#x505A;&#x7684;&#x5C31;&#x662F;&#x6316;&#x6398;&#x8FD9;&#x4E9B;&#x6570;&#x636E;&#x6765;&#x7814;&#x7A76;&#x8D8B;&#x52BF;/&#x53D1;&#x73B0;&#x6709;&#x8DA3;&#x7684;&#x5173;&#x7CFB;</p></li>
+<li><p>&#x4EC5;&#x4EC5;&#x662F;&#x628A;&#x6570;&#x636E;&#x8F6C;&#x6362;&#x4E3A;&#x9002;&#x5408;&#x5206;&#x6790;&#x7684;&#x683C;&#x5F0F;&#xFF0C;&#x8FD9;&#x4E2A;&#x8FC7;&#x7A0B;&#x5C31;&#x9700;&#x8981;&#x975E;&#x5E38;&#x591A;&#x7684;&#x8D44;&#x6E90;</p></li>
+<li><p>&#x9700;&#x8981;&#x5F88;&#x591A;&#x53D7;&#x8FC7;&#x8BA1;&#x7B97;&#x673A;&#x79D1;&#x5B66;&#x548C;&#x7EDF;&#x8BA1;&#x65B9;&#x6CD5;&#x5B66;&#x8BAD;&#x7EC3;&#x7684;&#x4EBA;&#xFF0C;&#x624D;&#x80FD;&#x771F;&#x6B63;&#x5F62;&#x6210;&#x5BF9;&#x5206;&#x6790;&#x6709;&#x7528;&#x7684;&#x6570;&#x636E;&#x96C6; ### &#x201C;Designed&#x201D; Data Collection</p></li>
+</ul>
+<blockquote>
+<p>Designed to specifically address a stated research objective</p>
+<ul>
+<li><p>Individuals sampled from a population, interviewed about opinions on a particular topic</p>
+<p><img src="0721-1.png" srcset="/img/loading.gif" style="zoom:80%;"></p></li>
+<li><p><strong>Common features of &quot;designed&quot; data</strong></p>
+<ul>
+<li>Sampling from populations, administration of carefully designed questions</li>
+<li>Typically data sets much smaller compared to organic data sets</li>
+<li>Data collected for very specific reasons, rather than simple reflections of ongoing natural process</li>
+</ul></li>
+</ul>
+</blockquote>
+<h3 id="&#x8BBE;&#x8BA1;&#x6570;&#x636E;&#x7684;&#x6536;&#x96C6;">&#x8BBE;&#x8BA1;&#x6570;&#x636E;&#x7684;&#x6536;&#x96C6;</h3>
+<p><em>&#x662F;&#x7279;&#x5B9A;&#x7684;&#x7814;&#x7A76;&#xFF0C;&#x65E8;&#x5728;&#x4E13;&#x95E8;&#x89E3;&#x51B3;&#x4E00;&#x4E2A;&#x7279;&#x5B9A;&#x7684;&#x7814;&#x7A76;&#x76EE;&#x6807;</em></p>
+<ul>
+<li><p>&#x53EF;&#x4EE5;&#x662F;&#x4EBA;&#x7FA4;&#x4E2D;<strong>&#x62BD;&#x6837;&#x8C03;&#x67E5;</strong>&#x7684;&#x4E2A;&#x4F53;&#xFF0C;&#x7136;&#x540E;&#x91C7;&#x8BBF;&#x4ED6;&#x4EEC;&#x5BF9;&#x67D0;&#x4E00;&#x7279;&#x5B9A;&#x8BDD;&#x9898;&#x7684;&#x770B;&#x6CD5;</p>
+<p>&#x56E0;&#x4E3A;&#x5728;&#x76EE;&#x6807;&#x4EBA;&#x7FA4;&#x4E2D;&#x53EF;&#x80FD;&#x5F88;&#x96BE;&#x8861;&#x91CF;&#x6BCF;&#x4E2A;&#x4EBA;&#xFF0C;&#x6240;&#x4EE5;&#x53EF;&#x4EE5;&#x8BBE;&#x8BA1;&#x4E2A;&#x4F53;&#x6837;&#x672C;&#xFF0C;&#x5411;&#x4E2A;&#x4F53;&#x63D0;&#x95EE;&#xFF0C;&#x8BD5;&#x56FE;&#x4E86;&#x89E3;&#x66F4;&#x591A;&#x5173;&#x4E8E;&#x76EE;&#x6807;&#x4EBA;&#x7FA4;&#x7684;&#x4FE1;&#x606F;</p></li>
+<li><p>&#x53EF;&#x4EE5;&#x4ECE;Twitter&#x4E0A;&#x83B7;&#x53D6;&#x63A8;&#x6587;&#xFF0C;&#x7136;&#x540E;&#x5BF9;&#x5176;&#x8FDB;&#x884C;&#x7F16;&#x7801;</p>
+<p>&#x5206;&#x6790;&#x4EBA;&#x4EEC;&#x53EF;&#x80FD;&#x5BF9;&#x67D0;&#x4E2A;&#x7279;&#x5B9A;&#x4E3B;&#x9898;&#x8868;&#x8FBE;&#x610F;&#x89C1;&#x7684;&#x9891;&#x7387;</p></li>
+<li><p>&#x8FD9;&#x4E9B;&#x90FD;&#x662F;&#x975E;&#x5E38;<strong>&#x4E25;&#x683C;&#x8BBE;&#x8BA1;</strong>&#x7684;&#x6570;&#x636E;&#x96C6;&#x5408;&#xFF0C;&#x800C;&#x4E0D;&#x662F;&#x4EC5;&#x4EC5;&#x662F;&#x4EBA;&#x4EEC;&#x53EF;&#x80FD;&#x6709;&#x5174;&#x8DA3;&#x770B;&#x7684;&#x6709;&#x673A;&#x7684;&#x5927;&#x578B;&#x6570;&#x636E;&#x96C6;</p></li>
+<li><p>&#x8BBE;&#x8BA1;&#x6570;&#x636E;&#x7684;&#x5171;&#x540C;&#x7279;&#x70B9;&#x662F;&#xFF0C;&#x4ECE;&#x4EBA;&#x7FA4;&#x4E2D;&#x8FDB;&#x884C;<strong>&#x62BD;&#x6837;</strong>&#xFF0C;&#x6216;&#x8005;&#x4ECE;&#x8F83;&#x5927;&#x7684;&#x4EBA;&#x7FA4;&#x4E2D;&#x5BF9;<strong>&#x5C0F;&#x6837;&#x672C;</strong>&#x8FDB;&#x884C;&#x7CBE;&#x5FC3;&#x8BBE;&#x8BA1;&#x7684;&#x8C03;&#x67E5;&#x95EE;&#x9898;&#x7684;&#x7BA1;&#x7406;</p></li>
+<li><p>&#x8BBE;&#x8BA1;&#x7684;&#x6570;&#x636E;&#x96C6; VS &#x6709;&#x673A;/&#x8FC7;&#x7A0B;&#x6570;&#x636E;&#x96C6;</p>
+<ul>
+<li><p>&#x8BBE;&#x8BA1;&#x7684;&#x6570;&#x636E;&#x96C6;</p>
+<p>&#x4E00;&#x822C;&#x8981;&#x5C0F;&#x5F97;&#x591A;&#xFF0C;&#x66F4;&#x5BB9;&#x6613;&#x5904;&#x7406;&#xFF0C;&#x6570;&#x636E;&#x7684;&#x6536;&#x96C6;&#x662F;&#x51FA;&#x4E8E;&#x975E;&#x5E38;&#x5177;&#x4F53;&#x7684;&#x539F;&#x56E0;</p></li>
+<li><p>&#x6709;&#x673A;&#x6570;&#x636E;&#x96C6; &#x975E;&#x5E38;&#x5927;&#xFF0C;&#x7B80;&#x5355;&#x5730;&#x53CD;&#x6620;&#x4E00;&#x4E2A;&#x6301;&#x7EED;&#x7684;&#x81EA;&#x7136;&#x8FC7;&#x7A0B;</p></li>
+</ul></li>
+</ul>
+<h3 id="are-the-data-iid">Are the Data IID ?</h3>
+<blockquote>
+<p>IID : independently identically distribution</p>
+<p>For analyzing data, regardless of source, an important question:</p>
+<p><em>Can the Data be considered IID ?</em></p>
+<ul>
+<li><p>independent</p>
+<p><strong>no correlation</strong> between the different measurements</p></li>
+<li><p>identically distribution</p>
+<p>the values that we observe arise from some <strong>common statistical distribution</strong></p></li>
+<li><p>IID</p>
+<p>no correlation + common statistical distribution</p></li>
+<li><p>Example: Final exam scores</p>
+<p>from a large Intro to Stats class at a university are <strong>independent observations</strong> from a <strong>common normal distribution</strong></p>
+<center>
+<p><img src="0803-1.png" srcset="/img/loading.gif" style="zoom: 80%;"></p>
+</center></li>
+</ul>
+</blockquote>
+<h3 id="&#x6570;&#x636E;&#x662F;&#x72EC;&#x7ACB;&#x540C;&#x5206;&#x5E03;&#x7684;&#x5417;">&#x6570;&#x636E;&#x662F;&#x72EC;&#x7ACB;&#x540C;&#x5206;&#x5E03;&#x7684;&#x5417;&#xFF1F;</h3>
+<p>&#x5BF9;&#x4E8E;&#x6570;&#x636E;&#x5206;&#x6790;&#x6765;&#x8BF4;&#xFF0C;&#x4E0D;&#x7BA1;&#x6570;&#x636E;&#x6765;&#x6E90;&#x662F;&#x4EC0;&#x4E48;&#xFF0C;&#x90FD;&#x9700;&#x8981;&#x95EE;&#x4E00;&#x4E2A;&#x91CD;&#x8981;&#x7684;&#x95EE;&#x9898;</p>
+<p><em>&#x201C; &#x6570;&#x636E;&#x662F;&#x5426;&#x53EF;&#x4EE5;&#x8BA4;&#x4E3A;&#x662F;&#x72EC;&#x7ACB;&#x540C;&#x5206;&#x5E03;&#x7684;&#xFF1F;&#x201D;</em></p>
+<ul>
+<li><p>&#x72EC;&#x7ACB;</p>
+<p><em>&#x89C2;&#x6D4B;&#x503C;&#x4E4B;&#x95F4;&#x6CA1;&#x6709;&#x76F8;&#x5173;&#x6027;</em></p>
+<ul>
+<li>&#x5728;&#x72EC;&#x7ACB;&#x540C;&#x5206;&#x5E03;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x5BF9;&#x4E00;&#x4E2A;&#x611F;&#x5174;&#x8DA3;&#x7684;&#x53D8;&#x91CF;&#x7684;&#x89C2;&#x6D4B;&#x662F;&#x5B8C;&#x5168; <em>&#x72EC;&#x7ACB;&#x4E8E;</em> &#x6240;&#x6709;&#x89C2;&#x6D4B;&#x503C;</li>
+<li>&#x4ECE;&#x4EBA;&#x53E3;&#x4E2D;&#x7684;&#x4E0D;&#x540C;&#x5355;&#x4F4D;&#x3001;&#x4E0D;&#x540C;&#x7684;&#x80A1;&#x5E02;&#x4EA4;&#x6613;&#x6240;&#x3001;&#x4E0D;&#x540C;&#x7684;&#x68D2;&#x7403;&#x6BD4;&#x8D5B;&#x3001;&#x4E0D;&#x540C;&#x7684;&#x4E2A;&#x4EBA;&#x56DE;&#x7B54;&#x8C03;&#x67E5;&#x7684;&#x4E0D;&#x540C;&#x6D4B;&#x91CF;&#x503C;&#x4E4B;&#x95F4;<strong>&#x6CA1;&#x6709;&#x76F8;&#x5173;&#x6027;</strong></li>
+<li>&#x6240;&#x6709;&#x8FD9;&#x4E9B;&#x89C2;&#x6D4B;&#x503C;&#x90FD;&#x662F;<strong>&#x72EC;&#x7ACB;</strong>&#x4E8E;&#x6240;&#x6709;&#x5176;&#x4ED6;&#x89C2;&#x6D4B;&#x503C;&#x7684;&#xFF0C;&#x8FD9;&#x4E9B;&#x89C2;&#x6D4B;&#x503C;&#x53EF;&#x80FD;&#x6700;&#x7EC8;&#x6784;&#x6210;&#x4E00;&#x4E2A;<strong>&#x6570;&#x636E;&#x96C6;</strong></li>
+</ul></li>
+<li><p>&#x540C;&#x5206;&#x5E03;</p>
+<p><em>&#x89C2;&#x6D4B;&#x503C;&#x6765;&#x81EA;&#x4E8E;&#x5171;&#x540C;&#x7684;&#x7EDF;&#x8BA1;&#x5206;&#x5E03;</em></p>
+<ul>
+<li>&#x5B9E;&#x9645;&#x89C2;&#x5BDF;&#x5230;&#x7684;&#x6240;&#x6709;&#x6570;&#x503C;&#x90FD;&#x6765;&#x81EA;&#x4E8E;&#x4E00;&#x4E9B;&#x5171;&#x540C;&#x7684;&#x7EDF;&#x8BA1;&#x5206;&#x5E03;&#xFF0C;&#x6240;&#x4EE5;&#x8FD9;&#x5C31;&#x662F;&#x72EC;&#x7ACB;&#x540C;&#x5206;&#x5E03;&#x7684;<strong>&#x540C;&#x5206;&#x5E03;</strong>&#x90E8;&#x5206;</li>
+</ul></li>
+<li><p>&#x72EC;&#x7ACB;&#x540C;&#x5206;&#x5E03;</p>
+<p>&#x6240;&#x6709;&#x7684;&#x89C2;&#x6D4B;&#x503C;&#x90FD;&#x662F;&#x72EC;&#x7ACB;&#x4E8E;&#x5176;&#x4ED6;&#x6240;&#x6709;&#x7684;&#x89C2;&#x6D4B;&#x503C;&#x7684;&#xFF0C;&#x800C;&#x8981;&#x770B;&#x7684;&#x503C;&#x90FD;&#x662F;&#x7531;&#x4E00;&#x4E9B;&#x5171;&#x540C;&#x7684;&#x7EDF;&#x8BA1;&#x5206;&#x5E03;&#x4EA7;&#x751F;&#x7684;&#xFF0C;&#x8FD9;&#x5C31;&#x662F;<strong>&#x72EC;&#x7ACB;&#x540C;&#x5206;&#x5E03;</strong></p></li>
+<li><p>&#x4F8B;&#x5B50;&#xFF1A;&#x5927;&#x5B66;&#x7EDF;&#x8BA1;&#x5B66;&#x5BFC;&#x8BBA;&#x7684;&#x671F;&#x672B;&#x8003;&#x8BD5;&#x6210;&#x7EE9;</p>
+<p>&#x72EC;&#x7ACB;&#x7684;&#x89C2;&#x6D4B;&#x503C; + &#x6765;&#x81EA;&#x4E8E;&#x5171;&#x540C;&#x7684;&#x6B63;&#x6001;&#x5206;&#x5E03;</p>
+<ul>
+<li>&#x53EF;&#x4EE5;&#x628A;&#x8FD9;&#x4E9B;&#x6210;&#x7EE9;&#x770B;&#x6210;&#x662F; <em>&#x72EC;&#x7ACB;</em> &#x7684;&#x89C2;&#x6D4B;&#x503C;&#xFF0C;&#x6BCF;&#x4E2A;&#x5B66;&#x751F;&#x90FD;&#x5728;&#x63D0;&#x4F9B;&#x81EA;&#x5DF1;&#x7684;&#x7B54;&#x6848;&#xFF0C;&#x6BCF;&#x4E2A;&#x5B66;&#x751F;&#x7684;&#x6210;&#x7EE9;&#x90FD;&#x5728;&#x88AB;&#x5355;&#x72EC;&#x8BC4;&#x5206;&#xFF0C;&#x8FD9;&#x4E9B;&#x8003;&#x8BD5;&#x6210;&#x7EE9;&#x662F;&#x72EC;&#x7ACB;&#x7684;&#x89C2;&#x6D4B;&#x503C;</li>
+<li>&#x4EE3;&#x8868;&#x8FD9;&#x4E9B;&#x671F;&#x672B;&#x8003;&#x8BD5;&#x6210;&#x7EE9;&#x7684;&#x503C;&#xFF0C;&#x53EF;&#x80FD;&#x4F1A; <em>&#x9075;&#x5FAA;&#x4E00;&#x4E2A;&#x81EA;&#x7136;&#x7684;&#x6B63;&#x6001;&#x5206;&#x5E03;</em> &#xFF08;&#x949F;&#x5F62;&#x66F2;&#x7EBF;&#xFF09;</li>
+<li>&#x7ED9;&#x5B9A;&#x8FD9;&#x4E9B;&#x72EC;&#x7ACB;&#x540C;&#x5206;&#x5E03;&#x6570;&#x636E;&#xFF0C;&#x53EF;&#x4EE5;&#x4F30;&#x8BA1;&#x51FA;&#x8FD9;&#x4E2A;&#x5206;&#x5E03;&#x7684;&#x7279;&#x5F81;&#xFF0C;&#x6BD4;&#x5982;&#x8003;&#x8BD5;&#x5206;&#x6570;&#x7684;&#x5E73;&#x5747;&#x6570;&#x3001;&#x65B9;&#x5DEE;&#xFF0C;&#x7136;&#x540E;&#x5BF9;&#x8FD9;&#x4E9B;&#x7279;&#x5F81;&#x8FDB;&#x884C;&#x63A8;&#x65AD;</li>
+</ul></li>
+<li><p>&#x72EC;&#x7ACB;&#x540C;&#x5206;&#x5E03;&#x662F;&#x4E00;&#x4E2A;&#x91CD;&#x8981;&#x7684;&#x5047;&#x8BBE;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x5F97;&#x6211;&#x4EEC;&#x5BF9;&#x4EBA;&#x7FA4;&#x7279;&#x5F81;&#x8FDB;&#x884C;&#x63A8;&#x65AD;</p></li>
+</ul>
+<h3 id="what-if-data-are-not-iid">What if Data are NOT IID?</h3>
+<blockquote>
+<p>Examples:</p>
+<ul>
+<li>Students sitting next to each other tend to have similar scores</li>
+</ul>
+<p>break the assumption of independence</p>
+<ul>
+<li>Males and females might have different means</li>
+</ul>
+<p>not arise from an identical distribution</p>
+<p>Dependencies and differences need to be accounted for in analysis</p>
+<p><strong>Need different analytic procedures</strong></p>
+<p>We need to consider where the data came from</p>
+<ul>
+<li>Did they come from some organic process ?</li>
+<li>Could that process have introduced dependencies in the data ?</li>
+<li>Did they come from a design data collection ?</li>
+<li>Where we may need to account for the features of that design ?</li>
+</ul>
+</blockquote>
+<h3 id="&#x5982;&#x679C;&#x6570;&#x636E;&#x4E0D;&#x662F;&#x72EC;&#x7ACB;&#x540C;&#x5206;&#x5E03;">&#x5982;&#x679C;&#x6570;&#x636E;&#x4E0D;&#x662F;&#x72EC;&#x7ACB;&#x540C;&#x5206;&#x5E03;</h3>
+<p>&#x4F8B;&#x5B50;&#xFF1A;</p>
+<ul>
+<li><p>&#x5750;&#x5728;&#x4E00;&#x8D77;&#x7684;&#x540C;&#x5B66;&#x53EF;&#x80FD;&#x4F1A;&#x4E92;&#x76F8;&#x4F5C;&#x5F0A;&#xFF0C;&#x6709;&#x76F8;&#x4F3C;&#x7684;&#x5206;&#x6570;</p>
+<p>&#x6253;&#x7834;&#x4E86;&#x72EC;&#x7ACB;&#x6027;&#x5047;&#x8BBE;&#xFF0C;&#x5750;&#x5728;&#x540C;&#x4E00;&#x533A;&#x57DF;&#x7684;&#x5B66;&#x751F;&#x53EF;&#x80FD;&#x4F1A;&#x6709;&#x76F8;&#x4F3C;&#x7684;&#x5206;&#x6570;&#xFF0C;&#x8FD9;&#x4E9B;&#x5206;&#x6570;&#x4F9D;&#x8D56;&#x4E8E;&#x5176;&#x4ED6;&#x5B66;&#x751F;&#x7684;&#x5206;&#x6570;</p></li>
+<li><p>&#x7537;&#x6027;&#x548C;&#x5973;&#x6027;&#x7684;&#x8003;&#x8BD5;&#x5206;&#x6570;&#x5E73;&#x5747;&#x503C;&#x53EF;&#x80FD;&#x4E0D;&#x540C;</p>
+<p>&#x9075;&#x5FAA;&#x4E0D;&#x540C;&#x7684;&#x5206;&#x5E03;&#xFF0C;&#x6253;&#x7834;&#x4E86;&#x540C;&#x5206;&#x5E03;&#x5047;&#x8BBE;</p></li>
+</ul>
+<p>&#x5728;&#x4E0A;&#x9762;&#x8FD9;&#x4E9B;&#x4F8B;&#x5B50;&#x4E2D;&#xFF0C;&#x6BD4;&#x5982;&#xFF0C;&#x4E34;&#x8FD1;&#x540C;&#x5B66;&#x6210;&#x7EE9;&#x7684;&#x76F8;&#x4F3C;&#x6027;&#x3001;&#x7537;&#x6027;&#x548C;&#x5973;&#x6027;&#x4E4B;&#x95F4;&#x7684;&#x5DEE;&#x5F02;&#xFF0C;&#x8FD9;&#x4E9B;&#x6570;&#x636E;&#x53EF;&#x80FD;&#x4E0D;&#x662F;&#x5B8C;&#x5168;&#x72EC;&#x7ACB;&#x3001;&#x4E0D;&#x662F;&#x76F8;&#x540C;&#x7684;&#x5206;&#x5E03;</p>
+<p>&#x5F53;&#x6570;&#x636E;&#x4E0D;&#x662F;&#x72EC;&#x7ACB;&#x540C;&#x5206;&#x5E03;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x5728;&#x5206;&#x6790;&#x65F6;&#x5C31;&#x9700;&#x8981;&#x8003;&#x8651;&#x5230;&#x8FD9;&#x4E9B;&#x4F9D;&#x8D56;&#x6027;&#x548C;&#x5DEE;&#x5F02;&#xFF0C;&#x9700;&#x8981;&#x4E0D;&#x540C;&#x7684;&#x5206;&#x6790;&#x7A0B;&#x5E8F;</p>
+<p>&#x9700;&#x8981;&#x8003;&#x8651;<strong>&#x6570;&#x636E;&#x7684;&#x6765;&#x6E90;</strong>&#xFF1A;</p>
+<ul>
+<li>&#x662F;&#x5426;&#x6765;&#x81EA;&#x4E8E;&#x4E00;&#x4E9B;&#x6709;&#x673A;&#x8FC7;&#x7A0B; &#xFF1F;&#x5728;&#x8FD9;&#x4E2A;&#x8FC7;&#x7A0B;&#x4E2D;&#x662F;&#x5426;&#x4F1A;&#x5728;&#x6570;&#x636E;&#x4E2D;&#x5F15;&#x5165;&#x4F9D;&#x8D56;&#x6027; &#xFF1F;</li>
+<li>&#x662F;&#x5426;&#x6765;&#x81EA;&#x4E8E;&#x4E00;&#x4E2A;&#x8BBE;&#x8BA1;&#x6570;&#x636E;&#x7684;&#x6536;&#x96C6;&#xFF1F;&#x8003;&#x8651;&#x8FD9;&#x4E2A;&#x8BBE;&#x8BA1;&#x7684;&#x7279;&#x70B9;</li>
+</ul>
+<p>&#x5728;&#x4E4B;&#x540E;&#x7684;&#x8BFE;&#x7A0B;&#x4E2D;&#xFF0C;&#x4F1A;&#x5728;&#x8BB2;&#x62BD;&#x6837;&#x7684;&#x65F6;&#x5019;&#x63D0;&#x4F9B;&#x66F4;&#x591A;&#x5173;&#x4E8E;&#x72EC;&#x7ACB;&#x540C;&#x5206;&#x5E03;&#x601D;&#x60F3;&#x4E2D;&#x8BBE;&#x8BA1;&#x6570;&#x636E;&#x6536;&#x96C6;&#x7684;&#x7EC6;&#x8282;&#xFF0C;&#x4EE5;&#x53CA;&#x5728;&#x8BBE;&#x8BA1;&#x6837;&#x672C;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#x4F1A;&#x4F7F;&#x7528;&#x7684;&#x5206;&#x6790;&#x7A0B;&#x5E8F;</p>
+<h3 id="end">End</h3>
+<ol type="1">
+<li><p>Data can be anything</p>
+<p>&#x6570;&#x5B57;&#x3001;&#x56FE;&#x50CF;&#x3001;&#x6587;&#x5B57;&#x3001;&#x97F3;&#x9891;</p></li>
+<li><p>Types of Data</p>
+<ul>
+<li><p>&#x6709;&#x673A;&#x7684;&#x6570;&#x636E;</p>
+<p>&#x975E;&#x5E38;&#x5927;&#x6570;&#x636E;&#x96C6;&#x3001;&#x6709;&#x673A;&#x4EA7;&#x751F;&#x3001;&#x53CD;&#x5E94;&#x6301;&#x7EED;&#x7684;&#x81EA;&#x7136;&#x7684;&#x8FC7;&#x7A0B;</p></li>
+<li><p>&#x8BBE;&#x8BA1;&#x7684;&#x6570;&#x636E;</p>
+<p>&#x6570;&#x636E;&#x96C6;&#x5C0F;&#x3001;&#x6613;&#x5904;&#x7406;&#x3001;&#x9488;&#x5BF9;&#x7279;&#x5B9A;&#x7684;&#x7814;&#x7A76;&#x76EE;&#x6807;</p></li>
+</ul></li>
+<li><p>IID</p>
+<p>&#x72EC;&#x7ACB;&#x540C;&#x5206;&#x5E03;</p></li>
+</ol>
+</body></html>
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Coursera-notebooks/">Coursera-notebooks</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Start-with-Me/">Start with Me</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Python/">Python</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Coursera/">Coursera</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                      <a href="/py-statistics-03-variable-types/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">week1-3 - Variable Types</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/py-statistics-01-statistics/">
+                        <span class="hidden-mobile">week1-1 -Statistics</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: 'article.markdown-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "week1-2 - Data&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 80,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

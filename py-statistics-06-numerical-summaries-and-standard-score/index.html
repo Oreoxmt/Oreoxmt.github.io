@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="Oreo">
+  <meta name="keywords" content="">
+  <title>week2-2- Numerical Summaries and Standard Score - Oreo</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script  src="/js/utils.js" ></script>
+<meta name="generator" content="Hexo 5.0.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>奥利奥小屋</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2020-08-14 15:55">
+      2020年8月14日 下午
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.4k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      28
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <html><head></head><body><h2 id="start-with-me-coursera---understanding-and-visualizing-data-with-python-week-2-2---numerical-summaries-and-standard-score">Start with Me | Coursera - Understanding and Visualizing Data with Python week 2-2 - Numerical Summaries and Standard Score</h2>
+<p>&#x53C8;&#x662F; week2 &#xFF0C;&#x8FD9;&#x6B21; week2 &#x7684;&#x66F4;&#x65B0;&#x4F1A;&#x5206;&#x4E3A;&#x51E0;&#x6B21;&#xFF1F;</p>
+<h2 id="quantitative-data-numerical-summaries">Quantitative Data: Numerical Summaries</h2>
+<blockquote>
+<p>5 Number Summary:</p>
+<ul>
+<li>Min</li>
+<li>1st Quartile</li>
+<li>Median</li>
+<li>3rd Quartile</li>
+<li>Max</li>
+</ul>
+<p>IQR = Q3 - Q1</p>
+<p><strong>Numerical Summaries</strong> are used alongside our graphical representation of data to give a first impression of what our data looks like.</p>
+<p>Depending on the software you are using you may get slightly different numerical summaries.</p>
+</blockquote>
+<h2 id="&#x6570;&#x503C;&#x6570;&#x636E;-&#x6570;&#x503C;&#x603B;&#x7ED3;&#x6570;&#x503C;&#x6458;&#x8981;">&#x6570;&#x503C;&#x6570;&#x636E; &#xFF1A; &#x6570;&#x503C;&#x603B;&#x7ED3;/&#x6570;&#x503C;&#x6458;&#x8981;</h2>
+<p>week2-1 &#x5BF9;&#x6210;&#x5E74;&#x7537;&#x5B50;&#x8EAB;&#x9AD8;&#x76F4;&#x65B9;&#x56FE;&#x7684;&#x5F62;&#x72B6;&#x3001;&#x4E2D;&#x5FC3;&#x3001;&#x79BB;&#x6563;&#x7A0B;&#x5EA6;&#x548C;&#x79BB;&#x7FA4;&#x503C;&#x8FDB;&#x884C;&#x4E86;&#x8BA8;&#x8BBA;&#xFF0C;&#x4F46;&#x662F;&#x90FD;&#x662F;&#x6BD4;&#x8F83;&#x7C97;&#x7565;&#x7684;&#x63CF;&#x8FF0;&#xFF0C;&#x800C;&#x901A;&#x8FC7;&#x6570;&#x503C;&#x603B;&#x7ED3;&#x53EF;&#x4EE5;&#x5BF9;&#x6570;&#x636E;&#x6709;&#x4E00;&#x4E2A;&#x660E;&#x786E;&#x7684;&#x63CF;&#x8FF0;&#xFF0C;&#x7CBE;&#x786E;&#x5230;&#x5C0F;&#x6570;&#x70B9;&#xFF0C;</p>
+<p>&#x4EFB;&#x4F55;&#x8F6F;&#x4EF6;&#x4E2D;&#xFF0C;&#x901A;&#x5E38;&#x90FD;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x4E94;&#x4E2A;&#x6570;&#x5B57;&#x7684;&#x6458;&#x8981;&#xFF1A;</p>
+<ul>
+<li><p><strong>&#x6700;&#x5C0F;&#x503C;</strong></p></li>
+<li><p><strong>&#x7B2C;&#x4E00;&#x56DB;&#x5206;&#x4F4D;&#x6570; Q1</strong> [25%] 25%&#x7684;&#x6570;&#x636E;&#x4F4E;&#x4E8E;&#x8FD9;&#x4E2A;&#x503C;</p></li>
+<li><p><strong>&#x4E2D;&#x4F4D;&#x6570;</strong> [50%]</p></li>
+<li><p><strong>&#x7B2C;&#x4E09;&#x56DB;&#x5206;&#x4F4D;&#x6570; Q3</strong> [75%] 75%&#x7684;&#x6570;&#x636E;&#x4F4E;&#x4E8E;&#x8FD9;&#x4E2A;&#x503C;</p></li>
+<li><p><strong>&#x6700;&#x5927;&#x503C;</strong></p></li>
+</ul>
+<h3 id="&#x6210;&#x5E74;&#x7537;&#x5B50;&#x7684;&#x8EAB;&#x9AD8;&#x6570;&#x503C;&#x6458;&#x8981;">&#x6210;&#x5E74;&#x7537;&#x5B50;&#x7684;&#x8EAB;&#x9AD8;&#x6570;&#x503C;&#x6458;&#x8981;</h3>
+<center>
+<img src="0811-1.png" srcset="/img/loading.gif" style="zoom:50%;">
+</center>
+<ul>
+<li><p>&#x6700;&#x5C0F;&#x503C; 61.7</p></li>
+<li><p>Q1 &#x7B2C;&#x4E00;&#x56DB;&#x5206;&#x4F4D;&#x6570; 66.5&#xFF0C;&#x5728;&#x8FD9;&#x4E2A;&#x7814;&#x7A76;&#x4E2D;&#xFF0C;25%&#x7684;&#x4EBA;&#x8EAB;&#x9AD8;&#x662F;&#x5728;66.5&#x6216;&#x4EE5;&#x4E0B;</p></li>
+<li><p>&#x4E2D;&#x4F4D;&#x6570; 68.3&#xFF0C;&#x5728;&#x7814;&#x7A76;&#x4E2D;&#xFF0C;&#x6709;&#x4E00;&#x534A;&#x53C2;&#x4E0E;&#x8005;&#x662F;&#x5C0F;&#x4E8E;68.3&#xFF0C;&#x4E00;&#x534A;&#x662F;&#x9AD8;&#x4E8E;68.3</p></li>
+<li><p>&#x5E73;&#x5747;&#x503C; 68.3, &#x4E0E;&#x4E2D;&#x4F4D;&#x6570;&#x4E00;&#x6837;&#x662F;&#x56E0;&#x4E3A;&#x8FD9;&#x662F;&#x4E00;&#x4E2A;&#x5BF9;&#x79F0;&#x5206;&#x5E03;</p></li>
+<li><p>Q3 &#x7B2C;&#x4E09;&#x56DB;&#x5206;&#x4F4D;&#x6570; 70.1&#xFF0C;75%&#x7684;&#x6570;&#x636E;&#x5728;70.1&#x4EE5;&#x4E0B;&#xFF0C;25%&#x7684;&#x6570;&#x636E;&#x5728;70.1&#x4EE5;&#x4E0A;</p></li>
+<li><p>&#x6700;&#x5927;&#x503C; 75.1</p></li>
+<li><p>IQR &#x56DB;&#x5206;&#x4F4D;&#x6570;&#x8303;&#x56F4;</p>
+<p>IQR = Q3 - Q1</p>
+<ul>
+<li>&#x4E0A;&#x4F8B;&#x4E2D;&#xFF0C;IQR = 70.1 - 66.5 = 3.6</li>
+<li>&#x5982;&#x679C;&#x4E0D;&#x60F3;&#x4F7F;&#x7528;&#x5168;&#x8DDD;Range&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;IQR</li>
+</ul></li>
+</ul>
+<h3 id="&#x65E7;&#x91D1;&#x5C71;&#x7684;&#x5DE5;&#x8D44;&#x6570;&#x503C;&#x6458;&#x8981;">&#x65E7;&#x91D1;&#x5C71;&#x7684;&#x5DE5;&#x8D44;&#x6570;&#x503C;&#x6458;&#x8981;</h3>
+<center>
+<img src="0811-2.png" srcset="/img/loading.gif" style="zoom:50%;">
+</center>
+<p>&#x66F4;&#x5E38;&#x89C1;&#x7684;Python&#x5F62;&#x5F0F;&#x7684;&#x6570;&#x636E;</p>
+<p>Python &#x4E2D;&#x7684; <code>scribe</code> &#x51FD;&#x6570;&#xFF0C;&#x7ECF;&#x5E38;&#x88AB;&#x7528;&#x6765;&#x83B7;&#x53D6;&#x6570;&#x503C;&#x6458;&#x8981;</p>
+<ul>
+<li><p>Min &#x6700;&#x5C0F;&#x503C; Min = $ -618.1</p>
+<p>&#x5DE5;&#x8D44;&#x6700;&#x5C0F;&#x503C;&#x662F;&#x8D1F;&#x6570;&#xFF0C;&#x53EF;&#x80FD;&#x56E0;&#x4E3A;&#x5DE5;&#x8D44;&#x62D6;&#x6B20;&#xFF08;</p></li>
+<li><p>25% &#x7B2C;&#x4E00;&#x56DB;&#x5206;&#x4F4D;&#x6570; Q1 = $ 36169</p></li>
+<li><p>50% &#x4E2D;&#x4F4D;&#x6570; Median = $ 71427</p></li>
+<li><p>75% &#x7B2C;&#x4E09;&#x56DB;&#x5206;&#x4F4D;&#x6570; Q3 = $ 105839</p></li>
+<li><p>Max &#x6700;&#x5927;&#x503C; Max = $ 567595</p></li>
+<li><p>Mean &#x5E73;&#x5747;&#x503C; Mean = $ 74768</p>
+<p>&#x5B9E;&#x9645;&#x5E73;&#x5747;&#x5DE5;&#x8D44;&#x4E3A;74768&#x7F8E;&#x5143;&#xFF0C;&#x4E0E;&#x4E2D;&#x4F4D;&#x6570;71427&#x76F8;&#x6BD4;&#xFF0C;&#x5E73;&#x5747;&#x503C;&#x6BD4;&#x4E2D;&#x4F4D;&#x6570;&#x591A;&#x4E86;3000+&#x7F8E;&#x5143;&#xFF0C;&#x6240;&#x4EE5;&#x65E7;&#x91D1;&#x5C71;&#x5DE5;&#x8D44;&#x5206;&#x5E03;&#x662F;&#x53F3;&#x504F;&#x7684;</p></li>
+<li><p>SD &#x6807;&#x51C6;&#x5DEE; SD = $ 50517</p>
+<p>&#x5E73;&#x5747;&#x4E00;&#x4E2A;&#x4EBA;&#x5C06;&#x6BD4;&#x5E73;&#x5747;&#x503C;&#x9AD8;&#x6216;&#x4F4E;50517&#x7F8E;&#x5143;</p></li>
+<li><p>n &#x6837;&#x672C;&#x6570; n = 148654</p>
+<p>148654&#x4E2A;&#x6837;&#x672C;</p></li>
+<li><p>IQR = Q3 - Q1 = 69670</p></li>
+</ul>
+<h3 id="&#x8003;&#x8BD5;&#x6210;&#x7EE9;&#x7684;&#x6570;&#x503C;&#x6458;&#x8981;">&#x8003;&#x8BD5;&#x6210;&#x7EE9;&#x7684;&#x6570;&#x503C;&#x6458;&#x8981;</h3>
+<center>
+<img src="0811-3.png" srcset="/img/loading.gif" style="zoom:50%;">
+</center>
+<ul>
+<li><p>&#x6700;&#x5C0F;&#x503C; Min = 14.0</p></li>
+<li><p>&#x7B2C;&#x4E00;&#x56DB;&#x5206;&#x4F4D;&#x6570; Q1 = 68.0</p></li>
+<li><p>&#x4E2D;&#x4F4D;&#x6570; Median = 78.0</p></li>
+<li><p>&#x7B2C;&#x4E09;&#x56DB;&#x5206;&#x4F4D;&#x6570; Q3 = 87.0</p></li>
+<li><p>&#x6700;&#x5927;&#x503C; Max = 100.0</p></li>
+<li><p>&#x5E73;&#x5747;&#x503C; Mean = 76.3</p>
+<p>&#x4E2D;&#x4F4D;&#x6570; &gt; &#x5E73;&#x5747;&#x503C;&#xFF0C;&#x5DE6;&#x504F;&#x5206;&#x5E03;&#xFF08;&#x56E0;&#x4E3A;&#x4F4E;&#x7AEF;&#x6709;&#x79BB;&#x7FA4;&#x503C;&#xFF0C;&#x6240;&#x4EE5;&#x5E73;&#x5747;&#x503C;&#x88AB;&#x62C9;&#x5411;&#x4F4E;&#x7AEF;&#xFF0C;&#x800C;&#x4E2D;&#x5FC3;&#x503C;&#x4E0D;&#x53D7;&#x79BB;&#x7FA4;&#x503C;&#x7684;&#x5F71;&#x54CD;&#xFF09;</p></li>
+<li><p>&#x6807;&#x51C6;&#x5DEE; Standard dev = 14.4</p>
+<p>&#x5E73;&#x5747;&#x6765;&#x8BF4;&#xFF0C;&#x4E00;&#x4E2A;&#x5B66;&#x751F;&#x5728;&#x8FD9;&#x6B21;&#x8003;&#x8BD5;&#x4E2D;&#x7684;&#x5206;&#x6570;&#x79BB;&#x5E73;&#x5747;&#x503C;&#x5927;&#x7EA6;&#x6709;14.4&#x5206;&#x7684;&#x5DEE;&#x8DDD;</p></li>
+<li><p>&#x6837;&#x672C;&#x6570; n = 1802.0</p></li>
+<li><p>IQR = Q3 - Q1 = 19</p>
+<p>&#x5DE6;&#x504F;/&#x53F3;&#x504F;&#x5206;&#x5E03;&#x65F6;&#xFF0C;&#x52A0;&#x4E0A; IQR &#x4F30;&#x8BA1;&#x662F;&#x66F4;&#x597D;&#x7684;&#x5F62;&#x5F0F;&#xFF0C;&#x53EF;&#x4EE5;&#x8BA9;&#x7528;&#x6237;&#x4E86;&#x89E3;&#x5927;&#x90E8;&#x5206;&#x6570;&#x636E;&#x5728;&#x4EC0;&#x4E48;&#x8303;&#x56F4;</p></li>
+</ul>
+<h3 id="&#x6570;&#x503C;&#x6458;&#x8981;&#x603B;&#x7ED3;">&#x6570;&#x503C;&#x6458;&#x8981;&#x603B;&#x7ED3;</h3>
+<p>&#x56FE;&#x5F62;&#x7684;&#x8868;&#x793A;&#x901A;&#x5E38;&#x662F;&#x7C97;&#x7565;&#x7684;&#xFF0C;&#x800C;&#x6570;&#x5B57;&#x6458;&#x8981;&#x53EF;&#x4EE5;&#x8FDB;&#x884C;&#x66F4;&#x6DF1;&#x5165;&#x7684;&#x5206;&#x6790;</p>
+<p>&#x6839;&#x636E;&#x4F7F;&#x7528;&#x7684;&#x8F6F;&#x4EF6;&#x4E0D;&#x540C;&#xFF0C;&#x901A;&#x5E38;&#x4F1A;&#x5F97;&#x5230;&#x7A0D;&#x5FAE;&#x4E0D;&#x540C;&#x7684;&#x6570;&#x5B57;&#x6458;&#x8981;</p>
+<p>&#x6709;&#x7684;&#x53EF;&#x80FD;&#x53EA;&#x6709;&#x4E94;&#x4E2A;&#x603B;&#x7ED3;&#xFF0C;&#x6709;&#x7684;&#x4F1A;&#x52A0;&#x4E0A;&#x6837;&#x672C;&#x91CF;&#x3001;&#x6807;&#x51C6;&#x5DEE;&#x3001;&#x5E73;&#x5747;&#x503C;</p>
+<h2 id="standard-score">Standard Score</h2>
+<blockquote>
+<ul>
+<li><strong>SD</strong>
+<ul>
+<li>the standard deviation is going to measure how far away our values are from the mean.</li>
+<li>We like to interpret it as <strong>roughly the average distance that our values are from the mean</strong>.</li>
+</ul></li>
+<li><strong>68-95-99.7 Rule</strong></li>
+</ul>
+</blockquote>
+<h2 id="&#x6807;&#x51C6;&#x5206;&#x6570;-z&#x5206;&#x6570;-&#x6807;&#x51C6;&#x5316;&#x503C;">&#x6807;&#x51C6;&#x5206;&#x6570; / Z&#x5206;&#x6570; / &#x6807;&#x51C6;&#x5316;&#x503C;</h2>
+<blockquote>
+<p>Z&#x5206;&#x6570;&#x662F;&#x4E00;&#x4E2A;&#x6570;&#x4E0E;&#x5E73;&#x5747;&#x503C;&#x7684;&#x5DEE;&#x518D;&#x9664;&#x4EE5;&#x6807;&#x51C6;&#x5DEE;&#x7684;&#x8FC7;&#x7A0B;</p>
+<p><strong>Z = (Observation - Mean) / SD</strong></p>
+<p>Z&#x5206;&#x6570;&#x53EF;&#x4EE5;&#x56DE;&#x7B54;&#x8FD9;&#x6837;&#x4E00;&#x4E2A;&#x95EE;&#x9898;&#xFF1A;&quot;&#x4E00;&#x4E2A;&#x7ED9;&#x5B9A;&#x5206;&#x6570;&#x8DDD;&#x79BB;<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/&#x5E73;&#x5747;&#x6570;">&#x5E73;&#x5747;&#x6570;</a>&#x591A;&#x5C11;&#x4E2A;&#x6807;&#x51C6;&#x5DEE;?&quot;</p>
+<p>&#x5728;&#x5E73;&#x5747;&#x6570;&#x4E4B;&#x4E0A;&#x7684;&#x5206;&#x6570;&#x4F1A;&#x5F97;&#x5230;&#x4E00;&#x4E2A;&#x6B63;&#x7684;&#x6807;&#x51C6;&#x5206;&#x6570;&#xFF0C;&#x5728;&#x5E73;&#x5747;&#x6570;&#x4E4B;&#x4E0B;&#x7684;&#x5206;&#x6570;&#x4F1A;&#x5F97;&#x5230;&#x4E00;&#x4E2A;&#x8D1F;&#x7684;&#x6807;&#x51C6;&#x5206;&#x6570;</p>
+<p>Z&#x5206;&#x6570;&#x662F;&#x4E00;&#x79CD;&#x53EF;&#x4EE5;&#x770B;&#x51FA;&#x67D0;&#x5206;&#x6570;&#x5728;&#x5206;&#x5E03;&#x4E2D;&#x76F8;&#x5BF9;&#x4F4D;&#x7F6E;&#x7684;&#x65B9;&#x6CD5;</p>
+</blockquote>
+<h3 id="&#x6B63;&#x6001;&#x5206;&#x5E03;&#x4E0E;z&#x5206;&#x6570;&#x7684;&#x5173;&#x7CFB;">&#x6B63;&#x6001;&#x5206;&#x5E03;&#x4E0E;Z&#x5206;&#x6570;&#x7684;&#x5173;&#x7CFB;</h3>
+<center>
+<img src="0814-1.png" srcset="/img/loading.gif" style="zoom:50%;">
+</center>
+<h3 id="&#x6848;&#x4F8B;-&#x5927;&#x5B66;&#x751F;&#x6BCF;&#x5929;&#x7684;&#x7761;&#x7720;&#x65F6;&#x95F4;">&#x6848;&#x4F8B; : &#x5927;&#x5B66;&#x751F;&#x6BCF;&#x5929;&#x7684;&#x7761;&#x7720;&#x65F6;&#x95F4;</h3>
+<center>
+<img src="0814-2.png" srcset="/img/loading.gif" style="zoom:50%;">
+</center>
+<p>&#x7531;&#x4E0A;&#x56FE;&#x53EF;&#x77E5;&#xFF1A;</p>
+<ul>
+<li><p>&#x8FD9;&#x662F;&#x4E00;&#x4E2A;&#x6B63;&#x6001;&#x5206;&#x5E03;&#xFF0C;x&#x8F74;&#x8868;&#x793A;&#x7761;&#x7720;&#x65F6;&#x95F4;</p></li>
+<li><p>&#x6807;&#x51C6;&#x5DEE; SD = 1.7 h</p>
+<p>&#x8861;&#x91CF;&#x6570;&#x503C;&#x4E0E;&#x5E73;&#x5747;&#x503C;&#x7684;&#x8DDD;&#x79BB;&#xFF0C;&#x5927;&#x5B66;&#x751F;&#x7761;&#x7720;&#x65F6;&#x95F4;&#x4E0E;&#x5E73;&#x5747;&#x503C;&#x76F8;&#x5DEE;1.7&#x5C0F;&#x65F6;</p></li>
+<li><p>&#x5E73;&#x5747;&#x503C; Mean = 7h</p></li>
+<li><p>68-95-99.7 &#x539F;&#x5219;</p>
+<blockquote>
+<p>68&#x2013;95&#x2013;99.7&#x539F;&#x5247;&#x662F;&#x5728;&#x6B63;&#x6001;&#x5206;&#x5E03;&#x4E2D;&#xFF0C;&#x8DDD;&#x5E73;&#x5747;&#x503C;&#x5C0F;&#x4E8E;&#x4E00;&#x4E2A;&#x6807;&#x51C6;&#x5DEE;&#x3001;&#x4E24;&#x4E2A;&#x6807;&#x51C6;&#x5DEE;&#x3001;&#x4E09;&#x4E2A;&#x6807;&#x51C6;&#x5DEE;&#x4EE5;&#x5185;&#x7684;&#x767E;&#x5206;&#x6BD4;&#xFF0C;&#x66F4;&#x7CBE;&#x786E;&#x7684;&#x6570;&#x5B57;&#x662F;68.27%&#x3001;95.45%&#x53CA;99.73%</p>
+</blockquote>
+<ul>
+<li>&#x5927;&#x7EA6; <strong>68%</strong> &#x7684;&#x89C2;&#x6D4B;&#x503C;&#x5728;5.3 h - 8.7 h&#x8303;&#x56F4;&#xFF0C;&#x5373; [Mean - SD, Mean + SD]</li>
+<li>&#x5927;&#x7EA6; <strong>95%</strong> &#x7684;&#x89C2;&#x6D4B;&#x503C;&#x5728;3.6 h - 10.4 h&#x8303;&#x56F4;&#xFF0C;&#x5373; [Mean - 2SD, Mean + 2SD]</li>
+<li>&#x5927;&#x7EA6; <strong>99.7%</strong> &#x7684;&#x89C2;&#x6D4B;&#x503C;&#x5728;1.9 h - 12.1 h&#x8303;&#x56F4;&#xFF0C;&#x5373; [Mean - 3SD, Mean + 3SD]</li>
+</ul></li>
+<li><p>A&#x540C;&#x5B66;&#x6BCF;&#x5929;&#x7761;&#x7720;&#x65F6;&#x95F4;&#x662F;10 h</p>
+<ul>
+<li>A&#x540C;&#x5B66;&#x7684;&#x7761;&#x7720;&#x65F6;&#x95F4;10 h &#x6BD4;&#x5E73;&#x5747;&#x503C;&#x591A;3 h</li>
+<li>&#x4F46;&#x662F;&#x8BA1;&#x7B97;Z&#x5206;&#x6570;&#x662F;&#x4E00;&#x4E2A;&#x66F4;&#x597D;&#x7684;&#x8861;&#x91CF;&#x65B9;&#x5F0F;</li>
+<li>Z = (Observation - Mean) / SD =&#xFF08;10 - 7&#xFF09;/1.7 = 1.76</li>
+<li>1.76 &#x8868;&#x660E;&#x7565;&#x9AD8;&#x4E8E;&#x5E73;&#x5747;&#x503C;</li>
+</ul></li>
+<li><p>B&#x540C;&#x5B66;&#x6BCF;&#x5929;&#x7761;&#x7720;&#x65F6;&#x95F4;&#x662F;6h</p>
+<ul>
+<li>Z = (6 - 7) / 1.7 = -0.59</li>
+<li>&#x8D1F;&#x53F7;&#x8868;&#x660E;&#x4F4E;&#x4E8E;&#x5E73;&#x5747;&#x503C;</li>
+<li>0.59&#x8868;&#x660E;&#x53EA;&#x662F;&#x7A0D;&#x5FAE;&#x4F4E;&#x4E8E;&#x5E73;&#x5747;&#x503C;&#xFF0C;&#x79BB;&#x5E73;&#x5747;&#x503C;&#x5E76;&#x4E0D;&#x8FDC;</li>
+</ul></li>
+<li><p>C&#x540C;&#x5B66;&#x7684;Z&#x5206;&#x6570;&#x662F; -2.7&#xFF0C;&#x90A3;&#x4E48;&#x4ED6;&#x6BCF;&#x5929;&#x7761;&#x7720;&#x65F6;&#x95F4;&#x662F;&#xFF1F;</p>
+<ul>
+<li>-2.7 = (x - 7) / 1.7</li>
+<li>x = 2.41 h</li>
+<li>C&#x540C;&#x5B66;&#x7684;&#x7761;&#x7720;&#x65F6;&#x95F4;&#x662F;2.41 h</li>
+</ul></li>
+</ul>
+<p><em>&#x4E86;&#x89E3;&#x4E86;&#x6570;&#x503C;&#x6458;&#x8981;&#x8FD8;&#x6709;Z&#x5206;&#x6570;&#xFF0C;&#x4ECA;&#x5929;&#x6709;&#x4EBA;&#x7ED9;&#x4F60;&#x8BB2;&#x89E3; 68-95-99.7 &#x539F;&#x5219;&#x4E86;&#x5417;</em></p>
+</body></html>
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Coursera-notebooks/">Coursera-notebooks</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Start-with-Me/">Start with Me</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Python/">Python</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Coursera/">Coursera</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                      <a href="/py-statistics-07-boxplots-and-week2-quiz/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">week2-3- Boxplot and Quiz</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/py-statistics-05-tables-bar-pie-histograms/">
+                        <span class="hidden-mobile">week2-1- Tables、Bar Chart、Pie Chart、Histograms</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: 'article.markdown-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "week2-2- Numerical Summaries and Standard Score&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 80,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

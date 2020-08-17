@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="Oreo">
+  <meta name="keywords" content="">
+  <title>week1-1 -Statistics - Oreo</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script  src="/js/utils.js" ></script>
+<meta name="generator" content="Hexo 5.0.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>奥利奥小屋</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2020-07-20 16:03">
+      2020年7月20日 下午
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.7k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      53
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <html><head></head><body><h1 id="start-with-me-coursera---understanding-and-visualizing-data-with-python-week-1-1---statistics">Start with Me | Coursera - Understanding and Visualizing Data with Python week 1-1 - Statistics</h1>
+<p><code>Start with Me</code> &#x7CFB;&#x5217;&#x7EC8;&#x4E8E;&#x53C8;&#x66F4;&#x65B0;&#x4E86;&#xFF0C;&#x5DF2;&#x7ECF;&#x65B0;&#x7684;&#x4E00;&#x5468;&#x4E86;&#xFF0C;&#x4F9D;&#x7136;&#x62D6;&#x5EF6;&#x7B2C;&#x4E00;&#x540D;&#x3002;</p>
+<p>&#x7F8E;&#x5176;&#x540D;&#x66F0;&#x53CC;&#x8BED;&#x7248;&#x672C;&#xFF0C;&#x592A;&#x957F;&#x4E0D;&#x60F3;&#x770B;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x6ED1;&#x5230;&#x6700;&#x540E;~</p>
+<h2 id="what-is-statistics">What is Statistics ?</h2>
+<h3 id="a-few-perspectives-about-the-field-of-statistics">A few perspectives about the field of statistics</h3>
+<ul>
+<li>Methodological</li>
+</ul>
+<blockquote>
+<p>subject encompassing all aspects of learning from data</p>
+<p>tools and methods for working with and understanding data</p>
+</blockquote>
+<ul>
+<li>Statisticians</li>
+</ul>
+<blockquote>
+<p>apply and develop data analysis methods, seek to understand their properties</p>
+<p>when do these tools provide insight?</p>
+<p>when are they possibly misleading?</p>
+</blockquote>
+<ul>
+<li>Researchers and workers</li>
+</ul>
+<blockquote>
+<p>They apply and extend statistical methodology, and contribute new ideas and methods for conducting data analysis.</p>
+</blockquote>
+<h3 id="&#x5173;&#x4E8E;&#x7EDF;&#x8BA1;&#x5B66;&#x9886;&#x57DF;&#x7684;&#x4E00;&#x4E9B;&#x89C2;&#x70B9;">&#x5173;&#x4E8E;&#x7EDF;&#x8BA1;&#x5B66;&#x9886;&#x57DF;&#x7684;&#x4E00;&#x4E9B;&#x89C2;&#x70B9;</h3>
+<ul>
+<li><p>&#x65B9;&#x6CD5;&#x5B66;</p>
+<p><em>&#x5305;&#x542B;&#x4E86;&#x4ECE;&#x6570;&#x636E;&#x4E2D;&#x5B66;&#x4E60;&#x7684;&#x6240;&#x6709;&#x65B9;&#x9762;</em></p>
+<p><em>&#x662F;&#x8BA9;&#x6211;&#x4EEC;&#x7528;&#x6570;&#x636E;&#x6765;&#x7406;&#x89E3;&#x6570;&#x636E;&#x7684;&#x5DE5;&#x5177;&#x3001;&#x65B9;&#x6CD5;</em></p></li>
+<li><p>&#x7EDF;&#x8BA1;&#x5B66;&#x5BB6;</p>
+<p><em>&#x5E94;&#x7528;&#x548C;&#x5F00;&#x53D1;&#x6570;&#x636E;&#x5206;&#x6790;&#x65B9;&#x6CD5;&#xFF0C;&#x4E0D;&#x65AD;&#x5730;&#x4E86;&#x89E3;&#x5B83;&#x4EEC;&#x7684;&#x7279;&#x6027;</em></p>
+<p><em>&#x4EC0;&#x4E48;&#x65F6;&#x5019;&#x8FD9;&#x4E9B;&#x5DE5;&#x5177;&#x4F1A;&#x7ED9;&#x6211;&#x4EEC;&#x63D0;&#x4F9B;&#x6D1E;&#x5BDF;&#x529B;&#xFF1F;</em></p>
+<p><em>&#x4EC0;&#x4E48;&#x65F6;&#x5019;&#x5B83;&#x4EEC;&#x53EF;&#x80FD;&#x4F1A;&#x6709;&#x8BEF;&#x5BFC;&#x6027;&#xFF1F;</em></p></li>
+<li><p>&#x7814;&#x7A76;&#x4EBA;&#x5458;&#x548C;&#x5DE5;&#x4F5C;&#x4EBA;&#x5458;</p>
+<p><em>&#x5E94;&#x7528;&#x548C;&#x62D3;&#x5C55;&#x7EDF;&#x8BA1;&#x65B9;&#x6CD5;&#xFF0C;&#x4E3A;&#x8FDB;&#x884C;&#x6570;&#x636E;&#x5206;&#x6790;&#x63D0;&#x51FA;&#x65B0;&#x7684;&#x601D;&#x8DEF;&#x548C;&#x65B9;&#x6CD5;</em></p></li>
+</ul>
+<h3 id="difference-between-a-statistic-and-the-field-of-statistics">Difference between a statistic and the field of statistics</h3>
+<p><strong>A Statistic</strong></p>
+<blockquote>
+<p>numerical or graphical summary of a collection of data.</p>
+<ul>
+<li>Average sore on final exam</li>
+<li>Minimum temperature at location over year</li>
+<li>Proportion of people who are retired</li>
+</ul>
+</blockquote>
+<p><strong>The field of Statistics</strong></p>
+<blockquote>
+<p>academic discipline focusing on research methodology</p>
+<p>Statisticians develop new tools, calculate statistics from data, and collaborate with subject-matter experts to interpret them.</p>
+</blockquote>
+<h3 id="&#x7EDF;&#x8BA1;&#x503C;&#x4E0E;&#x7EDF;&#x8BA1;&#x5B66;&#x7684;&#x533A;&#x522B;">&#x7EDF;&#x8BA1;&#x503C;&#x4E0E;&#x7EDF;&#x8BA1;&#x5B66;&#x7684;&#x533A;&#x522B;</h3>
+<p><strong>&#x7EDF;&#x8BA1;&#x503C;</strong></p>
+<ul>
+<li>&#x662F;&#x6307;&#x6570;&#x636E;&#x6536;&#x96C6;&#x7684;&#x6570;&#x5B57;&#x6216;&#x56FE;&#x5F62;&#x7684;&#x603B;&#x7ED3;</li>
+<li>&#x5B66;&#x751F;&#x671F;&#x672B;&#x8003;&#x8BD5;&#x5E73;&#x5747;&#x6210;&#x7EE9;&#x7684;&#x62A5;&#x544A;</li>
+<li>&#x67D0;&#x5730;&#x4E00;&#x6BB5;&#x65F6;&#x95F4;&#x7684;&#x6700;&#x4F4E;&#x6E29;&#x5EA6;</li>
+<li>&#x8C03;&#x67E5;&#x4E2D;&#x9000;&#x4F11;&#x4EBA;&#x7FA4;&#x7684;&#x6BD4;&#x4F8B;</li>
+</ul>
+<p><strong>&#x7EDF;&#x8BA1;&#x5B66;</strong></p>
+<ul>
+<li>&#x662F;&#x6307;&#x4E13;&#x6CE8;&#x4E8E;&#x7814;&#x7A76;&#x65B9;&#x6CD5;&#x7684;&#x5B66;&#x672F;&#x5B66;&#x79D1;</li>
+<li>&#x7EDF;&#x8BA1;&#x5B66;&#x5BB6;&#x8981;&#x5F00;&#x53D1;&#x65B0;&#x7684;&#x7EDF;&#x8BA1;&#x5DE5;&#x5177;&#xFF0C;&#x4ECE;&#x6570;&#x636E;&#x4E2D;&#x8BA1;&#x7B97;&#x51FA;&#x7EDF;&#x8BA1;&#x6570;&#x636E;</li>
+</ul>
+<h3 id="the-landscape-of-statistics">The Landscape of Statistics</h3>
+<blockquote>
+<p>evolving and dynamic field&#xFF0C;emerging challenges and opportunities</p>
+<ul>
+<li><p><strong>Properties</strong> of statistical methods are under <strong>continuing</strong> study</p></li>
+<li><p>New application areas -&gt; development of new analytic methods</p></li>
+<li><p>New types of sensors -&gt; <strong>new type of data</strong></p></li>
+<li><p>Advances in <strong>computing</strong> -&gt; sophisticated analyses on Big Data</p></li>
+</ul>
+</blockquote>
+<h3 id="&#x7EDF;&#x8BA1;&#x5B66;&#x7684;&#x524D;&#x666F;">&#x7EDF;&#x8BA1;&#x5B66;&#x7684;&#x524D;&#x666F;</h3>
+<p><em>&#x4E0D;&#x65AD;&#x53D1;&#x5C55;&#x3001;&#x5145;&#x6EE1;&#x6D3B;&#x529B;&#x7684;&#x9886;&#x57DF;&#xFF0C;&#x9762;&#x4E34;&#x6311;&#x6218;&#x548C;&#x673A;&#x9047;</em></p>
+<ul>
+<li>&#x5404;&#x79CD;&#x7EDF;&#x8BA1;&#x65B9;&#x6CD5;&#x7684;&#x7279;&#x6027;&#x5728;&#x4E0D;&#x65AD;&#x7814;&#x7A76;&#x4E2D;</li>
+<li>&#x65B0;&#x7684;&#x5E94;&#x7528;&#x9886;&#x57DF; -&gt; &#x5F00;&#x53D1;&#x65B0;&#x7684;&#x5206;&#x6790;&#x65B9;&#x6CD5;</li>
+<li>&#x6D4B;&#x91CF;&#x6570;&#x636E;&#x7684;&#x65B9;&#x5F0F;&#xFF0C;&#x65B0;&#x578B;&#x7684;&#x4F20;&#x611F;&#x5668; -&gt; &#x5206;&#x6790;&#x65B0;&#x578B;&#x6570;&#x636E;</li>
+<li>&#x4F9D;&#x8D56;&#x8BA1;&#x7B97;&#x65B9;&#x9762;&#x7684;&#x8FDB;&#x6B65; -&gt; &#x5229;&#x7528;&#x5927;&#x6570;&#x636E;&#x8FDB;&#x884C;&#x66F4;&#x590D;&#x6742;&#x7684;&#x5206;&#x6790;</li>
+</ul>
+<h3 id="perspectives-on-statistical-science">Perspectives on Statistical Science</h3>
+<blockquote>
+<p>Statistics is a &quot;big tent&quot; discipline, incorporates new ideas from theory, practice, allied fields.</p>
+</blockquote>
+<p><strong>Different Perspectives:</strong></p>
+<blockquote>
+<ul>
+<li>art of summarizing data</li>
+<li>science of uncertainty</li>
+<li>science of decisions</li>
+<li>science of variation</li>
+<li>art of forecasting</li>
+<li>science of measurement</li>
+<li>basis for principled data collection</li>
+</ul>
+</blockquote>
+<h3 id="&#x7EDF;&#x8BA1;&#x5B66;&#x7684;&#x89C2;&#x70B9;">&#x7EDF;&#x8BA1;&#x5B66;&#x7684;&#x89C2;&#x70B9;</h3>
+<p><em>&#x7EDF;&#x8BA1;&#x5B66;&#x9886;&#x57DF;&#x6709;&#x4E0D;&#x540C;&#x7684;&#x5B66;&#x6D3E;&#xFF0C;&#x878D;&#x5408;&#x4E86;&#x7406;&#x8BBA;&#x3001;&#x5B9E;&#x8DF5;&#x548C;&#x76F8;&#x5173;&#x9886;&#x57DF;&#x7684;&#x65B0;&#x601D;&#x60F3;</em></p>
+<p>&#x7EDF;&#x8BA1;&#x5B66;&#x9886;&#x57DF;&#x7684;&#x4E0D;&#x540C;&#x89C2;&#x70B9;&#xFF1A;</p>
+<ul>
+<li>&#x603B;&#x7ED3;&#x6570;&#x636E;&#x7684;&#x827A;&#x672F;</li>
+<li>&#x4E0D;&#x786E;&#x5B9A;&#x7684;&#x79D1;&#x5B66;</li>
+<li>&#x51B3;&#x7B56;&#x79D1;&#x5B66;</li>
+<li>&#x53D8;&#x5316;&#x7684;&#x79D1;&#x5B66;</li>
+<li>&#x9884;&#x6D4B;&#x7684;&#x827A;&#x672F;</li>
+<li>&#x6D4B;&#x91CF;&#x7684;&#x79D1;&#x5B66;</li>
+<li>&#x539F;&#x5219;&#x6027;&#x6570;&#x636E;&#x6536;&#x96C6;&#x7684;&#x57FA;&#x7840;</li>
+</ul>
+<h3 id="statistics-as-the-art-of-the-summarizing-data">Statistics as the &quot;art of the summarizing data&quot;</h3>
+<blockquote>
+<ul>
+<li><p>Data can be <strong>overwhelming</strong></p></li>
+<li><p>Making sense of data usually involves <strong>reduction</strong> and <strong>summarization</strong></p></li>
+<li><p>reduction : make a dataset <strong>comprehensible</strong> to human observer</p></li>
+<li><p>summarization : always <strong>depends primarily on goals of &quot;data consumer&quot;</strong> to be meaningful -- many approaches</p></li>
+</ul>
+</blockquote>
+<h3 id="&#x7EDF;&#x8BA1;&#x5B66;&#x662F;&#x603B;&#x7ED3;&#x6570;&#x636E;&#x7684;&#x827A;&#x672F;">&#x7EDF;&#x8BA1;&#x5B66;&#x662F;&#x603B;&#x7ED3;&#x6570;&#x636E;&#x7684;&#x827A;&#x672F;</h3>
+<p><em>&#x628A;&#x96BE;&#x4EE5;&#x63A5;&#x53D7;&#x7684;&#x6570;&#x636E;&#x53D8;&#x5F97;&#x6709;&#x610F;&#x4E49;</em></p>
+<p><em>&#x7EDF;&#x8BA1;&#x5B66;&#x5BB6;&#x9700;&#x8981;&#x7ECF;&#x8FC7;&#x826F;&#x597D;&#x7684;&#x8BAD;&#x7EC3;&#xFF0C;&#x5229;&#x7528;&#x9002;&#x5F53;&#x7684;&#x3001;&#x4E25;&#x683C;&#x7684;&#x3001;&#x6709;&#x6548;&#x7684;&#x65B9;&#x6CD5;&#x6765;&#x603B;&#x7ED3;&#x6570;&#x636E;</em></p>
+<ul>
+<li><p>&#x6570;&#x636E;&#x53EF;&#x80FD;&#x4F1A;&#x8BA9;&#x4EBA;&#x96BE;&#x4EE5;&#x63A5;&#x53D7;&#xFF0C;&#x90A3;&#x5C31;&#x9700;&#x8981;&#x8BA9;&#x6570;&#x636E;&#x53D8;&#x5F97;&#x6709;&#x610F;&#x4E49;&#xFF0C;&#x901A;&#x5E38;&#x6D89;&#x53CA;&#x51CF;&#x5C11;&#x548C;&#x603B;&#x7ED3;</p></li>
+<li><p>&#x51CF;&#x5C11;&#x6570;&#x636E;</p>
+<p>&#x8BA9;&#x6570;&#x636E;&#x96C6;&#x5BF9;&#x89C2;&#x5BDF;&#x8005;&#x6765;&#x8BF4;&#x662F;&#x53EF;&#x4EE5;&#x7406;&#x89E3;&#x7684;</p></li>
+<li><p>&#x603B;&#x7ED3;&#x6570;&#x636E;</p>
+<p>&#x9700;&#x8981;&#x4E0E;&#x6570;&#x636E;&#x6D88;&#x8D39;&#x8005;&#x7684;&#x76EE;&#x6807;&#x4FDD;&#x5B58;&#x4E00;&#x81F4;&#x624D;&#x6709;&#x610F;&#x4E49;</p></li>
+</ul>
+<h3 id="statistics-as-the-science-of-uncertainty">Statistics as the &quot;science of uncertainty&quot;</h3>
+<blockquote>
+<ul>
+<li>Data can be <strong>misleading</strong></li>
+<li>Statistics provides framework for <strong>assessing whether claims based on data are meaningful</strong></li>
+<li>Uncertainty is inevitable, but it is highly desirable to <strong>quantify how far our reported findings may fall from &quot;the truth&quot;</strong></li>
+<li>Many public opinion polls report <code>&#xB1; margin of error</code> -&gt; potential discrepancy between reported and actual states of public opinion</li>
+</ul>
+</blockquote>
+<h3 id="&#x7EDF;&#x8BA1;&#x5B66;&#x662F;&#x4E0D;&#x786E;&#x5B9A;&#x7684;&#x79D1;&#x5B66;">&#x7EDF;&#x8BA1;&#x5B66;&#x662F;&#x4E0D;&#x786E;&#x5B9A;&#x7684;&#x79D1;&#x5B66;</h3>
+<p><em>&#x6570;&#x636E;&#x7684;&#x8BEF;&#x5BFC;&#x6027; -&gt; &#x8BC4;&#x4F30;&#x57FA;&#x4E8E;&#x6570;&#x636E;&#x7684;&#x7814;&#x7A76;&#x7ED3;&#x679C;&#x662F;&#x5426;&#x6709;&#x610F;&#x4E49; -&gt; &#x91CF;&#x5316;&#x7814;&#x7A76;&#x503C;&#x4E0E;&#x771F;&#x5B9E;&#x503C;&#x7684;&#x5DEE;&#x5F02;</em></p>
+<ul>
+<li><p>&#x6570;&#x636E;&#x53EF;&#x80FD;&#x5177;&#x6709;&#x8BEF;&#x5BFC;&#x6027;</p></li>
+<li><p>&#x53D1;&#x5C55;&#x7EDF;&#x8BA1;&#x5B66;&#x9886;&#x57DF;&#x7684;&#x4E00;&#x4E2A;&#x4E3B;&#x8981;&#x52A8;&#x673A;&#x662F;&#x8BA9;&#x6211;&#x4EEC;&#x6709;&#x4E00;&#x4E2A;&#x7ED3;&#x6784;&#x3001;&#x6846;&#x67B6;&#xFF0C;&#x80FD;&#x591F;<strong>&#x8BC4;&#x4F30;&#x57FA;&#x4E8E;&#x6570;&#x636E;&#x7684;&#x8BF4;&#x6CD5;&#x662F;&#x5426;&#x6709;&#x610F;&#x4E49;</strong></p></li>
+<li><p>&#x4ECE;&#x6570;&#x636E;&#x4E2D;&#x5F97;&#x5230;&#x6D1E;&#x5BDF;&#x529B;&#x5E76;&#x4E0D;&#x662F;&#x767E;&#x5206;&#x4E4B;&#x767E;&#x7684;&#x51C6;&#x786E;&#xFF0C;&#x4F46;&#x662F;&#x6211;&#x4EEC;&#x6709;&#x529E;&#x6CD5;<strong>&#x91CF;&#x5316;&#x62A5;&#x544A;&#x7684;&#x7ED3;&#x679C;&#x53EF;&#x80FD;&#x4E0E;&#x771F;&#x76F8;&#x4E4B;&#x95F4;&#x6709;&#x591A;&#x5927;&#x7684;&#x5DEE;&#x8DDD;</strong></p></li>
+</ul>
+<p>&#x4F8B;&#x5982;&#xFF1A;&#x8BB8;&#x591A;&#x6C11;&#x610F;&#x8C03;&#x67E5;&#x62A5;&#x544A;&#x5728;&#x62A5;&#x544A;&#x7ED3;&#x679C;&#x7684;&#x540C;&#x65F6;&#x4E5F;&#x62A5;&#x544A;&#x4E00;&#x4E2A;<strong>&#x8BEF;&#x5DEE;&#x8303;&#x56F4;</strong></p>
+<ul>
+<li>&#x8BEF;&#x5DEE;&#x8303;&#x56F4;&#xFF1A;&#x62A5;&#x544A;&#x7684;&#x7ED3;&#x679C;&#x548C;&#x5B9E;&#x9645;&#x7684;&#x6C11;&#x610F;&#x72B6;&#x6001;&#x4E4B;&#x95F4;&#x7684;&#x6F5C;&#x5728;&#x5DEE;&#x5F02;&#x662F;&#x4EC0;&#x4E48;</li>
+</ul>
+<h3 id="statistics-as-the-science-of-decisions">Statistics as the &quot;science of decisions&quot;</h3>
+<blockquote>
+<ul>
+<li><p>Understanding data is very important -&gt; only consequential if we act on what we&apos;ve learned.</p></li>
+<li><p><strong>Decision-making</strong> = ultimate goal of any statistical analysis</p></li>
+<li><p>We <strong>make decisions in face of uncertainty</strong> ! What are costs and benefits of different approaches?</p>
+<p>a person who finds that he might be at higher than average risk for cancer ...</p>
+<p>should they undergo preventative procedure?</p></li>
+</ul>
+</blockquote>
+<h3 id="&#x7EDF;&#x8BA1;&#x5B66;&#x662F;&#x51B3;&#x7B56;&#x79D1;&#x5B66;">&#x7EDF;&#x8BA1;&#x5B66;&#x662F;&#x51B3;&#x7B56;&#x79D1;&#x5B66;</h3>
+<p><em>&#x6570;&#x636E;&#x5206;&#x6790; -&gt; &#x51B3;&#x7B56;</em></p>
+<ul>
+<li><p>&#x7406;&#x89E3;&#x6570;&#x636E;&#x662F;&#x975E;&#x5E38;&#x91CD;&#x8981;&#x7684;&#xFF0C;&#x4F46;&#x5F53;&#x7136;&#xFF0C;&#x8FD9;&#x4E5F;&#x5BFC;&#x81F4;&#x4E86;&#x9700;&#x8981;&#x80FD;&#x591F;&#x6839;&#x636E;&#x6240;&#x5B66;&#x4E60;&#x7684;&#x5185;&#x5BB9;&#x91C7;&#x53D6;&#x884C;&#x52A8;</p></li>
+<li><p>&#x51B3;&#x7B56; = &#x4EFB;&#x4F55;&#x7EDF;&#x8BA1;&#x5206;&#x6790;&#x7684;&#x6700;&#x7EC8;&#x76EE;&#x6807;</p></li>
+<li><p>&#x5728;&#x6211;&#x4EEC;&#x7684;&#x4E2A;&#x4EBA;&#x751F;&#x6D3B;&#x548C;&#x804C;&#x4E1A;&#x751F;&#x6D3B;&#x4E2D;&#xFF0C;&#x6211;&#x4EEC;&#x90FD;&#x662F;&#x5728;&#x9762;&#x5BF9;<strong>&#x4E0D;&#x786E;&#x5B9A;&#x6027;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#x505A;&#x51FA;&#x51B3;&#x7B56;</strong></p></li>
+<li><p>&#x6211;&#x4EEC;&#x9700;&#x8981;&#x5E73;&#x8861;&#x4E0D;&#x540C;&#x65B9;&#x6CD5;&#x7684;&#x6210;&#x672C;&#x548C;&#x6536;&#x76CA;&#x662F;&#x4EC0;&#x4E48;</p></li>
+</ul>
+<p>&#x4F8B;&#x5982;&#xFF1A;&#x4E00;&#x4E2A;&#x4EBA;&#x53D1;&#x73B0;&#x81EA;&#x5DF1;&#x60A3;&#x75C5;&#x7684;&#x98CE;&#x9669;&#x53EF;&#x80FD;&#x9AD8;&#x4E8E;&#x5E73;&#x5747;&#x6C34;&#x5E73;&#xFF0C;&#x90A3;&#x4E48;&#x4ED6;&#x4EEC;&#x662F;&#x5426;&#x5E94;&#x8BE5;&#x8FDB;&#x884C;&#x9884;&#x9632;&#xFF1F;</p>
+<ul>
+<li>&#x7EDF;&#x8BA1;&#x6570;&#x636E;&#x53EF;&#x4EE5;&#x4F5C;&#x4E3A;&#x51B3;&#x7B56;&#x8FC7;&#x7A0B;&#x63D0;&#x4F9B;&#x4FE1;&#x606F;</li>
+</ul>
+<h3 id="statistics-as-the-science-of-variation">Statistics as the &quot;science of variation&quot;</h3>
+<blockquote>
+<ul>
+<li><p>Often focus on most typical or <strong>&quot;central&quot;</strong> value</p></li>
+<li><p>Great emphasis on understanding <strong>variation</strong> in data</p></li>
+<li><p>Average American has around $6000 of credit card debt</p>
+<p><em>central value</em> of credit card debt in US population</p></li>
+<li><p>10% of Americans have more than $30,000 in credit card debt</p>
+<p><em>variation</em> of credit card debt in US population</p></li>
+</ul>
+</blockquote>
+<h3 id="&#x7EDF;&#x8BA1;&#x5B66;&#x662F;&#x53D8;&#x5316;&#x7684;&#x79D1;&#x5B66;">&#x7EDF;&#x8BA1;&#x5B66;&#x662F;&#x53D8;&#x5316;&#x7684;&#x79D1;&#x5B66;</h3>
+<ul>
+<li><p>&#x603B;&#x7ED3;&#x6570;&#x636E;&#x65F6;&#xFF0C;&#x5F80;&#x5F80;&#x9996;&#x5148;&#x5173;&#x6CE8;&#x7684;&#x662F;&#x90A3;&#x4E2A;&#x5178;&#x578B;&#x7684;&#x6216;&#x8005;<strong>&#x4E2D;&#x5FC3;</strong>&#x7684;&#x6570;&#x503C;</p></li>
+<li><p>&#x5728;&#x7EDF;&#x8BA1;&#x5B66;&#x4E2D;&#x975E;&#x5E38;&#x5F3A;&#x8C03;&#x7406;&#x89E3;&#x6570;&#x636E;&#x7684;<strong>&#x53D8;&#x5F02;&#x6027;</strong></p></li>
+</ul>
+<p>&#x4F8B;&#x5982;&#xFF1A;</p>
+<ul>
+<li><p>&#x7F8E;&#x56FD;&#x4EBA;&#x5E73;&#x5747;&#x6709;<strong>6000</strong>&#x7F8E;&#x5143;&#x5DE6;&#x53F3;&#x7684;&#x4FE1;&#x7528;&#x5361;&#x503A;&#x52A1; --&gt; &#x4FE1;&#x7528;&#x5361;&#x503A;&#x52A1;&#x5206;&#x5E03;&#x7684;<strong>&#x4E2D;&#x5FC3;&#x503C;</strong></p></li>
+<li><p>&#x5927;&#x7EA6;<strong>10%</strong>&#x7684;&#x4EBA;&#x6709;&#x8D85;&#x8FC7;3&#x4E07;&#x7F8E;&#x5143;&#x7684;&#x4FE1;&#x7528;&#x5361;&#x503A;&#x52A1; --&gt; &#x4EBA;&#x53E3;&#x7684;&#x4FE1;&#x7528;&#x5361;&#x503A;&#x52A1;&#x7684;<strong>&#x53D8;&#x5F02;&#x6027;</strong></p></li>
+</ul>
+<h3 id="statistics-as-the-art-of-forecasting">Statistics as the &quot;art of forecasting&quot;</h3>
+<blockquote>
+<ul>
+<li><p>Forecasting or prediction = central tasks in statistics</p></li>
+<li><p><strong>Cannot</strong> know future with absolute certainty, but efficient use of available data <strong>can</strong> sometimes make accurate predictions about future</p></li>
+<li><p>weather prediction</p></li>
+<li><p>earthquake prediction</p></li>
+<li><p>product&apos;s demand prediction</p></li>
+<li><p>predict the outcome of an election</p></li>
+<li><p>whether or not a patient will respond favorably to some treatment</p></li>
+</ul>
+</blockquote>
+<h3 id="&#x7EDF;&#x8BA1;&#x5B66;&#x662F;&#x9884;&#x6D4B;&#x7684;&#x827A;&#x672F;">&#x7EDF;&#x8BA1;&#x5B66;&#x662F;&#x9884;&#x6D4B;&#x7684;&#x827A;&#x672F;</h3>
+<ul>
+<li>&#x7EDF;&#x8BA1;&#x5B66;&#x7684;&#x4E00;&#x4E9B;&#x6838;&#x5FC3;&#x4EFB;&#x52A1; -&gt; &#x9884;&#x6D4B;</li>
+<li>&#x6211;&#x4EEC;&#x4E0D;&#x80FD;&#x7EDD;&#x5BF9;&#x5730;&#x77E5;&#x9053;&#x672A;&#x6765;</li>
+<li>&#x5982;&#x679C;&#x6211;&#x4EEC;&#x80FD;&#x6709;&#x6548;&#x5730;&#x5229;&#x7528;&#x73B0;&#x6709;&#x7684;&#x6570;&#x636E;&#xFF0C;&#x6211;&#x4EEC;&#x6709;&#x65F6;&#x53EF;&#x4EE5;&#x5BF9;&#x672A;&#x6765;&#x505A;&#x51FA;&#x76F8;&#x5F53;&#x51C6;&#x786E;&#x7684;&#x9884;&#x6D4B;</li>
+</ul>
+<p>&#x4F8B;&#x5982;&#xFF1A;</p>
+<ul>
+<li>&#x5929;&#x6C14;&#x9884;&#x6D4B;</li>
+<li>&#x5730;&#x9707;&#x9884;&#x6D4B;</li>
+<li>&#x65B0;&#x4EA7;&#x54C1;&#x9700;&#x6C42;&#x7684;&#x9884;&#x6D4B;</li>
+<li>&#x9009;&#x4E3E;&#x7ED3;&#x679C;&#x9884;&#x6D4B;</li>
+<li>&#x75C5;&#x4EBA;&#x5BF9;&#x6CBB;&#x7597;&#x7684;&#x53CD;&#x5E94;&#x9884;&#x6D4B;</li>
+</ul>
+<h3 id="statistics-as-the-science-of-measurement">Statistics as the &quot;science of measurement&quot;</h3>
+<blockquote>
+<ul>
+<li><strong>High accuracy</strong> : person&apos;s age or height</li>
+<li><strong>More difficult</strong> : blood pressure (varies minute to minute)</li>
+<li><strong>Harder</strong> : &quot;mood&quot;, &quot;political ideology&quot;, &quot;personality&quot;</li>
+<li>Statistics : major role in <strong>constructing and evaluating rigorous approaches for measuring difficult-to-define concepts and in assessing quality</strong></li>
+</ul>
+</blockquote>
+<h3 id="&#x7EDF;&#x8BA1;&#x5B66;&#x662F;&#x6D4B;&#x91CF;&#x7684;&#x79D1;&#x5B66;">&#x7EDF;&#x8BA1;&#x5B66;&#x662F;&#x6D4B;&#x91CF;&#x7684;&#x79D1;&#x5B66;</h3>
+<p><em>&#x6D4B;&#x91CF;&#x7684;&#x4E00;&#x4E9B;&#x53D8;&#x91CF;&#xFF0C;&#x6709;&#x4E9B;&#x662F;&#x80FD;&#x591F;&#x88AB;&#x6D4B;&#x91CF;&#x7684;&#xFF0C;&#x51C6;&#x786E;&#x5EA6;&#x5F88;&#x9AD8;&#xFF0C;&#x6709;&#x4E9B;&#x662F;&#x6709;&#x70B9;&#x96BE;&#x4EE5;&#x6D4B;&#x91CF;&#x7684;&#x3002;&#x6709;&#x4E9B;&#x662F;&#x66F4;&#x96BE;&#x5B9A;&#x4E49;&#x3001;&#x91CF;&#x5316;&#x7684;</em></p>
+<p><em>&#x7EDF;&#x8BA1;&#x5B66;&#x5728;&#x6784;&#x5EFA;&#x548C;&#x8BC4;&#x4F30;&#x8861;&#x91CF;&#x8FD9;&#x4E9B;&#x96BE;&#x4EE5;&#x5B9A;&#x4E49;&#x7684;&#x6982;&#x5FF5;&#x7684;&#x65B9;&#x6CD5;&#xFF0C;&#x4EE5;&#x53CA;&#x8BC4;&#x4F30;&#x5404;&#x79CD;&#x65B9;&#x6CD5;&#x7684;&#x8D28;&#x91CF;&#x65B9;&#x9762;&#x53D1;&#x6325;&#x7740;&#x91CD;&#x8981;&#x7684;&#x4F5C;&#x7528;</em></p>
+<ul>
+<li>&#x80FD;&#x591F;&#x88AB;&#x6D4B;&#x91CF;&#x7684;&#xFF0C;&#x51C6;&#x786E;&#x5EA6;&#x9AD8; &#xFF1A; &#x5E74;&#x9F84;&#x3001;&#x8EAB;&#x9AD8;</li>
+<li>&#x6709;&#x70B9;&#x96BE;&#x4EE5;&#x6D4B;&#x91CF; &#xFF1A; &#x8840;&#x538B;&#xFF08;&#x6BCF;&#x5206;&#x949F;&#x90FD;&#x4F1A;&#x53D8;&#x5316;&#xFF09;</li>
+<li>&#x66F4;&#x96BE;&#x6D4B;&#x91CF; &#xFF1A; &#x60C5;&#x7EEA;&#x3001;&#x6027;&#x683C;&#x3001;&#x653F;&#x6CBB;&#x610F;&#x8BC6;&#x5F62;&#x6001;</li>
+</ul>
+<h3 id="statistics-as-the-basis-for-principled-data-collection">Statistics as the &#x201C;basis for principled data collection&#x201D;</h3>
+<blockquote>
+<ul>
+<li>Data often expensive and difficult to collect</li>
+<li>Resource limitations -&gt; collect least data possible</li>
+<li>Statistics : provides a rational way to manage this trade-off</li>
+</ul>
+</blockquote>
+<h3 id="&#x7EDF;&#x8BA1;&#x5B66;&#x662F;&#x539F;&#x5219;&#x6027;&#x6570;&#x636E;&#x6536;&#x96C6;&#x7684;&#x57FA;&#x7840;">&#x7EDF;&#x8BA1;&#x5B66;&#x662F;&#x539F;&#x5219;&#x6027;&#x6570;&#x636E;&#x6536;&#x96C6;&#x7684;&#x57FA;&#x7840;</h3>
+<p><em>&#x7EDF;&#x8BA1;&#x5B66;&#x63D0;&#x4F9B;&#x4E86;&#x4E00;&#x4E2A;&#x5F88;&#x597D;&#x7684;&#x5408;&#x7406;&#x7684;&#x65B9;&#x6CD5;&#x6765;&#x6743;&#x8861;&#x60F3;&#x8981;&#x66F4;&#x591A;&#x7684;&#x6570;&#x636E; - &#x8D44;&#x6E90;&#x9650;&#x5236;</em></p>
+<ul>
+<li><p>&#x6709;&#x65F6;&#x6570;&#x636E;&#x53EF;&#x80FD;&#x4F1A;&#x5F88;&#x6602;&#x8D35;&#xFF0C;&#x800C;&#x4E14;&#x5F88;&#x96BE;&#x83B7;&#x53D6;</p>
+<p>&#x5982;&#x679C;&#x5FC5;&#x987B;&#x7834;&#x574F;&#x4EA7;&#x54C1;&#x624D;&#x80FD;&#x5BF9;&#x5176;&#x8FDB;&#x884C;&#x6D4B;&#x91CF;&#xFF0C;&#x90A3;&#x4E48;&#x5F53;&#x7136;&#x5E0C;&#x671B;&#x6709;&#x80FD;&#x529B;&#x6536;&#x96C6;&#x5C3D;&#x53EF;&#x80FD;&#x5C11;&#x7684;&#x6570;&#x636E;</p></li>
+<li><p>&#x8D44;&#x6E90;&#x5C40;&#x9650;&#x6027;&#x9650;&#x5236;&#x4E86;&#x6570;&#x636E;&#x6536;&#x96C6;&#x7684;&#x6570;&#x91CF;</p>
+<p>&#x5982;&#x679C;&#x6570;&#x636E;&#x592A;&#x5C11;&#xFF0C;&#x53EF;&#x80FD;&#x7ED3;&#x679C;&#x4F1A;&#x4E0D;&#x5C3D;&#x5982;&#x4EBA;&#x610F;</p></li>
+</ul>
+<h2 id="history-of-statistics-milestones">History of Statistics Milestones</h2>
+<h3 id="ancient-times">Ancient Times</h3>
+<blockquote>
+<p><strong>Data Collection</strong> on harvests floods population sizes</p>
+</blockquote>
+<h3 id="s">1700&apos;s</h3>
+<blockquote>
+<p><strong>Probability Theory</strong> -&gt; randomness and variation</p>
+</blockquote>
+<h3 id="th-century">19th Century</h3>
+<blockquote>
+<p><strong>Modern Statistics</strong> emerges, via genetics demography economics</p>
+</blockquote>
+<h3 id="th-century-1">20th Century</h3>
+<blockquote>
+<p><strong>Statistical Theory advances </strong>, new application areas, <strong>computers</strong></p>
+</blockquote>
+<h3 id="th-century-2">21th Century</h3>
+<blockquote>
+<p>&quot;massive data&quot;, &quot;data science&quot;, &quot;machine learning&quot;</p>
+</blockquote>
+<h2 id="&#x7EDF;&#x8BA1;&#x5B66;&#x91CC;&#x7A0B;&#x7891;&#x7684;&#x5386;&#x53F2;">&#x7EDF;&#x8BA1;&#x5B66;&#x91CC;&#x7A0B;&#x7891;&#x7684;&#x5386;&#x53F2;</h2>
+<h3 id="&#x53E4;&#x4EE3;">&#x53E4;&#x4EE3;</h3>
+<ul>
+<li>&#x6570;&#x636E;&#x6536;&#x96C6;</li>
+<li>&#x6536;&#x96C6;&#x6536;&#x6210;&#x3001;&#x6D2A;&#x6C34;&#x3001;&#x4EBA;&#x53E3;&#x6570;&#x91CF;&#x7684;&#x6570;&#x636E;</li>
+</ul>
+<h3 id="&#x5E74;&#x4EE3;">1700&#x5E74;&#x4EE3;</h3>
+<ul>
+<li>&#x6982;&#x7387;&#x8BBA;&#x7684;&#x53D1;&#x5C55;</li>
+<li>&#x968F;&#x673A;&#x6027;&#x548C;&#x53D8;&#x5F02;&#x53EF;&#x4EE5;&#x88AB;&#x66F4;&#x591A;&#x7684;&#x6570;&#x5B66;&#x5B9A;&#x4E49;</li>
+</ul>
+<h3 id="&#x4E16;&#x7EAA;">19&#x4E16;&#x7EAA;</h3>
+<ul>
+<li>&#x73B0;&#x4EE3;&#x7EDF;&#x8BA1;&#x5B66;</li>
+<li>&#x89E3;&#x51B3;&#x9057;&#x4F20;&#x5B66;&#x3001;&#x8BA1;&#x91CF;&#x7ECF;&#x6D4E;&#x5B66;&#x9886;&#x57DF;&#x7684;&#x95EE;&#x9898;</li>
+</ul>
+<h3 id="&#x4E16;&#x7EAA;-1">20&#x4E16;&#x7EAA;</h3>
+<ul>
+<li>&#x7EDF;&#x8BA1;&#x7406;&#x8BBA;&#x7684;&#x8FDB;&#x6B65;</li>
+<li>&#x5728;&#x79D1;&#x5B66;&#x548C;&#x5DE5;&#x4E1A;&#x9886;&#x57DF;&#x51FA;&#x73B0;&#x4E86;&#x5F88;&#x591A;&#x65B0;&#x7684;&#x5E94;&#x7528;&#x9886;&#x57DF;</li>
+<li>&#x51FA;&#x73B0;&#x4E86;&#x6709;&#x8BA1;&#x7B97;&#x673A;&#x6765;&#x505A;&#x8FD9;&#x79CD;&#x6570;&#x636E;&#x5206;&#x6790;&#x7684;&#x80FD;&#x529B;</li>
+</ul>
+<h3 id="&#x4E16;&#x7EAA;-2">21&#x4E16;&#x7EAA;</h3>
+<ul>
+<li>&#x5927;&#x6570;&#x636E;</li>
+<li>&#x6570;&#x636E;&#x79D1;&#x5B66;</li>
+<li>&#x673A;&#x5668;&#x5B66;&#x4E60;</li>
+</ul>
+<h2 id="statistics-and-its-allied-fields">Statistics and its Allied Fields</h2>
+<h3 id="computer-science">Computer Science</h3>
+<blockquote>
+<p>algorithms, data structures for working with data, programming languages for manipulating data</p>
+</blockquote>
+<h3 id="mathematics">Mathematics</h3>
+<blockquote>
+<p>language and notation for expressing statistical concepts concisely, tools for understanding properties of statistical methods</p>
+</blockquote>
+<h3 id="probability-theory">Probability Theory</h3>
+<blockquote>
+<p>branch of mathematics, crucial part of foundations of statistics - to express ideas about randomness and uncertainty</p>
+</blockquote>
+<h3 id="data-science">Data Science</h3>
+<blockquote>
+<p>database management, machine learning, computational infrastructure to carry out data analysis</p>
+</blockquote>
+<h3 id="&#x7EDF;&#x8BA1;&#x5B66;&#x548C;&#x5B83;&#x7684;&#x76F8;&#x5173;&#x9886;&#x57DF;">&#x7EDF;&#x8BA1;&#x5B66;&#x548C;&#x5B83;&#x7684;&#x76F8;&#x5173;&#x9886;&#x57DF;</h3>
+<h3 id="&#x8BA1;&#x7B97;&#x673A;&#x79D1;&#x5B66;">&#x8BA1;&#x7B97;&#x673A;&#x79D1;&#x5B66;</h3>
+<ul>
+<li>&#x63D0;&#x4F9B;&#x7B97;&#x6CD5;</li>
+<li>&#x63D0;&#x4F9B;&#x5904;&#x7406;&#x6570;&#x636E;&#x7684;&#x7ED3;&#x6784;</li>
+<li>&#x63D0;&#x4F9B;&#x5904;&#x7406;&#x6570;&#x636E;&#x7684;&#x7F16;&#x7A0B;&#x8BED;&#x8A00;</li>
+</ul>
+<h3 id="&#x6570;&#x5B66;">&#x6570;&#x5B66;</h3>
+<ul>
+<li>&#x5F97;&#x5230;&#x4E86;&#x66F4;&#x7B80;&#x6D01;&#x5730;&#x8868;&#x8FBE;&#x7EDF;&#x8BA1;&#x6982;&#x5FF5;&#x7684;&#x8BED;&#x8A00;&#x548C;&#x7B26;&#x5408;</li>
+<li>&#x5F97;&#x5230;&#x4E86;&#x80FD;&#x591F;&#x8BC4;&#x4F30;&#x548C;&#x7406;&#x89E3;&#x8FD9;&#x4E9B;&#x7EDF;&#x8BA1;&#x65B9;&#x6CD5;&#x7279;&#x6027;&#x7684;&#x5DE5;&#x5177;</li>
+</ul>
+<h3 id="&#x6982;&#x7387;&#x8BBA;">&#x6982;&#x7387;&#x8BBA;</h3>
+<ul>
+<li>&#x6570;&#x5B66;&#x7684;&#x4E00;&#x4E2A;&#x5206;&#x652F;</li>
+<li>&#x662F;&#x7EDF;&#x8BA1;&#x5B66;&#x57FA;&#x7840;&#x7684;&#x5173;&#x952E;&#x90E8;&#x5206;</li>
+<li>&#x8868;&#x8FBE;&#x968F;&#x673A;&#x6027;&#x548C;&#x4E0D;&#x786E;&#x5B9A;&#x6027;&#x6982;&#x5FF5;</li>
+</ul>
+<h3 id="&#x6570;&#x636E;&#x79D1;&#x5B66;">&#x6570;&#x636E;&#x79D1;&#x5B66;</h3>
+<ul>
+<li>&#x63D0;&#x4F9B;&#x4E86;&#x6570;&#x636E;&#x5E93;&#x7BA1;&#x7406;&#x3001;&#x673A;&#x5668;&#x5B66;&#x4E60;&#x3001;&#x6570;&#x636E;&#x5206;&#x6790;&#x7684;&#x57FA;&#x7840;&#x8BBE;&#x65BD;</li>
+</ul>
+<h2 id="summary">Summary</h2>
+<blockquote>
+<p>Statistics has certainly grown from a small but important field to now be a major linchpin in research and industry.</p>
+<p>Different applications:</p>
+<ul>
+<li><p>computer vision</p></li>
+<li><p>automated driving</p></li>
+<li><p>facial recognition</p></li>
+<li><p>recommender systems</p></li>
+<li><p>precision medicine</p></li>
+<li><p>fraud detection</p></li>
+<li><p>risk assessment</p></li>
+</ul>
+<p>Statistics and statistical thinking helps us to understand that data and that information that surrounds us.</p>
+</blockquote>
+<h2 id="&#x603B;&#x7ED3;">&#x603B;&#x7ED3;</h2>
+<p><em>&#x7EDF;&#x8BA1;&#x5B66;&#x5DF2;&#x7ECF;&#x4ECE;&#x4E00;&#x4E2A;&#x5C0F;&#x800C;&#x91CD;&#x8981;&#x7684;&#x9886;&#x57DF;&#x53D1;&#x5C55;&#x5230;&#x73B0;&#x5728;&#x6210;&#x4E3A;&#x7814;&#x7A76;&#x548C;&#x5DE5;&#x4E1A;&#x7684;&#x4E3B;&#x8981;&#x652F;&#x67F1;</em></p>
+<p>&#x65B0;&#x5174;&#x5E94;&#x7528;&#xFF1A;</p>
+<ul>
+<li>&#x8BA1;&#x7B97;&#x673A;&#x89C6;&#x89C9;</li>
+<li>&#x81EA;&#x52A8;&#x9A7E;&#x9A76;</li>
+<li>&#x9762;&#x90E8;&#x8BC6;&#x522B;</li>
+<li>&#x63A8;&#x8350;&#x7CFB;&#x7EDF;</li>
+<li>&#x7CBE;&#x51C6;&#x533B;&#x7597;</li>
+<li>&#x6B3A;&#x8BC8;&#x68C0;&#x6D4B;</li>
+<li>&#x98CE;&#x9669;&#x8BC4;&#x4F30;</li>
+</ul>
+<p><em>&#x7EDF;&#x8BA1;&#x5B66;&#x548C;&#x7EDF;&#x8BA1;&#x601D;&#x7EF4;&#x53EF;&#x4EE5;&#x5E2E;&#x52A9;&#x6211;&#x4EEC;&#x7406;&#x89E3;&#x8FD9;&#x4E9B;&#x6570;&#x636E;&#x548C;&#x6211;&#x4EEC;&#x5468;&#x56F4;&#x7684;&#x4FE1;&#x606F;</em></p>
+<p>&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#xFF0C;&#x7EDF;&#x8BA1;&#x5B66;&#x5F88;&#x91CD;&#x8981; &#xB7;&#xB7;&#xB7;&#xB7;&#xB7;&#xB7;</p>
+</body></html>
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Coursera-notebooks/">Coursera-notebooks</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Start-with-Me/">Start with Me</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Python/">Python</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Coursera/">Coursera</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                      <a href="/py-statistics-02-data/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">week1-2 - Data</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/py-statistics-00-introduction/">
+                        <span class="hidden-mobile">week0 - Introduction</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: 'article.markdown-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "week1-1 -Statistics&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 80,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
