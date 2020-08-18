@@ -9,3 +9,504 @@ figure {
 figure figcaption {
     display: none;
 }
+
+#notebook .highlight { background: #f8f8f8; }
+#notebook .highlight .hll { background-color: #ffffcc }
+#notebook .highlight .c { color: #408080; font-style: italic } /* Comment */
+#notebook .highlight .err { border: 1px solid #FF0000 } /* Error */
+#notebook .highlight .k { color: #008000; font-weight: bold } /* Keyword */
+#notebook .highlight .o { color: #666666 } /* Operator */
+#notebook .highlight .ch { color: #408080; font-style: italic } /* Comment.Hashbang */
+#notebook .highlight .cm { color: #408080; font-style: italic } /* Comment.Multiline */
+#notebook .highlight .cp { color: #BC7A00 } /* Comment.Preproc */
+#notebook .highlight .cpf { color: #408080; font-style: italic } /* Comment.PreprocFile */
+#notebook .highlight .c1 { color: #408080; font-style: italic } /* Comment.Single */
+#notebook .highlight .cs { color: #408080; font-style: italic } /* Comment.Special */
+#notebook .highlight .gd { color: #A00000 } /* Generic.Deleted */
+#notebook .highlight .ge { font-style: italic } /* Generic.Emph */
+#notebook .highlight .gr { color: #FF0000 } /* Generic.Error */
+#notebook .highlight .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+#notebook .highlight .gi { color: #00A000 } /* Generic.Inserted */
+#notebook .highlight .go { color: #888888 } /* Generic.Output */
+#notebook .highlight .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+#notebook .highlight .gs { font-weight: bold } /* Generic.Strong */
+#notebook .highlight .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+#notebook .highlight .gt { color: #0044DD } /* Generic.Traceback */
+#notebook .highlight .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+#notebook .highlight .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+#notebook .highlight .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+#notebook .highlight .kp { color: #008000 } /* Keyword.Pseudo */
+#notebook .highlight .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+#notebook .highlight .kt { color: #B00040 } /* Keyword.Type */
+#notebook .highlight .m { color: #666666 } /* Literal.Number */
+#notebook .highlight .s { color: #BA2121 } /* Literal.String */
+#notebook .highlight .na { color: #7D9029 } /* Name.Attribute */
+#notebook .highlight .nb { color: #008000 } /* Name.Builtin */
+#notebook .highlight .nc { color: #0000FF; font-weight: bold } /* Name.Class */
+#notebook .highlight .no { color: #880000 } /* Name.Constant */
+#notebook .highlight .nd { color: #AA22FF } /* Name.Decorator */
+#notebook .highlight .ni { color: #999999; font-weight: bold } /* Name.Entity */
+#notebook .highlight .ne { color: #D2413A; font-weight: bold } /* Name.Exception */
+#notebook .highlight .nf { color: #0000FF } /* Name.Function */
+#notebook .highlight .nl { color: #A0A000 } /* Name.Label */
+#notebook .highlight .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+#notebook .highlight .nt { color: #008000; font-weight: bold } /* Name.Tag */
+#notebook .highlight .nv { color: #19177C } /* Name.Variable */
+#notebook .highlight .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+#notebook .highlight .w { color: #bbbbbb } /* Text.Whitespace */
+#notebook .highlight .mb { color: #666666 } /* Literal.Number.Bin */
+#notebook .highlight .mf { color: #666666 } /* Literal.Number.Float */
+#notebook .highlight .mh { color: #666666 } /* Literal.Number.Hex */
+#notebook .highlight .mi { color: #666666 } /* Literal.Number.Integer */
+#notebook .highlight .mo { color: #666666 } /* Literal.Number.Oct */
+#notebook .highlight .sa { color: #BA2121 } /* Literal.String.Affix */
+#notebook .highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
+#notebook .highlight .sc { color: #BA2121 } /* Literal.String.Char */
+#notebook .highlight .dl { color: #BA2121 } /* Literal.String.Delimiter */
+#notebook .highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+#notebook .highlight .s2 { color: #BA2121 } /* Literal.String.Double */
+#notebook .highlight .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
+#notebook .highlight .sh { color: #BA2121 } /* Literal.String.Heredoc */
+#notebook .highlight .si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
+#notebook .highlight .sx { color: #008000 } /* Literal.String.Other */
+#notebook .highlight .sr { color: #BB6688 } /* Literal.String.Regex */
+#notebook .highlight .s1 { color: #BA2121 } /* Literal.String.Single */
+#notebook .highlight .ss { color: #19177C } /* Literal.String.Symbol */
+#notebook .highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
+#notebook .highlight .fm { color: #0000FF } /* Name.Function.Magic */
+#notebook .highlight .vc { color: #19177C } /* Name.Variable.Class */
+#notebook .highlight .vg { color: #19177C } /* Name.Variable.Global */
+#notebook .highlight .vi { color: #19177C } /* Name.Variable.Instance */
+#notebook .highlight .vm { color: #19177C } /* Name.Variable.Magic */
+#notebook .highlight .il { color: #666666 } /* Literal.Number.Integer.Long */
+
+#notebook div.cell {
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: vertical;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  border-radius: 2px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  border-width: 1px;
+  border-style: solid;
+  border-color: transparent;
+  width: 100%;
+  padding: 5px;
+  /* This acts as a spacer between cells, that is outside the border */
+  margin: 0px;
+  outline: none;
+  position: relative;
+  overflow: visible;
+}
+#notebook .prompt {
+  /* This padding is tuned to match the padding on the CodeMirror editor. */
+  padding: 0.4em;
+  margin: 0px;
+  font-family: monospace;
+  text-align: right;
+  /* This has to match that of the the CodeMirror class line-height below */
+  line-height: 1.21429em;
+  /* Don't highlight prompt number selection */
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  /* Use default cursor */
+  cursor: default;
+}
+#notebook div.inner_cell {
+  min-width: 0;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: vertical;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  /* Old browsers */
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  box-flex: 1;
+  /* Modern browsers */
+  flex: 1;
+}
+#notebook div.input {
+  page-break-inside: avoid;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: horizontal;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: horizontal;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+#notebook div.input_prompt {
+  color: #303F9F;
+  border-top: 1px solid transparent;
+}
+#notebook div.input_area {
+  border: 1px solid #cfcfcf;
+  border-radius: 2px;
+  background: #f7f7f7;
+  line-height: 1.21429em;
+}
+#notebook div.input_area > div.highlight {
+  margin: 0.4em;
+  border: none;
+  padding: 0px;
+  background-color: transparent;
+}
+#notebook div.input_area > div.highlight > pre {
+  margin: 0px;
+  border: none;
+  padding: 0px;
+  background-color: transparent;
+}
+#notebook div.output_wrapper {
+  /* this position must be relative to enable descendents to be absolute within it */
+  position: relative;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: vertical;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  z-index: 1;
+}
+#notebook .output {
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: vertical;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+#notebook div.output_prompt {
+  color: #D84315;
+}
+#notebook div.output_area {
+  padding: 0px;
+  page-break-inside: avoid;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: horizontal;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: horizontal;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+#notebook div.output_subarea {
+  overflow-x: auto;
+  padding: 0.4em;
+  /* Old browsers */
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  box-flex: 1;
+  /* Modern browsers */
+  flex: 1;
+  max-width: calc(100% - 14ex);
+}
+#notebook div.output_subarea pre {
+  background-color: white;
+}
+#notebook div.output_area .MathJax_Display {
+  text-align: left !important;
+}
+#notebook div.output_area .rendered_html table {
+  margin-left: 0;
+  margin-right: 0;
+}
+#notebook div.output_area .rendered_html img {
+  margin-left: 0;
+  margin-right: 0;
+}
+#notebook div.output_area img,
+#notebook div.output_area svg {
+  max-width: 100%;
+  height: auto;
+}
+#notebook div.output_area img.unconfined,
+#notebook div.output_area svg.unconfined {
+  max-width: none;
+}
+#notebook div.output_area .mglyph > img {
+  max-width: none;
+}
+#notebook div.output_area .rendered_html table {
+  margin-left: 0;
+  margin-right: 0;
+}
+#notebook div.output_area .rendered_html img {
+  margin-left: 0;
+  margin-right: 0;
+}
+#notebook .rendered_html {
+  color: #000;
+  /* any extras will just be numbers: */
+}
+#notebook .rendered_html em {
+  font-style: italic;
+}
+#notebook .rendered_html strong {
+  font-weight: bold;
+}
+#notebook .rendered_html u {
+  text-decoration: underline;
+}
+#notebook .rendered_html :link {
+  text-decoration: underline;
+}
+#notebook .rendered_html :visited {
+  text-decoration: underline;
+}
+#notebook .rendered_html h1 {
+  font-size: 185.7%;
+  margin: 1.08em 0 0 0;
+  font-weight: bold;
+  line-height: 1.0;
+}
+#notebook .rendered_html h2 {
+  font-size: 157.1%;
+  margin: 1.27em 0 0 0;
+  font-weight: bold;
+  line-height: 1.0;
+}
+#notebook .rendered_html h3 {
+  font-size: 128.6%;
+  margin: 1.55em 0 0 0;
+  font-weight: bold;
+  line-height: 1.0;
+}
+#notebook .rendered_html h4 {
+  font-size: 100%;
+  margin: 2em 0 0 0;
+  font-weight: bold;
+  line-height: 1.0;
+}
+#notebook .rendered_html h5 {
+  font-size: 100%;
+  margin: 2em 0 0 0;
+  font-weight: bold;
+  line-height: 1.0;
+  font-style: italic;
+}
+#notebook .rendered_html h6 {
+  font-size: 100%;
+  margin: 2em 0 0 0;
+  font-weight: bold;
+  line-height: 1.0;
+  font-style: italic;
+}
+#notebook .rendered_html h1:first-child {
+  margin-top: 0.538em;
+}
+#notebook .rendered_html h2:first-child {
+  margin-top: 0.636em;
+}
+#notebook .rendered_html h3:first-child {
+  margin-top: 0.777em;
+}
+#notebook .rendered_html h4:first-child {
+  margin-top: 1em;
+}
+#notebook .rendered_html h5:first-child {
+  margin-top: 1em;
+}
+#notebook .rendered_html h6:first-child {
+  margin-top: 1em;
+}
+#notebook .rendered_html ul:not(.list-inline),
+#notebook .rendered_html ol:not(.list-inline) {
+  padding-left: 2em;
+}
+#notebook .rendered_html ul {
+  list-style: disc;
+}
+#notebook .rendered_html ul ul {
+  list-style: square;
+  margin-top: 0;
+}
+#notebook .rendered_html ul ul ul {
+  list-style: circle;
+}
+#notebook .rendered_html ol {
+  list-style: decimal;
+}
+#notebook .rendered_html ol ol {
+  list-style: upper-alpha;
+  margin-top: 0;
+}
+#notebook .rendered_html ol ol ol {
+  list-style: lower-alpha;
+}
+#notebook .rendered_html ol ol ol ol {
+  list-style: lower-roman;
+}
+#notebook .rendered_html ol ol ol ol ol {
+  list-style: decimal;
+}
+#notebook .rendered_html * + ul {
+  margin-top: 1em;
+}
+#notebook .rendered_html * + ol {
+  margin-top: 1em;
+}
+#notebook .rendered_html hr {
+  color: black;
+  background-color: black;
+}
+#notebook .rendered_html pre {
+  margin: 1em 2em;
+  padding: 0px;
+  background-color: #fff;
+}
+#notebook .rendered_html code {
+  background-color: #eff0f1;
+}
+#notebook .rendered_html p code {
+  padding: 1px 5px;
+}
+#notebook .rendered_html pre code {
+  background-color: #fff;
+}
+#notebook .rendered_html pre,
+#notebook .rendered_html code {
+  border: 0;
+  color: #000;
+  font-size: 100%;
+}
+#notebook .rendered_html blockquote {
+  margin: 1em 2em;
+}
+#notebook .rendered_html table {
+  margin-left: auto;
+  margin-right: auto;
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+#notebook .rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+#notebook .rendered_html tr,
+#notebook .rendered_html th,
+#notebook .rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+#notebook .rendered_html th {
+  font-weight: bold;
+}
+#notebook .rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+#notebook .rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+#notebook .rendered_html * + table {
+  margin-top: 1em;
+}
+#notebook .rendered_html p {
+  text-align: left;
+}
+#notebook .rendered_html * + p {
+  margin-top: 1em;
+}
+#notebook .rendered_html img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+#notebook .rendered_html * + img {
+  margin-top: 1em;
+}
+#notebook .rendered_html img,
+#notebook .rendered_html svg {
+  max-width: 100%;
+  height: auto;
+}
+#notebook .rendered_html img.unconfined,
+#notebook .rendered_html svg.unconfined {
+  max-width: none;
+}
+#notebook .rendered_html .alert {
+  margin-bottom: initial;
+}
+#notebook .rendered_html * + .alert {
+  margin-top: 1em;
+}
+#notebook .text_cell.rendered .rendered_html {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+#notebook .text_cell.rendered .rendered_html tr,
+#notebook .text_cell.rendered .rendered_html th,
+#notebook .text_cell.rendered .rendered_html td {
+  max-width: none;
+}
+#notebook .output_png {
+  margin: auto;
+}
+#notebook .output_stream {
+  margin: auto;
+}
