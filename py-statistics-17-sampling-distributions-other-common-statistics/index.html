@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="Oreo">
+  <meta name="keywords" content="">
+  <title>week4-6- Beyond Means : Sampling Distributions of Other Common Statistics - Oreo</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script  src="/js/utils.js" ></script>
+<meta name="generator" content="Hexo 5.0.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>奥利奥小屋</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2020-08-28 05:43">
+      2020年8月28日 凌晨
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.9k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      37
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <html><head><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous"></head><body><p>&#x9664;&#x4E86;&#x6A21;&#x62DF;&#x5747;&#x503C;&#x7684;&#x62BD;&#x6837;&#x5206;&#x5E03;&#xFF0C;&#x8FD8;&#x53EF;&#x4EE5;&#x6765;&#x770B;&#x770B;&#x76F8;&#x5173;&#x7CFB;&#x6570;&#x3001;&#x56DE;&#x5F52;&#x7CFB;&#x6570;&#x7684;&#x62BD;&#x6837;&#x5206;&#x5E03;&#x662F;&#x600E;&#x4E48;&#x6837;&#x7684;&#xFF1F;</p>
+<a id="more"></a>
+<h2 id="start-with-me-coursera---understanding-and-visualizing-data-with-python-week-4-6---beyond-means-sampling-distributions-of-other-common-statistics">Start with Me | Coursera - Understanding and Visualizing Data with Python week 4-6 - Beyond Means : Sampling Distributions of Other Common Statistics</h2>
+<h2 id="an-interesting-result">An Interesting Result</h2>
+<blockquote>
+<ul>
+<li>Given large enough samples, <strong>sampling distributions of most statistics of interest tend to normality</strong> (regardless of how the input variables are distributed)</li>
+<li>This (<strong>Central Limit Theorem</strong>) result drives <strong>design-based</strong> statistical inference, or <strong>frequentist</strong> inference</li>
+</ul>
+</blockquote>
+<h2 id="&#x6709;&#x8DA3;&#x7684;&#x7ED3;&#x679C;">&#x6709;&#x8DA3;&#x7684;&#x7ED3;&#x679C;</h2>
+<ul>
+<li><p>&#x5F53;&#x4F60;&#x4ECE;&#x67D0;&#x4E2A;&#x7FA4;&#x4F53;&#x4E2D;&#x5F97;&#x5230;&#x4E00;&#x4E2A;&#x8DB3;&#x591F;&#x5927;&#x7684;&#x6837;&#x672C;&#x65F6;&#xFF0C;&#x5927;&#x591A;&#x6570;&#x611F;&#x5174;&#x8DA3;&#x7684;&#x7EDF;&#x8BA1;&#x91CF;&#x7684;&#x62BD;&#x6837;&#x5206;&#x5E03;&#x4F1A;&#x8D8B;&#x5411;&#x4E8E;<strong>&#x6B63;&#x6001;</strong>&#xFF0C; &#x8FD9;&#x4E0E;&#x8F93;&#x5165;&#x53D8;&#x91CF;&#x672C;&#x8EAB;&#x7684;&#x5B9E;&#x9645;&#x5206;&#x5E03;&#x60C5;&#x51B5;&#x65E0;&#x5173;</p>
+<center>
+<p><img src="0828-1.png" srcset="/img/loading.gif" alt="All possible values of the statistic" style="zoom:50%;"></p>
+</center></li>
+<li><p>&#x4E0A;&#x56FE;&#x663E;&#x793A;&#x4E86;&#x4E00;&#x4E2A;&#x62BD;&#x6837;&#x5206;&#x5E03;&#x7684;&#x4F8B;&#x5B50;&#xFF0C;<strong>&#x4E2D;&#x5FC3;&#x6781;&#x9650;&#x5B9A;&#x7406;</strong>&#x8868;&#x660E;&#xFF0C;&#x7ED9;&#x5B9A;&#x4E00;&#x4E2A;&#x8DB3;&#x591F;&#x5927;&#x7684;&#x6837;&#x672C;&#xFF0C;&#x4F30;&#x8BA1;&#x503C;&#x7684;&#x5206;&#x5E03;&#x5C06;&#x8D8B;&#x5411;&#x4E8E;&#x6B63;&#x6001;&#x5206;&#x5E03;</p></li>
+<li><p>&#x8FD9;&#x4E2A;&#x7ED3;&#x679C;&#x540C;&#x6837;&#x662F;&#x57FA;&#x4E8E;&#x4E2D;&#x5FC3;&#x6781;&#x9650;&#x5B9A;&#x7406;&#xFF0C;&#x662F;&#x9A71;&#x52A8;<strong>&#x57FA;&#x4E8E;&#x8BBE;&#x8BA1;</strong>&#x7684;&#x7EDF;&#x8BA1;&#x63A8;&#x65AD;&#xFF0C;&#x6216;&#x8005;&#x79F0;&#x4E3A;&#x5E38;&#x91CF;&#x7EDF;&#x8BA1;&#x63A8;&#x65AD;</p></li>
+</ul>
+<h2 id="&#x4F8B;&#x5B50;&#x6A21;&#x62DF;&#x76AE;&#x5C14;&#x900A;&#x76F8;&#x5173;&#x7CFB;&#x6570;">&#x4F8B;&#x5B50;&#xFF1A;&#x6A21;&#x62DF;&#x76AE;&#x5C14;&#x900A;&#x76F8;&#x5173;&#x7CFB;&#x6570;</h2>
+<h3 id="&#x76AE;&#x5C14;&#x900A;&#x76F8;&#x5173;">&#x76AE;&#x5C14;&#x900A;&#x76F8;&#x5173;</h3>
+<ul>
+<li><p>&#x76AE;&#x5C14;&#x900A;&#x76F8;&#x5173;&#x7CFB;&#x6570;&#x63CF;&#x8FF0;&#x4E86;&#x4EFB;&#x4F55;&#x4E24;&#x4E2A;&#x8FDE;&#x7EED;&#x53D8;&#x91CF;&#x4E4B;&#x95F4;&#x7684;&#x7EBF;&#x6027;&#x5173;&#x8054;</p>
+<center>
+<p><img src="0828-2.png" srcset="/img/loading.gif" alt="&#x76AE;&#x5C14;&#x900A;&#x76F8;&#x5173;&#x503C;" style="zoom:50%;"></p>
+</center></li>
+<li><p>&#x4E0A;&#x56FE;&#x663E;&#x793A;&#x4E86;&#x51E0;&#x4E2A;&#x5047;&#x8BBE;&#x7684;&#x76AE;&#x5C14;&#x900A;&#x76F8;&#x5173;&#x7CFB;&#x6570;&#xFF0C;&#x5C55;&#x793A;&#x4E86;&#x4E24;&#x4E2A;&#x8FDE;&#x7EED;&#x53D8;&#x91CF;&#x5728;&#x6563;&#x70B9;&#x56FE;&#x4E2D;&#x7684;&#x7D27;&#x5BC6;&#x76F8;&#x5173;&#x7A0B;&#x5EA6;</p></li>
+<li><p>&#x76AE;&#x5C14;&#x900A;&#x76F8;&#x5173;&#x6027;&#x4E3A; 1 / -1 &#x7684;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x8FD9;&#x4E24;&#x4E2A;&#x53D8;&#x91CF;&#x6709;&#x5F88;&#x5F3A;&#x7684;&#x7EBF;&#x6027;&#x5173;&#x8054;</p></li>
+<li><p>&#x5F53;&#x76AE;&#x5C14;&#x900A;&#x76F8;&#x5173;&#x6027;&#x8D8A;&#x6765;&#x8D8A;&#x63A5;&#x8FD1;&#x4E8E; 0 &#x65F6;&#xFF0C;&#x8FD9;&#x4E24;&#x4E2A;&#x53D8;&#x91CF;&#x57FA;&#x672C;&#x4E0A;&#x6CA1;&#x6709;&#x4EFB;&#x4F55;&#x76F8;&#x5173;&#x6027;&#xFF0C;&#x53EA;&#x770B;&#x5230;&#x4E00;&#x56E2;&#x6570;&#x636E;&#x70B9;</p></li>
+<li><p>&#x76AE;&#x5C14;&#x900A;&#x76F8;&#x5173;&#x548C;&#x7B80;&#x5355;&#x7684;&#x5E73;&#x5747;&#x6570;&#x5F88;&#x4E0D;&#x4E00;&#x6837;</p>
+<ul>
+<li><p>&#x5728; week 4-6 &#x4E4B;&#x524D;&#x4E00;&#x76F4;&#x8BA8;&#x8BBA;&#x5747;&#x503C;&#x7684;&#x62BD;&#x6837;&#x5206;&#x5E03;&#xFF0C;&#x5982;week 4-5 &#x4F7F;&#x7528;&#x5747;&#x503C;&#x6A21;&#x62DF;&#x62BD;&#x6837;&#x5206;&#x5E03;</p></li>
+<li><p>&#x76F8;&#x5173;&#x7CFB;&#x6570;&#x63CF;&#x8FF0;&#x7684;&#x662F;&#x4E24;&#x4E2A;&#x53D8;&#x91CF;&#x4E4B;&#x95F4;&#x7684;&#x7EBF;&#x6027;&#x5173;&#x8054;&#xFF0C;&#x662F;&#x6570;&#x636E;&#x5206;&#x6790;&#x4E2D;&#x975E;&#x5E38;&#x5E38;&#x7528;&#x7684;&#x7EDF;&#x8BA1;&#x5B66;&#xFF0C;&#x7528;&#x4E8E;&#x63CF;&#x8FF0;&#x53D8;&#x91CF;&#x4E4B;&#x95F4;&#x7684;&#x521D;&#x59CB;&#x5173;&#x8054;</p></li>
+<li><p>&#x5E73;&#x5747;&#x6570;&#x63CF;&#x8FF0;&#x7684;&#x662F;&#x6837;&#x672C;&#xFF0C;&#x4E5F;&#x53EF;&#x80FD;&#x63CF;&#x8FF0;&#x7684;&#x662F;&#x66F4;&#x5927;&#x7684;&#x7FA4;&#x4F53;</p></li>
+</ul></li>
+</ul>
+<h3 id="&#x6A21;&#x62DF;&#x62BD;&#x6837;&#x5206;&#x5E03;----&#x76AE;&#x5C14;&#x900A;&#x76F8;&#x5173;">&#x6A21;&#x62DF;&#x62BD;&#x6837;&#x5206;&#x5E03; -- &#x76AE;&#x5C14;&#x900A;&#x76F8;&#x5173;</h3>
+<ul>
+<li><p>&#x5047;&#x8BBE;&#x7FA4;&#x4F53;&#x7684;<strong>&#x771F;&#x5B9E;&#x76F8;&#x5173;&#x6027;&#x662F; 0.7 </strong></p>
+<p>&#x5177;&#x6709;&#x76F8;&#x5F53;&#x5F3A;&#x7684;&#x6B63;&#x5411;&#x76F8;&#x5173;&#x6027;&#xFF0C;&#x4E0D;&#x662F;&#x4E00;&#x6761;&#x5B8C;&#x7F8E;&#x7684;&#x76F4;&#x7EBF;&#xFF0C;&#x4F46;&#x662F;&#x4E24;&#x4E2A;&#x53D8;&#x91CF;&#x5728;&#x7EBF;&#x6027;&#x610F;&#x4E49;&#x4E0A;&#x4ECD;&#x7136;&#x6709;&#x5F88;&#x5F3A;&#x7684;&#x76F8;&#x5173;&#x6027;</p></li>
+<li><p>&#x4ECE;&#x771F;&#x5B9E;&#x76F8;&#x5173;&#x6027;&#x662F; 0.7 &#x7684;&#x7FA4;&#x4F53;&#x4E2D;&#x62BD;&#x53D6; <strong>1000</strong> &#x4E2A;&#x6307;&#x5B9A;&#x6837;&#x672C;&#x5927;&#x5C0F; n &#x7684;<strong>&#x6837;&#x672C;</strong></p>
+<p>&#x7B80;&#x5355;&#x968F;&#x673A;&#x62BD;&#x6837;</p></li>
+<li><p>&#x5BF9;<strong>&#x4E0D;&#x540C;&#x7684;&#x6837;&#x672C;&#x5927;&#x5C0F;</strong>&#x8FDB;&#x884C;&#x5904;&#x7406;&#xFF0C;n = 100, 500, 1000, 5000</p>
+<center>
+<p><img src="0828-3.png" srcset="/img/loading.gif" alt="&#x6A21;&#x62DF;&#x76AE;&#x5C14;&#x900A;&#x76F8;&#x5173;&#x7684;&#x7ED3;&#x679C;" style="zoom:50%;"></p>
+</center></li>
+<li><p>&#x8FD9;&#x4E9B;&#x662F;&#x6240;&#x6709;&#x6A21;&#x62DF;&#x57FA;&#x4E8E;&#x4E00;&#x5B9A;&#x89C4;&#x6A21;&#x6837;&#x672C;&#x7684;&#x76F8;&#x5173;&#x7CFB;&#x6570;&#x7684;&#x5206;&#x5E03;</p></li>
+<li><p>&#x5728;&#x771F;&#x6B63;&#x7684;&#x7FA4;&#x4F53;&#x4E2D;&#xFF0C;&#x76F8;&#x5173;&#x7CFB;&#x6570;&#x662F; 0.7&#xFF0C;&#x5982;&#x679C;&#x6709;&#x7FA4;&#x4F53;&#x4E2D;&#x6BCF;&#x4E2A;&#x4EBA;&#x7684;&#x6240;&#x6709;&#x6570;&#x636E;&#xFF0C;&#x5E76;&#x8BA1;&#x7B97;&#x76AE;&#x5C14;&#x900A;&#x76F8;&#x5173;&#x7CFB;&#x6570;&#xFF0C;&#x5C31;&#x4F1A;&#x770B;&#x5230; 0.7</p></li>
+<li><p>&#x56FE;&#x4E2D;&#x53EF;&#x4EE5;&#x770B;&#x5230;100&#x3001;500&#x3001;1000&#x3001;5000&#x7684;&#x6837;&#x672C;&#x5927;&#x5C0F;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x6BCF;&#x4E2A;&#x6837;&#x672C;&#x90FD;&#x6709;&#x5BF9;&#x5E94;&#x7684;&#x7279;&#x5B9A;&#x7684;&#x5927;&#x5C0F;</p></li>
+<li><p>&#x6839;&#x636E;&#x8FD9;&#x4E2A;&#x7B80;&#x5355;&#x7684;&#x968F;&#x673A;&#x6837;&#x672C;&#x7684;&#x6A21;&#x62DF;&#x6570;&#x636E;&#x6765;&#x8BA1;&#x7B97;&#x76F8;&#x5173;&#x7CFB;&#x6570;</p></li>
+<li><p>&#x5173;&#x4E8E;&#x8FD9;&#x4E9B;&#x62BD;&#x6837;&#x5206;&#x5E03;</p>
+<ul>
+<li><p>&#x6240;&#x6709;&#x7684;&#x5206;&#x5E03;&#x90FD;&#x662F;&#x8FD1;&#x4F3C;&#x6B63;&#x6001;&#x5206;&#x5E03;</p>
+<ul>
+<li><p>&#x4E0D;&#x7BA1;&#x6837;&#x672C;&#x5927;&#x5C0F;&#xFF0C;&#x51E0;&#x4E4E;&#x90FD;&#x9075;&#x5FAA;&#x6B63;&#x6001;&#x5206;&#x5E03;</p></li>
+<li><p>&#x8FD9;&#x4E9B;&#x5206;&#x5E03;&#x5728;&#x4E0D;&#x540C;&#x6837;&#x672C;&#x4E0A;&#x7684;&#x4F30;&#x8BA1;&#x503C;&#x90FD;&#x50CF;&#x949F;&#x5F62;&#x66F2;&#x7EBF;</p></li>
+<li><p>&#x800C;&#x4E14;&#x90FD;&#x662F;&#x4EE5;&#x771F;&#x5B9E;&#x7684;&#x76F8;&#x5173;&#x6027;0.7&#x4E3A;&#x4E2D;&#x5FC3;</p></li>
+<li><p>&#x4E5F;&#x5C31;&#x610F;&#x5473;&#x7740;&#xFF0C;<strong>&#x7B80;&#x5355;&#x7684;&#x968F;&#x673A;&#x62BD;&#x6837;</strong>&#x662F;&#x7ED9;&#x6211;&#x4EEC;&#x4E00;&#x4E2A;<strong>&#x65E0;&#x504F;&#x4F30;&#x8BA1;</strong>&#x7684;&#x76F8;&#x5173;&#x7CFB;&#x6570;</p></li>
+</ul></li>
+<li><p>&#x968F;&#x7740;&#x6837;&#x672C;&#x91CF; n &#x7684;&#x589E;&#x52A0;&#xFF0C;&#x5206;&#x5E03;&#x4F1A;&#x53D8;&#x5F97;&#x66F4;&#x52A0;&#x5BF9;&#x79F0;&#xFF0C;&#x5206;&#x6563;&#x7A0B;&#x5EA6;&#x4E5F;&#x4F1A;&#x964D;&#x4F4E;</p>
+<ul>
+<li>n = 100&#x65F6;&#xFF0C;&#x4F30;&#x8BA1;&#x7684;&#x76F8;&#x5173;&#x7CFB;&#x6570;&#x8303;&#x56F4;&#x5728;0.55~0.85&#x4E4B;&#x95F4;</li>
+<li>&#x968F;&#x7740;&#x6837;&#x672C;&#x91CF;&#x589E;&#x52A0;&#xFF0C;&#x8FD9;&#x4E2A;&#x8303;&#x56F4;&#x5728;&#x7F29;&#x5C0F;</li>
+<li>n = 5000&#x65F6;&#xFF0C;&#x4F30;&#x8BA1;&#x7684;&#x76F8;&#x5173;&#x7CFB;&#x6570;&#x8303;&#x56F4;&#x5728;0.69~0.73&#x4E4B;&#x95F4;</li>
+<li>&#x8BF4;&#x660E;&#x4E86;<strong>&#x4E2D;&#x5FC3;&#x6781;&#x9650;&#x5B9A;&#x7406;</strong>&#x662F;&#x6709;&#x6548;&#x7684;</li>
+</ul></li>
+</ul></li>
+</ul>
+<h2 id="&#x4F8B;&#x5B50;&#x6A21;&#x62DF;&#x56DE;&#x5F52;&#x7CFB;&#x6570;">&#x4F8B;&#x5B50;&#xFF1A;&#x6A21;&#x62DF;&#x56DE;&#x5F52;&#x7CFB;&#x6570;</h2>
+<h2 id="&#x56DE;&#x5F52;&#x7CFB;&#x6570;">&#x56DE;&#x5F52;&#x7CFB;&#x6570;</h2>
+<ul>
+<li><p>&#x56DE;&#x5F52;&#x53EF;&#x4EE5;&#x8BC4;&#x4F30;&#x591A;&#x4E2A;&#x53D8;&#x91CF;&#x4E4B;&#x95F4;&#x7684;&#x5173;&#x7CFB;</p>
+<center>
+<p><img src="0828-4.png" srcset="/img/loading.gif" alt="&#x56DE;&#x5F52;&#x7CFB;&#x6570;" style="zoom:50%;"></p>
+</center></li>
+<li><p>&#x4E0A;&#x56FE;&#x63CF;&#x8FF0;&#x4E86;&#x4E24;&#x4E2A;&#x8FDE;&#x7EED;&#x53D8;&#x91CF;&#x4E4B;&#x95F4;&#x7684;&#x7EBF;&#x6027;&#x5173;&#x7CFB;&#xFF0C;&#x73B0;&#x5728;&#x8981;&#x5173;&#x6CE8;&#x7684;&#x662F;&#x4E00;&#x4E9B;&#x9884;&#x6D4B;&#x53D8;&#x91CF; X &#x53D1;&#x751F;&#x4E00;&#x4E2A;&#x5355;&#x4F4D;&#x53D8;&#x5316;&#x65F6;&#xFF0C;&#x56E0;&#x53D8;&#x91CF; Y &#x7684;&#x4F30;&#x8BA1;&#x53D8;&#x5316;</p></li>
+<li><p>&#x901A;&#x8FC7;&#x7EBF;&#x6027;&#x56DE;&#x5F52;&#xFF0C;&#x5B9E;&#x9645;&#x4E0A;&#x5F97;&#x5230;&#x4E86;&#x4E00;&#x4E2A;&#x4F30;&#x8BA1;&#x7684;&#x659C;&#x7387;&#x53C2;&#x6570;&#x662F;&#x591A;&#x5C11;&#xFF0C;&#x4E0D;&#x50CF;&#x5728;&#x76F8;&#x5173;&#x7CFB;&#x6570;&#x5206;&#x6790;&#x4E2D;&#xFF0C;&#x53EA;&#x662F;&#x5F97;&#x5230;&#x4E86;&#x4E00;&#x4E2A;&#x7B80;&#x5355;&#x7684;&#x76F8;&#x5173;&#x63CF;&#x8FF0;</p></li>
+<li><p>&#x6240;&#x4EE5;&#x5176;&#x5B9E;&#x662F;&#x60F3;&#x4F30;&#x8BA1;&#x8FD9;&#x4E2A;&#x659C;&#x7387;&#xFF08;&#x63CF;&#x8FF0; X &#x53D8;&#x5316;&#x4E00;&#x4E2A;&#x5355;&#x4F4D;&#x65F6; Y &#x7684;&#x53D8;&#x5316;&#xFF09;&#xFF0C;&#x56FE;&#x4E2D;&#x53EA;&#x662F;&#x663E;&#x793A;&#x4E86;&#x5BF9;&#x4E8E;&#x5404;&#x79CD;&#x5047;&#x8BBE;&#x7684;&#x6570;&#x636E;&#x70B9;&#xFF0C;&#x4E00;&#x4E2A;&#x7B80;&#x5355;&#x7684;&#x7EBF;&#x6027;&#x56DE;&#x5F52;&#x6A21;&#x578B;&#x5BF9;&#x8FD9;&#x4E9B;&#x6570;&#x636E;&#x7684;&#x62DF;&#x5408;&#xFF0C;&#x63CF;&#x8FF0;&#x4E86;&#x8FD9;&#x4E24;&#x4E2A;&#x53D8;&#x91CF;&#x4E4B;&#x95F4;&#x7684;&#x7EBF;&#x6027;&#x5173;&#x7CFB;</p></li>
+</ul>
+<h2 id="&#x6A21;&#x62DF;&#x62BD;&#x6837;&#x5206;&#x5E03;----&#x56DE;&#x5F52;&#x7CFB;&#x6570;">&#x6A21;&#x62DF;&#x62BD;&#x6837;&#x5206;&#x5E03; -- &#x56DE;&#x5F52;&#x7CFB;&#x6570;</h2>
+<ul>
+<li><p>&#x5047;&#x8BBE;&#x5728;&#x611F;&#x5174;&#x8DA3;&#x7684;&#x4EBA;&#x7FA4;&#x4E2D;&#xFF0C;&#x771F;&#x6B63;&#x7684;&#x7EBF;&#x6027;&#x5173;&#x7CFB;&#x662F;&#x7531; y = 2x + error &#x8FD9;&#x4E2A;&#x56DE;&#x5F52;&#x65B9;&#x7A0B;&#x6765;&#x63CF;&#x8FF0;&#x7684;&#xFF0C;&#x4F30;&#x8BA1;&#x7684;&#x771F;&#x5B9E;&#x659C;&#x7387;&#x662F; 2</p></li>
+<li><p>&#x62BD;&#x53D6;1000&#x4E2A;&#x6307;&#x5B9A;&#x6837;&#x672C;&#x5927;&#x5C0F; n &#x7684;&#x6837;&#x672C;</p></li>
+<li><p>&#x5BF9;&#x4E0D;&#x540C;&#x6837;&#x672C;&#x5927;&#x5C0F;&#x5904;&#x7406;&#xFF0C;n = 100, 500, 1000, 5000</p>
+<center>
+<p><img src="0828-5.png" srcset="/img/loading.gif" alt="&#x6A21;&#x62DF;&#x56DE;&#x5F52;&#x7CFB;&#x6570;&#x7ED3;&#x679C;" style="zoom:50%;"></p>
+</center></li>
+<li><p>&#x5173;&#x4E8E;&#x8FD9;&#x4E9B;&#x62BD;&#x6837;&#x5206;&#x5E03;</p>
+<ul>
+<li>&#x6240;&#x6709;&#x7684;&#x5206;&#x5E03;&#x770B;&#x8D77;&#x6765;&#x90FD;&#x975E;&#x5E38;&#x6B63;&#x5E38;&#xFF0C;&#x800C;&#x4E14;&#x76F8;&#x5F53;&#x5BF9;&#x79F0;</li>
+<li>&#x968F;&#x7740;&#x6837;&#x672C;&#x91CF; n &#x7684;&#x589E;&#x52A0;&#xFF0C;&#x53EF;&#x4EE5;&#x770B;&#x89C1;&#x4F30;&#x8BA1;&#x7684;&#x56DE;&#x5F52;&#x7CFB;&#x6570;&#x7684;&#x5206;&#x5E03;&#x4E0D;&#x65AD;&#x7F29;&#x5C0F;</li>
+<li>&#x5728;&#x5047;&#x8BBE;&#x7684;&#x6837;&#x672C;&#x4E2D;&#xFF0C;&#x4F30;&#x8BA1;&#x7684;&#x5DEE;&#x5F02;&#x6027;&#x6CA1;&#x90A3;&#x4E48;&#x5927;</li>
+<li>&#x8FD9;&#x4E9B;&#x4E0D;&#x540C;&#x7684;&#x5206;&#x5E03;&#x90FD;&#x662F;&#x8FD1;&#x4F3C;&#x4E8E;&#x6B63;&#x6001;&#x5206;&#x5E03;&#xFF0C;&#x5E76;&#x4E14;&#x4EE5;&#x771F;&#x5B9E;&#x503C;&#x4E3A;&#x4E2D;&#x5FC3;&#xFF0C;&#x968F;&#x7740;&#x6837;&#x672C;&#x91CF;n&#x7684;&#x589E;&#x52A0;&#xFF0C;&#x53D8;&#x5F97;&#x66F4;&#x52A0;&#x5BF9;&#x79F0;&#x3001;&#x6709;&#x66F4;&#x5C0F;&#x7684;&#x5206;&#x5E03;</li>
+</ul></li>
+</ul>
+<h2 id="&#x62BD;&#x6837;&#x5206;&#x5E03;&#x7279;&#x6027;">&#x62BD;&#x6837;&#x5206;&#x5E03;&#x7279;&#x6027;</h2>
+<ul>
+<li><p>&#x4E0D;&#x7BA1;&#x590D;&#x6742;&#x7A0B;&#x5EA6;&#x5982;&#x4F55;&#xFF0C;&#x5F88;&#x591A;&#x6D41;&#x884C;&#x7684;&#x7EDF;&#x8BA1;&#x5B66;&#x7684;&#x62BD;&#x6837;&#x5206;&#x5E03;&#x7684;&#x7279;&#x6027;&#xFF1A;</p>
+<ul>
+<li>&#x8D8B;&#x4E8E;&#x6B63;&#x6001;&#xFF0C;&#x8D8B;&#x4E8E;&#x5BF9;&#x79F0;&#xFF0C;&#x8D8B;&#x4E8E;&#x4EE5;&#x771F;&#x5B9E;&#x503C;&#x4E3A;&#x4E2D;&#x5FC3;</li>
+<li>&#x5728;&#x8F83;&#x5927;&#x7684;&#x6837;&#x672C;&#x91CF;&#x4E2D;&#xFF0C;&#x4F30;&#x8BA1;&#x503C;&#x7684;&#x5DEE;&#x5F02;&#x66F4;&#x5C0F;</li>
+</ul></li>
+<li><p>&#x5173;&#x952E;&#x70B9;&#xFF1A;&#x53EF;&#x4EE5;&#x53EA;&#x6839;&#x636E;&#x4E00;&#x4E2A;&#x6837;&#x672C;&#x6765;&#x4F30;&#x8BA1;&#x8FD9;&#x4E9B;&#x6B63;&#x6001;&#x5206;&#x5E03;&#x7684;&#x65B9;&#x5DEE;</p>
+<p>-&gt; &#x80FD;&#x591F;&#x5BF9;&#x66F4;&#x5927;&#x7684;&#x7FA4;&#x4F53;&#x8FDB;&#x884C;&#x63A8;&#x65AD;&#xFF0C;&#x540C;&#x65F6;&#x80FD;&#x591F;&#x8003;&#x8651;&#x5230;&#x62BD;&#x6837;&#x7684;&#x53D8;&#x5F02;&#x6027;</p></li>
+</ul>
+<h2 id="test">Test</h2>
+<blockquote>
+<p>Suppose that the parameter you are interested in estimating for a given population is a proportion. That is, what fraction of individuals in a population has a characteristic of interest? This means that the variable of interest is a binary variable, taking on values of 1 (for those with the characteristic) and 0 (for those without the characteristic). If we select a large probability sample in order to estimate the proportion, what can we expect about the sampling distribution for this estimated proportion?</p>
+<p>A. The sampling distribution will not be normal, because the variable only takes on two possible values.</p>
+<p>B. The sampling distribution will be normal and centered at the true population proportion, and the larger the sample size, the more variance that the sampling distribution will have.</p>
+<p>C. The sampling distribution will be normal and centered at the true population proportion, and the larger the sample size, the less variance that the sampling distribution will have.</p>
+<p>D. We don&#x2019;t have enough information to formulate an expectation.</p>
+</blockquote>
+<p>&#x53C2;&#x8003;&#x7B54;&#x6848;</p>
+<p>Test : C</p>
+<p>A proportion is the mean of a binary variable, and a commonly estimated parameter. The central limit theorem suggests that the sampling distribution of this type of mean will be approximately normal, with less variance as the sample size becomes larger. This is regardless of the fact that the variable of interest is binary.</p>
+<h2 id="non-normal-sampling-distributions">Non-Normal Sampling Distributions</h2>
+<blockquote>
+<ul>
+<li><strong>Not all</strong> statistics have normal sampling distributions</li>
+<li>In the cases, more specialized procedures needed to make population inferences (e.g., <strong>Bayesian methods</strong>)</li>
+<li>Example &#xFF1A; variance components in multilevel models</li>
+</ul>
+</blockquote>
+<h2 id="&#x975E;&#x6B63;&#x6001;&#x62BD;&#x6837;&#x5206;&#x5E03;">&#x975E;&#x6B63;&#x6001;&#x62BD;&#x6837;&#x5206;&#x5E03;</h2>
+<ul>
+<li>&#x5E76;&#x4E0D;&#x662F;&#x6240;&#x6709;&#x7EDF;&#x8BA1;&#x5B66;&#x90FD;&#x4F1A;&#x50CF;&#x5747;&#x503C;&#x3001;&#x76F8;&#x5173;&#x7CFB;&#x6570;&#x3001;&#x56DE;&#x5F52;&#x7CFB;&#x6570;&#x90A3;&#x6837;&#x6709;&#x6B63;&#x6001;&#x7684;&#x62BD;&#x6837;&#x5206;&#x5E03;</li>
+<li>&#x5728;&#x8FD9;&#x79CD;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x9700;&#x8981;&#x66F4;&#x4E13;&#x4E1A;&#x7684;&#x7A0B;&#x5E8F;&#x5BF9;&#x7FA4;&#x4F53;&#x8FDB;&#x884C;&#x63A8;&#x65AD;&#xFF08;&#x8D1D;&#x53F6;&#x65AF;&#x65B9;&#x6CD5;&#x8BBA;&#xFF09;</li>
+<li>&#x4E4B;&#x540E;&#x4F1A;&#x8BB2;&#x5230;&#x7684;&#x4F8B;&#x5B50;&#xFF1A;&#x65B9;&#x5DEE;&#x5206;&#x5E03;&#x7684;&#x7EDF;&#x8BA1;&#x91CF;</li>
+<li>&#x5728;&#x591A;&#x5C42;&#x6B21;&#x5EFA;&#x6A21;&#x7684;&#x80CC;&#x666F;&#x4E0B;&#xFF0C;&#x8FD9;&#x4E9B;&#x7EDF;&#x8BA1;&#x91CF;&#x7684;&#x62BD;&#x6837;&#x5206;&#x5E03;&#x4E00;&#x822C;&#x4E0D;&#x662F;&#x6B63;&#x6001;&#x5206;&#x5E03;&#xFF0C;&#x4E4B;&#x540E;&#x4F1A;&#x8BB2;&#x5230;&#x5728;&#x8FD9;&#x4E9B;&#x60C5;&#x51B5;&#x4E0B;&#x5982;&#x4F55;&#x8FDB;&#x884C;&#x63A8;&#x65AD;</li>
+</ul>
+</body></html>
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Coursera-notebooks/">Coursera-notebooks</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Start-with-Me/">Start with Me</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Python/">Python</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Coursera/">Coursera</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/py-statistics-16-sampling-distribution-variance/">
+                        <span class="hidden-mobile">week4-5- Sampling Distribution and Sampling Variance</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: 'article.markdown-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "week4-6- Beyond Means : Sampling Distributions of Other Common Statistics&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 80,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
