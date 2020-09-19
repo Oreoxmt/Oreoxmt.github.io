@@ -1,0 +1,2070 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="Oreo">
+  <meta name="keywords" content="">
+  <title>[Data Science] Week 3 #2 - Pandas Idioms - Oreo</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script  src="/js/utils.js" ></script>
+<meta name="generator" content="Hexo 5.0.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>奥利奥小屋</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2020-09-19 16:14">
+      2020年9月19日 下午
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.5k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      50
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <html><head><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous"></head><body><p>&#x6240;&#x6709; Notebook &#x7684;&#x6E90;&#x6587;&#x4EF6;&#x90FD;&#x53EF;&#x4EE5;&#x5728; <a target="_blank" rel="noopener" href="https://github.com/Oreoxmt/Start-with-Me/tree/master/Applied Data Science with Python/Introduction to Data Science in Python/week3">GitHub</a> &#x4E0A;&#x8BBF;&#x95EE;&#x5230;&#x5440;~</p>
+<p></p><div id="notebook"><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Advanced-Python-Pandas---2">Advanced Python Pandas - 2</h1><ul>
+<li>Python &#x7A0B;&#x5E8F;&#x5458;&#x7ECF;&#x5E38;&#x8BF4;&#xFF0C;&#x8FD9;&#x4E2A;&#x8BED;&#x97F3;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x5F88;&#x591A;&#x79CD;&#x65B9;&#x5F0F;&#x53BB;&#x89E3;&#x51B3;&#x4E00;&#x4E2A;&#x7279;&#x5B9A;&#x7684;&#x95EE;&#x9898;</li>
+<li>&#x4F46;&#x662F;&#xFF0C;&#x5176;&#x4E2D;&#x6709;&#x4E00;&#x4E9B;&#x65B9;&#x6CD5;&#x662F;&#x6BD4;&#x5176;&#x5B83;&#x7684;&#x5408;&#x9002;&#x7684;</li>
+<li>&#x6700;&#x597D;&#x7684;&#x89E3;&#x51B3;&#x65B9;&#x6CD5;&#x88AB;&#x79F0;&#x4E3A;idiomatic Python&#xFF08;&#x5927;&#x6982;&#x5C31;&#x662F;&#x7B26;&#x5408;Python&#x8BBE;&#x8BA1;&#x7406;&#x5FF5;&#x7684;&#x4EE3;&#x7801;&#xFF09;</li>
+<li>&#x4E00;&#x4E2A;idiomatic&#x89E3;&#x51B3;&#x65B9;&#x6CD5;&#x901A;&#x5E38;&#x662F;&#x62E5;&#x6709;&#x9AD8;&#x6027;&#x80FD;&#x548C;&#x9AD8;&#x53EF;&#x8BFB;&#x6027;&#x7684;&#xFF0C;&#x8FD9;&#x5E76;&#x4E0D;&#x4E00;&#x5B9A;&#x6B63;&#x786E;&#xFF0C;&#x4F5C;&#x4E3A;Python&#x7684;&#x4E00;&#x4E2A;&#x5E93;Pandas&#x62E5;&#x6709;&#x81EA;&#x5DF1;&#x7684;&#x4E00;&#x5957;&#x4E60;&#x4FD7;</li>
+<li>&#x6BD4;&#x5982;&#x5C3D;&#x53EF;&#x80FD;&#x4F7F;&#x7528;&#x5411;&#x91CF;&#x5316;&#xFF0C;&#x5982;&#x679C;&#x4E0D;&#x9700;&#x8981;&#x5C31;&#x4E0D;&#x4F7F;&#x7528;&#x8FED;&#x4EE3;&#x5FAA;&#x73AF;</li>
+<li>&#x5728;Pandas&#x7684;&#x793E;&#x533A;&#xFF0C;&#x6709;&#x4E00;&#x4E9B;&#x5F00;&#x53D1;&#x8005;&#x548C;&#x7528;&#x6237;&#x5C06;&#x8FD9;&#x4E9B;&#x4E60;&#x4FD7;&#x79F0;&#x4E3A;pandorable</li>
+</ul>
+<h2 id="Idiomatic-Pandas-:-Making-Code-Pandorable">Idiomatic Pandas : Making Code Pandorable</h2><p>&#x8BA9;&#x4F60;&#x7684;&#x4EE3;&#x7801;pandorable&#x7684;&#x51E0;&#x4E2A;&#x5173;&#x952E;&#x7279;&#x5F81;&#xFF1F;</p>
+<h3 id="&#x65B9;&#x6CD5;&#x94FE;method-chaining">&#x65B9;&#x6CD5;&#x94FE;method chaining</h3><ul>
+<li>&#x5728;&#x4E4B;&#x524D;&#x67E5;&#x8BE2;DataFrame&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x53EF;&#x4EE5;&#x4E00;&#x8D77;&#x8C03;&#x7528;pandas&#xFF0C;&#x6BD4;&#x5982;&#x8BF4;&#x60F3;&#x8981;&#x6839;&#x636E;&#x67D0;&#x4E9B;index&#x6765;&#x9009;&#x62E9;&#x884C;&#xFF0C;&#x5982;&#x4F55;&#x53EA;&#x9009;&#x62E9;&#x5176;&#x4E2D;&#x7684;&#x67D0;&#x4E9B;&#x5217;&#x3002;&#x5982;&#xFF1A;df.loc[&quot;Washtenaw&quot;][&quot;Total Population&quot;] &#x5C31;&#x662F;&#x4E00;&#x4E2A;&#x94FE;&#x5F0F;&#x7D22;&#x5F15;</li>
+<li>&#x4E00;&#x822C;&#x6765;&#x8BF4;&#xFF0C;&#x8FD9;&#x662F;&#x4E00;&#x79CD;&#x4E0D;&#x597D;&#x7684;&#x65B9;&#x6CD5;&#xFF0C;&#x56E0;&#x4E3A;&#x6839;&#x636E;NumPy&#x5E93;&#xFF0C;Pandas&#x53EF;&#x80FD;&#x8FD4;&#x56DE;&#x7684;&#x662F;df&#x7684;&#x526F;&#x672C;&#x6216;&#x89C6;&#x56FE;
+### Code smell</li>
+<li>Tom Osberger&#xFF1A;&#x201C;&#x5982;&#x679C;&#x4F60;&#x770B;&#x5230;&#x80CC;&#x9760;&#x80CC;&#x7684;&#x65B9;&#x62EC;&#x53F7;&#xFF0C;&#x90A3;&#x4E48;&#x5E94;&#x8BE5;&#x4ED4;&#x7EC6;&#x8003;&#x8651;&#x662F;&#x5426;&#x6709;&#x505A;&#x94FE;&#x5F0F;&#x7D22;&#x5F15;&#x201D;</li>
+<li>&#x4F46;&#x662F;&#x65B9;&#x6CD5;&#x94FE;&#x4E0E;&#x4E4B;&#x4E0D;&#x540C;&#xFF0C;&#x5176;&#x80CC;&#x540E;&#x7684;&#x601D;&#x60F3;&#x662F;&#xFF0C;&#x5BF9;&#x8C61;&#x4E0A;&#x7684;&#x6BCF;&#x4E2A;&#x65B9;&#x6CD5;&#x90FD;&#x4F1A;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A;&#x5BF9;&#x8BE5;&#x5BF9;&#x8C61;&#x7684;&#x5F15;&#x7528;&#xFF0C;&#x8FD9;&#x6837;&#x7684;&#x597D;&#x5904;&#x662F;&#x53EF;&#x4EE5;&#x628A;&#x5BF9;DataFrame&#x7684;&#x8BB8;&#x591A;&#x4E0D;&#x540C;&#x64CD;&#x4F5C;&#x6D53;&#x7F29;&#x5230;&#x4E00;&#x884C;&#x6216;&#x81F3;&#x5C11;&#x4E00;&#x6761;&#x4EE3;&#x7801;&#x8BED;&#x53E5;&#x4E2D;</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#xA0;[3]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;census.csv&quot;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[3]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>SUMLEV</th>
+      <th>REGION</th>
+      <th>DIVISION</th>
+      <th>STATE</th>
+      <th>COUNTY</th>
+      <th>STNAME</th>
+      <th>CTYNAME</th>
+      <th>CENSUS2010POP</th>
+      <th>ESTIMATESBASE2010</th>
+      <th>POPESTIMATE2010</th>
+      <th>...</th>
+      <th>RDOMESTICMIG2011</th>
+      <th>RDOMESTICMIG2012</th>
+      <th>RDOMESTICMIG2013</th>
+      <th>RDOMESTICMIG2014</th>
+      <th>RDOMESTICMIG2015</th>
+      <th>RNETMIG2011</th>
+      <th>RNETMIG2012</th>
+      <th>RNETMIG2013</th>
+      <th>RNETMIG2014</th>
+      <th>RNETMIG2015</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>40</td>
+      <td>3</td>
+      <td>6</td>
+      <td>1</td>
+      <td>0</td>
+      <td>Alabama</td>
+      <td>Alabama</td>
+      <td>4779736</td>
+      <td>4780127</td>
+      <td>4785161</td>
+      <td>...</td>
+      <td>0.002295</td>
+      <td>-0.193196</td>
+      <td>0.381066</td>
+      <td>0.582002</td>
+      <td>-0.467369</td>
+      <td>1.030015</td>
+      <td>0.826644</td>
+      <td>1.383282</td>
+      <td>1.724718</td>
+      <td>0.712594</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>50</td>
+      <td>3</td>
+      <td>6</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Alabama</td>
+      <td>Autauga County</td>
+      <td>54571</td>
+      <td>54571</td>
+      <td>54660</td>
+      <td>...</td>
+      <td>7.242091</td>
+      <td>-2.915927</td>
+      <td>-3.012349</td>
+      <td>2.265971</td>
+      <td>-2.530799</td>
+      <td>7.606016</td>
+      <td>-2.626146</td>
+      <td>-2.722002</td>
+      <td>2.592270</td>
+      <td>-2.187333</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>50</td>
+      <td>3</td>
+      <td>6</td>
+      <td>1</td>
+      <td>3</td>
+      <td>Alabama</td>
+      <td>Baldwin County</td>
+      <td>182265</td>
+      <td>182265</td>
+      <td>183193</td>
+      <td>...</td>
+      <td>14.832960</td>
+      <td>17.647293</td>
+      <td>21.845705</td>
+      <td>19.243287</td>
+      <td>17.197872</td>
+      <td>15.844176</td>
+      <td>18.559627</td>
+      <td>22.727626</td>
+      <td>20.317142</td>
+      <td>18.293499</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>50</td>
+      <td>3</td>
+      <td>6</td>
+      <td>1</td>
+      <td>5</td>
+      <td>Alabama</td>
+      <td>Barbour County</td>
+      <td>27457</td>
+      <td>27457</td>
+      <td>27341</td>
+      <td>...</td>
+      <td>-4.728132</td>
+      <td>-2.500690</td>
+      <td>-7.056824</td>
+      <td>-3.904217</td>
+      <td>-10.543299</td>
+      <td>-4.874741</td>
+      <td>-2.758113</td>
+      <td>-7.167664</td>
+      <td>-3.978583</td>
+      <td>-10.543299</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>50</td>
+      <td>3</td>
+      <td>6</td>
+      <td>1</td>
+      <td>7</td>
+      <td>Alabama</td>
+      <td>Bibb County</td>
+      <td>22915</td>
+      <td>22919</td>
+      <td>22861</td>
+      <td>...</td>
+      <td>-5.527043</td>
+      <td>-5.068871</td>
+      <td>-6.201001</td>
+      <td>-0.177537</td>
+      <td>0.177258</td>
+      <td>-5.088389</td>
+      <td>-4.363636</td>
+      <td>-5.403729</td>
+      <td>0.754533</td>
+      <td>1.107861</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows &#xD7; 100 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>&#x65B9;&#x6CD5;&#x94FE;&#x7684;pandorable
+&#x4E0B;&#x9762;&#x7684;&#x4EE3;&#x7801;&#x5148;&#x8FD0;&#x884C;where&#x67E5;&#x8BE2;&#xFF0C;&#x518D;&#x8FD0;&#x884C;dropna&#xFF0C;&#x518D;&#x8FD0;&#x884C;set_index&#xFF0C;&#x518D;&#x8FD0;&#x884C;rename</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#xA0;[4]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;SUMLEV&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">50</span><span class="p">)</span>
+ <span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+<span class="o">.</span><span class="n">set_index</span><span class="p">([</span><span class="s2">&quot;STNAME&quot;</span><span class="p">,</span> <span class="s2">&quot;CTYNAME&quot;</span><span class="p">])</span>
+<span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;ESTIMATESBASE2010&quot;</span> <span class="p">:</span> <span class="s2">&quot;Estimates Base 2010&quot;</span><span class="p">}))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[4]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>SUMLEV</th>
+      <th>REGION</th>
+      <th>DIVISION</th>
+      <th>STATE</th>
+      <th>COUNTY</th>
+      <th>CENSUS2010POP</th>
+      <th>Estimates Base 2010</th>
+      <th>POPESTIMATE2010</th>
+      <th>POPESTIMATE2011</th>
+      <th>POPESTIMATE2012</th>
+      <th>...</th>
+      <th>RDOMESTICMIG2011</th>
+      <th>RDOMESTICMIG2012</th>
+      <th>RDOMESTICMIG2013</th>
+      <th>RDOMESTICMIG2014</th>
+      <th>RDOMESTICMIG2015</th>
+      <th>RNETMIG2011</th>
+      <th>RNETMIG2012</th>
+      <th>RNETMIG2013</th>
+      <th>RNETMIG2014</th>
+      <th>RNETMIG2015</th>
+    </tr>
+    <tr>
+      <th>STNAME</th>
+      <th>CTYNAME</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="5" valign="top">Alabama</th>
+      <th>Autauga County</th>
+      <td>50.0</td>
+      <td>3.0</td>
+      <td>6.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>54571.0</td>
+      <td>54571.0</td>
+      <td>54660.0</td>
+      <td>55253.0</td>
+      <td>55175.0</td>
+      <td>...</td>
+      <td>7.242091</td>
+      <td>-2.915927</td>
+      <td>-3.012349</td>
+      <td>2.265971</td>
+      <td>-2.530799</td>
+      <td>7.606016</td>
+      <td>-2.626146</td>
+      <td>-2.722002</td>
+      <td>2.592270</td>
+      <td>-2.187333</td>
+    </tr>
+    <tr>
+      <th>Baldwin County</th>
+      <td>50.0</td>
+      <td>3.0</td>
+      <td>6.0</td>
+      <td>1.0</td>
+      <td>3.0</td>
+      <td>182265.0</td>
+      <td>182265.0</td>
+      <td>183193.0</td>
+      <td>186659.0</td>
+      <td>190396.0</td>
+      <td>...</td>
+      <td>14.832960</td>
+      <td>17.647293</td>
+      <td>21.845705</td>
+      <td>19.243287</td>
+      <td>17.197872</td>
+      <td>15.844176</td>
+      <td>18.559627</td>
+      <td>22.727626</td>
+      <td>20.317142</td>
+      <td>18.293499</td>
+    </tr>
+    <tr>
+      <th>Barbour County</th>
+      <td>50.0</td>
+      <td>3.0</td>
+      <td>6.0</td>
+      <td>1.0</td>
+      <td>5.0</td>
+      <td>27457.0</td>
+      <td>27457.0</td>
+      <td>27341.0</td>
+      <td>27226.0</td>
+      <td>27159.0</td>
+      <td>...</td>
+      <td>-4.728132</td>
+      <td>-2.500690</td>
+      <td>-7.056824</td>
+      <td>-3.904217</td>
+      <td>-10.543299</td>
+      <td>-4.874741</td>
+      <td>-2.758113</td>
+      <td>-7.167664</td>
+      <td>-3.978583</td>
+      <td>-10.543299</td>
+    </tr>
+    <tr>
+      <th>Bibb County</th>
+      <td>50.0</td>
+      <td>3.0</td>
+      <td>6.0</td>
+      <td>1.0</td>
+      <td>7.0</td>
+      <td>22915.0</td>
+      <td>22919.0</td>
+      <td>22861.0</td>
+      <td>22733.0</td>
+      <td>22642.0</td>
+      <td>...</td>
+      <td>-5.527043</td>
+      <td>-5.068871</td>
+      <td>-6.201001</td>
+      <td>-0.177537</td>
+      <td>0.177258</td>
+      <td>-5.088389</td>
+      <td>-4.363636</td>
+      <td>-5.403729</td>
+      <td>0.754533</td>
+      <td>1.107861</td>
+    </tr>
+    <tr>
+      <th>Blount County</th>
+      <td>50.0</td>
+      <td>3.0</td>
+      <td>6.0</td>
+      <td>1.0</td>
+      <td>9.0</td>
+      <td>57322.0</td>
+      <td>57322.0</td>
+      <td>57373.0</td>
+      <td>57711.0</td>
+      <td>57776.0</td>
+      <td>...</td>
+      <td>1.807375</td>
+      <td>-1.177622</td>
+      <td>-1.748766</td>
+      <td>-2.062535</td>
+      <td>-1.369970</td>
+      <td>1.859511</td>
+      <td>-0.848580</td>
+      <td>-1.402476</td>
+      <td>-1.577232</td>
+      <td>-0.884411</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th rowspan="5" valign="top">Wyoming</th>
+      <th>Sweetwater County</th>
+      <td>50.0</td>
+      <td>4.0</td>
+      <td>8.0</td>
+      <td>56.0</td>
+      <td>37.0</td>
+      <td>43806.0</td>
+      <td>43806.0</td>
+      <td>43593.0</td>
+      <td>44041.0</td>
+      <td>45104.0</td>
+      <td>...</td>
+      <td>1.072643</td>
+      <td>16.243199</td>
+      <td>-5.339774</td>
+      <td>-14.252889</td>
+      <td>-14.248864</td>
+      <td>1.255221</td>
+      <td>16.243199</td>
+      <td>-5.295460</td>
+      <td>-14.075283</td>
+      <td>-14.070195</td>
+    </tr>
+    <tr>
+      <th>Teton County</th>
+      <td>50.0</td>
+      <td>4.0</td>
+      <td>8.0</td>
+      <td>56.0</td>
+      <td>39.0</td>
+      <td>21294.0</td>
+      <td>21294.0</td>
+      <td>21297.0</td>
+      <td>21482.0</td>
+      <td>21697.0</td>
+      <td>...</td>
+      <td>-1.589565</td>
+      <td>0.972695</td>
+      <td>19.525929</td>
+      <td>14.143021</td>
+      <td>-0.564849</td>
+      <td>0.654527</td>
+      <td>2.408578</td>
+      <td>21.160658</td>
+      <td>16.308671</td>
+      <td>1.520747</td>
+    </tr>
+    <tr>
+      <th>Uinta County</th>
+      <td>50.0</td>
+      <td>4.0</td>
+      <td>8.0</td>
+      <td>56.0</td>
+      <td>41.0</td>
+      <td>21118.0</td>
+      <td>21118.0</td>
+      <td>21102.0</td>
+      <td>20912.0</td>
+      <td>20989.0</td>
+      <td>...</td>
+      <td>-17.755986</td>
+      <td>-4.916350</td>
+      <td>-6.902954</td>
+      <td>-14.215862</td>
+      <td>-12.127022</td>
+      <td>-18.136812</td>
+      <td>-5.536861</td>
+      <td>-7.521840</td>
+      <td>-14.740608</td>
+      <td>-12.606351</td>
+    </tr>
+    <tr>
+      <th>Washakie County</th>
+      <td>50.0</td>
+      <td>4.0</td>
+      <td>8.0</td>
+      <td>56.0</td>
+      <td>43.0</td>
+      <td>8533.0</td>
+      <td>8533.0</td>
+      <td>8545.0</td>
+      <td>8469.0</td>
+      <td>8443.0</td>
+      <td>...</td>
+      <td>-11.637475</td>
+      <td>-0.827815</td>
+      <td>-2.013502</td>
+      <td>-17.781491</td>
+      <td>1.682288</td>
+      <td>-11.990126</td>
+      <td>-1.182592</td>
+      <td>-2.250385</td>
+      <td>-18.020168</td>
+      <td>1.441961</td>
+    </tr>
+    <tr>
+      <th>Weston County</th>
+      <td>50.0</td>
+      <td>4.0</td>
+      <td>8.0</td>
+      <td>56.0</td>
+      <td>45.0</td>
+      <td>7208.0</td>
+      <td>7208.0</td>
+      <td>7181.0</td>
+      <td>7114.0</td>
+      <td>7065.0</td>
+      <td>...</td>
+      <td>-11.752361</td>
+      <td>-8.040059</td>
+      <td>12.372583</td>
+      <td>1.533635</td>
+      <td>6.935294</td>
+      <td>-12.032179</td>
+      <td>-8.040059</td>
+      <td>12.372583</td>
+      <td>1.533635</td>
+      <td>6.935294</td>
+    </tr>
+  </tbody>
+</table>
+<p>3142 rows &#xD7; 98 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>&#x4F20;&#x7EDF;&#x7684;&#x7F16;&#x5199;&#x65B9;&#x6CD5;
+&#x5728;&#x529F;&#x80FD;&#x610F;&#x4E49;&#x4E0A;&#x5E76;&#x6CA1;&#x6709;&#x9519;&#xFF0C;&#x53EA;&#x662F;&#x4E0D;&#x50CF;&#x524D;&#x9762;&#x4F8B;&#x5B50;&#x90A3;&#x6837;&#x53EF;&#x5708;&#x53EF;&#x70B9;
+&#x4F46;&#x662F;&#x5728;&#x8FD0;&#x884C;&#x4E24;&#x79CD;&#x65B9;&#x6CD5;&#x65F6;&#x4F1A;&#x53D1;&#x73B0;&#xFF0C;&#x8FD9;&#x4E2A;&#x4F20;&#x7EDF;&#x7684;&#x65B9;&#x6CD5;&#x66F4;&#x5FEB;&#xFF0C;&#x6240;&#x4EE5;&#x8FD9;&#x662F;&#x4E00;&#x4E2A;&#x65F6;&#x95F4;&#x4E0E;&#x53EF;&#x8BFB;&#x6027;&#x80CC;&#x9053;&#x800C;&#x9A70;&#x7684;&#x4F8B;&#x5B50;</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#xA0;[5]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;SUMLEV&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">50</span><span class="p">]</span>
+<span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">([</span><span class="s2">&quot;STNAME&quot;</span><span class="p">,</span> <span class="s2">&quot;CTYNAME&quot;</span><span class="p">],</span> <span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;ESTIMATEBASE2010&quot;</span> <span class="p">:</span> <span class="s2">&quot;Estimate Base 2010&quot;</span><span class="p">})</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[5]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>SUMLEV</th>
+      <th>REGION</th>
+      <th>DIVISION</th>
+      <th>STATE</th>
+      <th>COUNTY</th>
+      <th>CENSUS2010POP</th>
+      <th>ESTIMATESBASE2010</th>
+      <th>POPESTIMATE2010</th>
+      <th>POPESTIMATE2011</th>
+      <th>POPESTIMATE2012</th>
+      <th>...</th>
+      <th>RDOMESTICMIG2011</th>
+      <th>RDOMESTICMIG2012</th>
+      <th>RDOMESTICMIG2013</th>
+      <th>RDOMESTICMIG2014</th>
+      <th>RDOMESTICMIG2015</th>
+      <th>RNETMIG2011</th>
+      <th>RNETMIG2012</th>
+      <th>RNETMIG2013</th>
+      <th>RNETMIG2014</th>
+      <th>RNETMIG2015</th>
+    </tr>
+    <tr>
+      <th>STNAME</th>
+      <th>CTYNAME</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="5" valign="top">Alabama</th>
+      <th>Autauga County</th>
+      <td>50</td>
+      <td>3</td>
+      <td>6</td>
+      <td>1</td>
+      <td>1</td>
+      <td>54571</td>
+      <td>54571</td>
+      <td>54660</td>
+      <td>55253</td>
+      <td>55175</td>
+      <td>...</td>
+      <td>7.242091</td>
+      <td>-2.915927</td>
+      <td>-3.012349</td>
+      <td>2.265971</td>
+      <td>-2.530799</td>
+      <td>7.606016</td>
+      <td>-2.626146</td>
+      <td>-2.722002</td>
+      <td>2.592270</td>
+      <td>-2.187333</td>
+    </tr>
+    <tr>
+      <th>Baldwin County</th>
+      <td>50</td>
+      <td>3</td>
+      <td>6</td>
+      <td>1</td>
+      <td>3</td>
+      <td>182265</td>
+      <td>182265</td>
+      <td>183193</td>
+      <td>186659</td>
+      <td>190396</td>
+      <td>...</td>
+      <td>14.832960</td>
+      <td>17.647293</td>
+      <td>21.845705</td>
+      <td>19.243287</td>
+      <td>17.197872</td>
+      <td>15.844176</td>
+      <td>18.559627</td>
+      <td>22.727626</td>
+      <td>20.317142</td>
+      <td>18.293499</td>
+    </tr>
+    <tr>
+      <th>Barbour County</th>
+      <td>50</td>
+      <td>3</td>
+      <td>6</td>
+      <td>1</td>
+      <td>5</td>
+      <td>27457</td>
+      <td>27457</td>
+      <td>27341</td>
+      <td>27226</td>
+      <td>27159</td>
+      <td>...</td>
+      <td>-4.728132</td>
+      <td>-2.500690</td>
+      <td>-7.056824</td>
+      <td>-3.904217</td>
+      <td>-10.543299</td>
+      <td>-4.874741</td>
+      <td>-2.758113</td>
+      <td>-7.167664</td>
+      <td>-3.978583</td>
+      <td>-10.543299</td>
+    </tr>
+    <tr>
+      <th>Bibb County</th>
+      <td>50</td>
+      <td>3</td>
+      <td>6</td>
+      <td>1</td>
+      <td>7</td>
+      <td>22915</td>
+      <td>22919</td>
+      <td>22861</td>
+      <td>22733</td>
+      <td>22642</td>
+      <td>...</td>
+      <td>-5.527043</td>
+      <td>-5.068871</td>
+      <td>-6.201001</td>
+      <td>-0.177537</td>
+      <td>0.177258</td>
+      <td>-5.088389</td>
+      <td>-4.363636</td>
+      <td>-5.403729</td>
+      <td>0.754533</td>
+      <td>1.107861</td>
+    </tr>
+    <tr>
+      <th>Blount County</th>
+      <td>50</td>
+      <td>3</td>
+      <td>6</td>
+      <td>1</td>
+      <td>9</td>
+      <td>57322</td>
+      <td>57322</td>
+      <td>57373</td>
+      <td>57711</td>
+      <td>57776</td>
+      <td>...</td>
+      <td>1.807375</td>
+      <td>-1.177622</td>
+      <td>-1.748766</td>
+      <td>-2.062535</td>
+      <td>-1.369970</td>
+      <td>1.859511</td>
+      <td>-0.848580</td>
+      <td>-1.402476</td>
+      <td>-1.577232</td>
+      <td>-0.884411</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th rowspan="5" valign="top">Wyoming</th>
+      <th>Sweetwater County</th>
+      <td>50</td>
+      <td>4</td>
+      <td>8</td>
+      <td>56</td>
+      <td>37</td>
+      <td>43806</td>
+      <td>43806</td>
+      <td>43593</td>
+      <td>44041</td>
+      <td>45104</td>
+      <td>...</td>
+      <td>1.072643</td>
+      <td>16.243199</td>
+      <td>-5.339774</td>
+      <td>-14.252889</td>
+      <td>-14.248864</td>
+      <td>1.255221</td>
+      <td>16.243199</td>
+      <td>-5.295460</td>
+      <td>-14.075283</td>
+      <td>-14.070195</td>
+    </tr>
+    <tr>
+      <th>Teton County</th>
+      <td>50</td>
+      <td>4</td>
+      <td>8</td>
+      <td>56</td>
+      <td>39</td>
+      <td>21294</td>
+      <td>21294</td>
+      <td>21297</td>
+      <td>21482</td>
+      <td>21697</td>
+      <td>...</td>
+      <td>-1.589565</td>
+      <td>0.972695</td>
+      <td>19.525929</td>
+      <td>14.143021</td>
+      <td>-0.564849</td>
+      <td>0.654527</td>
+      <td>2.408578</td>
+      <td>21.160658</td>
+      <td>16.308671</td>
+      <td>1.520747</td>
+    </tr>
+    <tr>
+      <th>Uinta County</th>
+      <td>50</td>
+      <td>4</td>
+      <td>8</td>
+      <td>56</td>
+      <td>41</td>
+      <td>21118</td>
+      <td>21118</td>
+      <td>21102</td>
+      <td>20912</td>
+      <td>20989</td>
+      <td>...</td>
+      <td>-17.755986</td>
+      <td>-4.916350</td>
+      <td>-6.902954</td>
+      <td>-14.215862</td>
+      <td>-12.127022</td>
+      <td>-18.136812</td>
+      <td>-5.536861</td>
+      <td>-7.521840</td>
+      <td>-14.740608</td>
+      <td>-12.606351</td>
+    </tr>
+    <tr>
+      <th>Washakie County</th>
+      <td>50</td>
+      <td>4</td>
+      <td>8</td>
+      <td>56</td>
+      <td>43</td>
+      <td>8533</td>
+      <td>8533</td>
+      <td>8545</td>
+      <td>8469</td>
+      <td>8443</td>
+      <td>...</td>
+      <td>-11.637475</td>
+      <td>-0.827815</td>
+      <td>-2.013502</td>
+      <td>-17.781491</td>
+      <td>1.682288</td>
+      <td>-11.990126</td>
+      <td>-1.182592</td>
+      <td>-2.250385</td>
+      <td>-18.020168</td>
+      <td>1.441961</td>
+    </tr>
+    <tr>
+      <th>Weston County</th>
+      <td>50</td>
+      <td>4</td>
+      <td>8</td>
+      <td>56</td>
+      <td>45</td>
+      <td>7208</td>
+      <td>7208</td>
+      <td>7181</td>
+      <td>7114</td>
+      <td>7065</td>
+      <td>...</td>
+      <td>-11.752361</td>
+      <td>-8.040059</td>
+      <td>12.372583</td>
+      <td>1.533635</td>
+      <td>6.935294</td>
+      <td>-12.032179</td>
+      <td>-8.040059</td>
+      <td>12.372583</td>
+      <td>1.533635</td>
+      <td>6.935294</td>
+    </tr>
+  </tbody>
+</table>
+<p>3142 rows &#xD7; 98 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Test">Test</h2><blockquote><p>Suppose we are working on a DataFrame that holds information on our equipment for an upcoming backpacking trip.
+Can you use method chaining to modify the DataFrame df in one statement to drop any entries where &apos;Quantity&apos; is 0 and rename the column &apos;Weight&apos; to &apos;Weight (oz.)&apos;?</p>
+</blockquote>
+<p><code>print(df.drop(df[df[&apos;Quantity&apos;] == 0].index).rename(columns={&apos;Weight&apos;: &apos;Weight (oz.)&apos;}))</code></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#xA0;[6]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="k">def</span> <span class="nf">min_max</span><span class="p">(</span><span class="n">row</span><span class="p">):</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">row</span><span class="p">[[</span><span class="s2">&quot;POPESTIMATE2010&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;POPESTIMATE2011&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;POPESTIMATE2012&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;POPESTIMATE2013&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;POPESTIMATE2014&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;POPESTIMATE2015&quot;</span><span class="p">]]</span>
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">({</span><span class="s2">&quot;min&quot;</span> <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">data</span><span class="p">),</span> <span class="s2">&quot;max&quot;</span> <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">data</span><span class="p">)})</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#xA0;[7]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#&#x5728;&#x8FD9;&#x91CC;axis=1&#x8868;&#x793A;&#x6309;&#x7167;&#x884C;</span>
+<span class="n">df</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">min_max</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[7]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>min</th>
+      <th>max</th>
+    </tr>
+    <tr>
+      <th>STNAME</th>
+      <th>CTYNAME</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="5" valign="top">Alabama</th>
+      <th>Autauga County</th>
+      <td>54660.0</td>
+      <td>55347.0</td>
+    </tr>
+    <tr>
+      <th>Baldwin County</th>
+      <td>183193.0</td>
+      <td>203709.0</td>
+    </tr>
+    <tr>
+      <th>Barbour County</th>
+      <td>26489.0</td>
+      <td>27341.0</td>
+    </tr>
+    <tr>
+      <th>Bibb County</th>
+      <td>22512.0</td>
+      <td>22861.0</td>
+    </tr>
+    <tr>
+      <th>Blount County</th>
+      <td>57373.0</td>
+      <td>57776.0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th rowspan="5" valign="top">Wyoming</th>
+      <th>Sweetwater County</th>
+      <td>43593.0</td>
+      <td>45162.0</td>
+    </tr>
+    <tr>
+      <th>Teton County</th>
+      <td>21297.0</td>
+      <td>23125.0</td>
+    </tr>
+    <tr>
+      <th>Uinta County</th>
+      <td>20822.0</td>
+      <td>21102.0</td>
+    </tr>
+    <tr>
+      <th>Washakie County</th>
+      <td>8316.0</td>
+      <td>8545.0</td>
+    </tr>
+    <tr>
+      <th>Weston County</th>
+      <td>7065.0</td>
+      <td>7234.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>3142 rows &#xD7; 2 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#xA0;[9]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">min_max</span><span class="p">(</span><span class="n">row</span><span class="p">):</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">row</span><span class="p">[[</span><span class="s2">&quot;POPESTIMATE2010&quot;</span><span class="p">,</span>
+               <span class="s2">&quot;POPESTIMATE2011&quot;</span><span class="p">,</span>
+               <span class="s2">&quot;POPESTIMATE2012&quot;</span><span class="p">,</span>
+               <span class="s2">&quot;POPESTIMATE2013&quot;</span><span class="p">,</span>
+               <span class="s2">&quot;POPESTIMATE2014&quot;</span><span class="p">,</span>
+               <span class="s2">&quot;POPESTIMATE2015&quot;</span><span class="p">]]</span>
+    <span class="n">row</span><span class="p">[</span><span class="s2">&quot;max&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">row</span><span class="p">[</span><span class="s2">&quot;min&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">row</span>
+<span class="n">df</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">min_max</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[9]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>SUMLEV</th>
+      <th>REGION</th>
+      <th>DIVISION</th>
+      <th>STATE</th>
+      <th>COUNTY</th>
+      <th>CENSUS2010POP</th>
+      <th>ESTIMATESBASE2010</th>
+      <th>POPESTIMATE2010</th>
+      <th>POPESTIMATE2011</th>
+      <th>POPESTIMATE2012</th>
+      <th>...</th>
+      <th>RDOMESTICMIG2013</th>
+      <th>RDOMESTICMIG2014</th>
+      <th>RDOMESTICMIG2015</th>
+      <th>RNETMIG2011</th>
+      <th>RNETMIG2012</th>
+      <th>RNETMIG2013</th>
+      <th>RNETMIG2014</th>
+      <th>RNETMIG2015</th>
+      <th>max</th>
+      <th>min</th>
+    </tr>
+    <tr>
+      <th>STNAME</th>
+      <th>CTYNAME</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="5" valign="top">Alabama</th>
+      <th>Autauga County</th>
+      <td>50.0</td>
+      <td>3.0</td>
+      <td>6.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>54571.0</td>
+      <td>54571.0</td>
+      <td>54660.0</td>
+      <td>55253.0</td>
+      <td>55175.0</td>
+      <td>...</td>
+      <td>-3.012349</td>
+      <td>2.265971</td>
+      <td>-2.530799</td>
+      <td>7.606016</td>
+      <td>-2.626146</td>
+      <td>-2.722002</td>
+      <td>2.592270</td>
+      <td>-2.187333</td>
+      <td>55347.0</td>
+      <td>54660.0</td>
+    </tr>
+    <tr>
+      <th>Baldwin County</th>
+      <td>50.0</td>
+      <td>3.0</td>
+      <td>6.0</td>
+      <td>1.0</td>
+      <td>3.0</td>
+      <td>182265.0</td>
+      <td>182265.0</td>
+      <td>183193.0</td>
+      <td>186659.0</td>
+      <td>190396.0</td>
+      <td>...</td>
+      <td>21.845705</td>
+      <td>19.243287</td>
+      <td>17.197872</td>
+      <td>15.844176</td>
+      <td>18.559627</td>
+      <td>22.727626</td>
+      <td>20.317142</td>
+      <td>18.293499</td>
+      <td>203709.0</td>
+      <td>183193.0</td>
+    </tr>
+    <tr>
+      <th>Barbour County</th>
+      <td>50.0</td>
+      <td>3.0</td>
+      <td>6.0</td>
+      <td>1.0</td>
+      <td>5.0</td>
+      <td>27457.0</td>
+      <td>27457.0</td>
+      <td>27341.0</td>
+      <td>27226.0</td>
+      <td>27159.0</td>
+      <td>...</td>
+      <td>-7.056824</td>
+      <td>-3.904217</td>
+      <td>-10.543299</td>
+      <td>-4.874741</td>
+      <td>-2.758113</td>
+      <td>-7.167664</td>
+      <td>-3.978583</td>
+      <td>-10.543299</td>
+      <td>27341.0</td>
+      <td>26489.0</td>
+    </tr>
+    <tr>
+      <th>Bibb County</th>
+      <td>50.0</td>
+      <td>3.0</td>
+      <td>6.0</td>
+      <td>1.0</td>
+      <td>7.0</td>
+      <td>22915.0</td>
+      <td>22919.0</td>
+      <td>22861.0</td>
+      <td>22733.0</td>
+      <td>22642.0</td>
+      <td>...</td>
+      <td>-6.201001</td>
+      <td>-0.177537</td>
+      <td>0.177258</td>
+      <td>-5.088389</td>
+      <td>-4.363636</td>
+      <td>-5.403729</td>
+      <td>0.754533</td>
+      <td>1.107861</td>
+      <td>22861.0</td>
+      <td>22512.0</td>
+    </tr>
+    <tr>
+      <th>Blount County</th>
+      <td>50.0</td>
+      <td>3.0</td>
+      <td>6.0</td>
+      <td>1.0</td>
+      <td>9.0</td>
+      <td>57322.0</td>
+      <td>57322.0</td>
+      <td>57373.0</td>
+      <td>57711.0</td>
+      <td>57776.0</td>
+      <td>...</td>
+      <td>-1.748766</td>
+      <td>-2.062535</td>
+      <td>-1.369970</td>
+      <td>1.859511</td>
+      <td>-0.848580</td>
+      <td>-1.402476</td>
+      <td>-1.577232</td>
+      <td>-0.884411</td>
+      <td>57776.0</td>
+      <td>57373.0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th rowspan="5" valign="top">Wyoming</th>
+      <th>Sweetwater County</th>
+      <td>50.0</td>
+      <td>4.0</td>
+      <td>8.0</td>
+      <td>56.0</td>
+      <td>37.0</td>
+      <td>43806.0</td>
+      <td>43806.0</td>
+      <td>43593.0</td>
+      <td>44041.0</td>
+      <td>45104.0</td>
+      <td>...</td>
+      <td>-5.339774</td>
+      <td>-14.252889</td>
+      <td>-14.248864</td>
+      <td>1.255221</td>
+      <td>16.243199</td>
+      <td>-5.295460</td>
+      <td>-14.075283</td>
+      <td>-14.070195</td>
+      <td>45162.0</td>
+      <td>43593.0</td>
+    </tr>
+    <tr>
+      <th>Teton County</th>
+      <td>50.0</td>
+      <td>4.0</td>
+      <td>8.0</td>
+      <td>56.0</td>
+      <td>39.0</td>
+      <td>21294.0</td>
+      <td>21294.0</td>
+      <td>21297.0</td>
+      <td>21482.0</td>
+      <td>21697.0</td>
+      <td>...</td>
+      <td>19.525929</td>
+      <td>14.143021</td>
+      <td>-0.564849</td>
+      <td>0.654527</td>
+      <td>2.408578</td>
+      <td>21.160658</td>
+      <td>16.308671</td>
+      <td>1.520747</td>
+      <td>23125.0</td>
+      <td>21297.0</td>
+    </tr>
+    <tr>
+      <th>Uinta County</th>
+      <td>50.0</td>
+      <td>4.0</td>
+      <td>8.0</td>
+      <td>56.0</td>
+      <td>41.0</td>
+      <td>21118.0</td>
+      <td>21118.0</td>
+      <td>21102.0</td>
+      <td>20912.0</td>
+      <td>20989.0</td>
+      <td>...</td>
+      <td>-6.902954</td>
+      <td>-14.215862</td>
+      <td>-12.127022</td>
+      <td>-18.136812</td>
+      <td>-5.536861</td>
+      <td>-7.521840</td>
+      <td>-14.740608</td>
+      <td>-12.606351</td>
+      <td>21102.0</td>
+      <td>20822.0</td>
+    </tr>
+    <tr>
+      <th>Washakie County</th>
+      <td>50.0</td>
+      <td>4.0</td>
+      <td>8.0</td>
+      <td>56.0</td>
+      <td>43.0</td>
+      <td>8533.0</td>
+      <td>8533.0</td>
+      <td>8545.0</td>
+      <td>8469.0</td>
+      <td>8443.0</td>
+      <td>...</td>
+      <td>-2.013502</td>
+      <td>-17.781491</td>
+      <td>1.682288</td>
+      <td>-11.990126</td>
+      <td>-1.182592</td>
+      <td>-2.250385</td>
+      <td>-18.020168</td>
+      <td>1.441961</td>
+      <td>8545.0</td>
+      <td>8316.0</td>
+    </tr>
+    <tr>
+      <th>Weston County</th>
+      <td>50.0</td>
+      <td>4.0</td>
+      <td>8.0</td>
+      <td>56.0</td>
+      <td>45.0</td>
+      <td>7208.0</td>
+      <td>7208.0</td>
+      <td>7181.0</td>
+      <td>7114.0</td>
+      <td>7065.0</td>
+      <td>...</td>
+      <td>12.372583</td>
+      <td>1.533635</td>
+      <td>6.935294</td>
+      <td>-12.032179</td>
+      <td>-8.040059</td>
+      <td>12.372583</td>
+      <td>1.533635</td>
+      <td>6.935294</td>
+      <td>7234.0</td>
+      <td>7065.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>3142 rows &#xD7; 100 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#xA0;[10]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">rows</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;POPESTIMATE2010&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;POPESTIMATE2011&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;POPESTIMATE2012&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;POPESTIMATE2013&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;POPESTIMATE2014&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;POPESTIMATE2015&quot;</span>
+       <span class="p">]</span>
+<span class="n">df</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span> <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">rows</span><span class="p">]),</span> <span class="n">axis</span> <span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[10]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>STNAME   CTYNAME          
+Alabama  Autauga County        55347.0
+         Baldwin County       203709.0
+         Barbour County        27341.0
+         Bibb County           22861.0
+         Blount County         57776.0
+                                ...   
+Wyoming  Sweetwater County     45162.0
+         Teton County          23125.0
+         Uinta County          21102.0
+         Washakie County        8545.0
+         Weston County          7234.0
+Length: 3142, dtype: float64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#xA0;[&#xA0;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+ 
+
+</div><p></p>
+</body></html>
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Coursera-notebooks/">Coursera-notebooks</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Start-with-Me/">Start with Me</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Python/">Python</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Coursera/">Coursera</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Applied-Data-Science-with-Python/">Applied Data Science with Python</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                      <a href="/py-data-science-03-group-by/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">[Data Science] Week 3 #3 - Group By</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/py-data-science-01-merging-dataframes/">
+                        <span class="hidden-mobile">[Data Science] Week 3 #1 - Merging DataFrames</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: 'article.markdown-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "[Data Science] Week 3 #2 - Pandas Idioms&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 80,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

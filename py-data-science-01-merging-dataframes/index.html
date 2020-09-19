@@ -1,0 +1,1801 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="Oreo">
+  <meta name="keywords" content="">
+  <title>[Data Science] Week 3 #1 - Merging DataFrames - Oreo</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script  src="/js/utils.js" ></script>
+<meta name="generator" content="Hexo 5.0.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>奥利奥小屋</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2020-09-19 16:14">
+      2020年9月19日 下午
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.2k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      43
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <html><head><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous"></head><body><p>&#x6240;&#x6709; Notebook &#x7684;&#x6E90;&#x6587;&#x4EF6;&#x90FD;&#x53EF;&#x4EE5;&#x5728; <a target="_blank" rel="noopener" href="https://github.com/Oreoxmt/Start-with-Me/tree/master/Applied Data Science with Python/Introduction to Data Science in Python/week3">GitHub</a> &#x4E0A;&#x8BBF;&#x95EE;&#x5230;&#x5440;~</p>
+<p></p><div id="notebook"><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Advanced-Python-Pandas---1">Advanced Python Pandas - 1</h1><h2 id="&#x56DE;&#x987E;">&#x56DE;&#x987E;</h2><ul>
+<li>Pandas &#x7684;&#x4E24;&#x79CD;&#x4E0D;&#x540C;&#x7684;&#x6570;&#x636E;&#x7ED3;&#x6784;: Series(&#x4E00;&#x7EF4;) &#x4EE5;&#x53CA; DataFrame&#xFF08;&#x4E8C;&#x7EF4;&#xFF09;</li>
+<li>&#x67E5;&#x8BE2;&#x8FD9;&#x4E24;&#x79CD;&#x6570;&#x636E;&#x7ED3;&#x6784;&#x662F;&#x901A;&#x8FC7;&#x4E0D;&#x540C;&#x7684;&#x65B9;&#x6CD5;<ul>
+<li>&#x53EF;&#x4EE5;&#x4F7F;&#x7528; iloc &#x6216; loc &#x57FA;&#x4E8E;&#x884C;&#x67E5;&#x8BE2;</li>
+<li>&#x53EF;&#x4EE5;&#x4F7F;&#x7528; [] &#x57FA;&#x4E8E;&#x5217;&#x67E5;&#x8BE2;</li>
+<li>&#x66F4;&#x91CD;&#x8981;&#x7684;&#x662F;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x5E03;&#x5C14;&#x8FC7;&#x6EE4;boolean masking&#x8FDB;&#x884C;&#x67E5;&#x8BE2;
+boolean masking &#x662F;&#x4E00;&#x79CD;&#x5F3A;&#x5927;&#x7684;&#x8FC7;&#x6EE4;&#x65B9;&#x6CD5;&#xFF0C;&#x5141;&#x8BB8;&#x6211;&#x4EEC;&#x4F7F;&#x7528;&#x5E7F;&#x64AD;&#x53BB;&#x51B3;&#x5B9A;&#x54EA;&#x4E9B;&#x6570;&#x636E;&#x5E94;&#x8BE5;&#x88AB;&#x4FDD;&#x7559;&#x5728;&#x5206;&#x6790;&#x4E2D;</li>
+</ul>
+</li>
+</ul>
+<h2 id="&#x672C;&#x7CFB;&#x5217;&#x5185;&#x5BB9;">&#x672C;&#x7CFB;&#x5217;&#x5185;&#x5BB9;</h2><ul>
+<li>&#x66F4;&#x8BE6;&#x7EC6;&#x5730;&#x4ECB;&#x7ECD;&#x5982;&#x4F55;&#x64CD;&#x4F5C; DataFrame</li>
+<li>&#x5982;&#x4F55;&#x4F7F;&#x7528;<strong>GroupBy</strong>&#x548C;<strong>Apply</strong>&#x51CF;&#x5C11;&#x548C;&#x5904;&#x7406;&#x6570;&#x636E;</li>
+<li>&#x5982;&#x4F55;&#x5C06;&#x591A;&#x6587;&#x4EF6;&#x4E2D;&#x7684;&#x6570;&#x636E;&#x96C6;&#x8FDE;&#x63A5;&#x8D77;&#x6765;&#x5F62;&#x6210;&#x4E00;&#x4E2A;&#x6570;&#x636E;&#x96C6;</li>
+<li>Pandas &#x5BF9;&#x4E8E;&#x4F20;&#x7EDF;&#x7EDF;&#x8BA1;&#x5206;&#x6790;&#x548C;&#x673A;&#x5668;&#x5B66;&#x4E60;&#x6709;&#x7528;&#x7684;&#x4E00;&#x4E9B;&#x7279;&#x5F81;</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="&#x5408;&#x5E76;&#x6570;&#x636E;&#x96C6;-Merging-Dataframes">&#x5408;&#x5E76;&#x6570;&#x636E;&#x96C6; Merging Dataframes</h2><ul>
+<li>&#x5982;&#x4F55;&#x4E3A;&#x5DF2;&#x7ECF;&#x5B58;&#x5728;&#x7684; DataFrame &#x6DFB;&#x52A0;&#x6570;&#x636E;&#xFF1F;</li>
+<li>&#x5BF9;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x5217;&#x540D;&#x4F7F;&#x7528; [] &#x6DFB;&#x52A0;&#x65B0;&#x7684;&#x503C;&#xFF0C;&#x53EA;&#x8981;&#x5171;&#x4EAB;&#x4E00;&#x4E2A;index&#xFF0C;&#x5C31;&#x4F1A;&#x6DFB;&#x52A0;&#x6570;&#x636E;</li>
+<li>&#x5982;&#x679C;&#x6CA1;&#x6709;&#x5171;&#x4EAB;&#x7D22;&#x5F15;&#xFF0C;&#x800C;&#x4F20;&#x5165;&#x7684;&#x662F;&#x4E00;&#x4E2A;&#x6807;&#x91CF;&#x503C;&#xFF08;&#x5355;&#x4E00;&#x7684;&#x503C;&#xFF1A;&#x6574;&#x6570;/&#x5B57;&#x7B26;&#x4E32;&#xFF09;&#xFF0C;&#x90A3;&#x4E48;&#x65B0;&#x589E;&#x52A0;&#x7684;&#x503C;&#x5217;&#x4EE5;&#x6807;&#x91CF;&#x503C;&#x4F5C;&#x4E3A;&#x9ED8;&#x8BA4;&#x503C;&#xFF08;&#x6BCF;&#x4E00;&#x884C;&#x7684;&#x65B0;&#x589E;&#x6570;&#x636E;&#x90FD;&#x662F;&#x4E00;&#x6837;&#x7684;&#xFF09;</li>
+<li>&#x5982;&#x4F55;&#x7ED9;&#x6BCF;&#x4E00;&#x884C;&#x5206;&#x914D;&#x4E00;&#x4E2A;&#x4E0D;&#x540C;&#x503C;&#xFF1F;</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#xA0;[4]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#xA0;[5]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#df &#x7684;index&#x662F;&#x4E00;&#x4E2A;&#x5546;&#x573A;&#x5217;&#x8868;&#xFF0C;columns&#x662F;&#x8D2D;&#x4E70;&#x6570;&#x636E;</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([{</span><span class="s2">&quot;Name&quot;</span> <span class="p">:</span> <span class="s2">&quot;Chris&quot;</span><span class="p">,</span><span class="s2">&quot;Item Purchased&quot;</span> <span class="p">:</span> <span class="s2">&quot;Sponge&quot;</span><span class="p">,</span> <span class="s2">&quot;Cost&quot;</span> <span class="p">:</span> <span class="mf">22.50</span><span class="p">},</span>
+                  <span class="p">{</span><span class="s2">&quot;Name&quot;</span> <span class="p">:</span> <span class="s2">&quot;Kevyn&quot;</span><span class="p">,</span><span class="s2">&quot;Item Purchased&quot;</span> <span class="p">:</span> <span class="s2">&quot;Kitty Litter&quot;</span><span class="p">,</span> <span class="s2">&quot;Cost&quot;</span> <span class="p">:</span> <span class="mf">2.50</span><span class="p">},</span>
+                  <span class="p">{</span><span class="s2">&quot;Name&quot;</span> <span class="p">:</span> <span class="s2">&quot;Filip&quot;</span><span class="p">,</span><span class="s2">&quot;Item Purchased&quot;</span> <span class="p">:</span> <span class="s2">&quot;Spoon&quot;</span><span class="p">,</span> <span class="s2">&quot;Cost&quot;</span> <span class="p">:</span> <span class="mf">5.00</span><span class="p">}],</span>
+                 <span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Store1&quot;</span><span class="p">,</span> <span class="s2">&quot;Store1&quot;</span><span class="p">,</span> <span class="s2">&quot;Store2&quot;</span><span class="p">])</span>
+<span class="n">df</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[5]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>Item Purchased</th>
+      <th>Cost</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Store1</th>
+      <td>Chris</td>
+      <td>Sponge</td>
+      <td>22.5</td>
+    </tr>
+    <tr>
+      <th>Store1</th>
+      <td>Kevyn</td>
+      <td>Kitty Litter</td>
+      <td>2.5</td>
+    </tr>
+    <tr>
+      <th>Store2</th>
+      <td>Filip</td>
+      <td>Spoon</td>
+      <td>5.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#xA0;[3]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#&#x6DFB;&#x52A0;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x5217;&#xFF0C;&#x540D;&#x4E3A;Date&#xFF0C;&#x53EA;&#x9700;&#x8981;&#x4F7F;&#x7528; [] &#x64CD;&#x4F5C;&#x7B26;&#x5C31;&#x53EF;&#x4EE5;&#x4E86;</span>
+<span class="c1">#&#x53EA;&#x8981;&#x8FD9;&#x4E2A;list&#x548C;&#x5176;&#x4ED6;&#x8BB0;&#x5F55;&#x957F;&#x5EA6;&#x4E00;&#x6837;&#x5C31;&#x53EF;&#x4EE5;</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;Date&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;December 1&quot;</span><span class="p">,</span> <span class="s2">&quot;January 1&quot;</span><span class="p">,</span> <span class="s2">&quot;mid-May&quot;</span><span class="p">]</span>
+<span class="n">df</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[3]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>Item Purchased</th>
+      <th>Cost</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Store1</th>
+      <td>Chris</td>
+      <td>Sponge</td>
+      <td>22.5</td>
+      <td>December 1</td>
+    </tr>
+    <tr>
+      <th>Store1</th>
+      <td>Kevyn</td>
+      <td>Kitty Litter</td>
+      <td>2.5</td>
+      <td>January 1</td>
+    </tr>
+    <tr>
+      <th>Store2</th>
+      <td>Filip</td>
+      <td>Spoon</td>
+      <td>5.0</td>
+      <td>mid-May</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#xA0;[6]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#&#x5982;&#x679C;&#x60F3;&#x6DFB;&#x52A0;&#x65B0;&#x7684;&#x5B57;&#x6BB5;&#xFF0C;&#x53EF;&#x80FD;&#x662F;&#x4F20;&#x9012;True/False,&#x4E5F;&#x5F88;&#x5BB9;&#x6613;&#xFF0C;&#x56E0;&#x4E3A;&#x8FD9;&#x662F;&#x4E00;&#x4E2A;&#x6807;&#x91CF;&#x503C;</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;Delivered&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">df</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[6]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>Item Purchased</th>
+      <th>Cost</th>
+      <th>Delivered</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Store1</th>
+      <td>Chris</td>
+      <td>Sponge</td>
+      <td>22.5</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>Store1</th>
+      <td>Kevyn</td>
+      <td>Kitty Litter</td>
+      <td>2.5</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>Store2</th>
+      <td>Filip</td>
+      <td>Spoon</td>
+      <td>5.0</td>
+      <td>True</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#xA0;[7]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#&#x5982;&#x679C;&#x53EA;&#x60F3;&#x6DFB;&#x52A0;&#x4E00;&#x90E8;&#x5206;&#x5B57;&#x6BB5;&#x5C31;&#x4F1A;&#x51FA;&#x73B0;&#x95EE;&#x9898;&#xFF0C;</span>
+<span class="c1">#&#x4E3A;&#x4E86;&#x8FBE;&#x5230;&#x8FD9;&#x4E2A;&#x76EE;&#x7684;&#xFF0C;&#x9700;&#x8981;&#x4E3A;pandas&#x63D0;&#x4F9B;&#x8DB3;&#x591F;&#x957F;&#x7684;DataFrame&#x5217;&#x8868;&#xFF0C;&#x4EE5;&#x4FBF;&#x4F7F;&#x5F97;&#x6BCF;&#x4E00;&#x884C;&#x90FD;&#x88AB;&#x586B;&#x5145;</span>
+<span class="c1">#&#x8FD9;&#x4E5F;&#x5C31;&#x610F;&#x5473;&#x7740;&#x9700;&#x8981;&#x81EA;&#x5DF1;&#x8F93;&#x5165;None&#x503C;</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;Feedback&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Positive&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;Negative&quot;</span><span class="p">]</span>
+<span class="n">df</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[7]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>Item Purchased</th>
+      <th>Cost</th>
+      <th>Delivered</th>
+      <th>Feedback</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Store1</th>
+      <td>Chris</td>
+      <td>Sponge</td>
+      <td>22.5</td>
+      <td>True</td>
+      <td>Positive</td>
+    </tr>
+    <tr>
+      <th>Store1</th>
+      <td>Kevyn</td>
+      <td>Kitty Litter</td>
+      <td>2.5</td>
+      <td>True</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>Store2</th>
+      <td>Filip</td>
+      <td>Spoon</td>
+      <td>5.0</td>
+      <td>True</td>
+      <td>Negative</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#xA0;[9]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#&#x5982;&#x679C;&#x6BCF;&#x4E00;&#x884C;&#x90FD;&#x6709;&#x4E00;&#x4E2A;&#x552F;&#x4E00;&#x7684;index&#xFF0C;&#x90A3;&#x4E48;&#x5C31;&#x53EF;&#x4EE5;&#x53EA;&#x662F;&#x5C06;&#x5217;&#x6807;&#x8BC6;&#x7B26;&#x5206;&#x914D;&#x7ED9;&#x8BE5;Series</span>
+<span class="c1">#&#x53EF;&#x4EE5;&#x91CD;&#x65B0;&#x8BBE;&#x7F6E;&#x7D22;&#x5F15;&#xFF0C;&#x4ECE;0&#x5230;2&#xFF0C;&#x63A5;&#x7740;&#x5C31;&#x53EF;&#x4EE5;&#x7528;&#x8FD9;&#x4E9B;&#x6807;&#x7B7E;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x65B0;&#x7684;Series</span>
+<span class="c1">#&#x8FD9;&#x79CD;&#x65B9;&#x6CD5;&#x7684;&#x597D;&#x5904;&#x5C31;&#x662F;&#xFF0C;&#x53EF;&#x4EE5;&#x5FFD;&#x7565;&#x90A3;&#x4E9B;&#x4E0D;&#x77E5;&#x9053;&#x7684;&#x9879;&#xFF0C;pandas&#x4F1A;&#x5C06;&#x5176;&#x8BBE;&#x4E3A;NaN</span>
+<span class="n">adf</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">adf</span><span class="p">[</span><span class="s2">&quot;Date&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">({</span><span class="mi">0</span> <span class="p">:</span> <span class="s2">&quot;December 1&quot;</span><span class="p">,</span> <span class="mi">2</span> <span class="p">:</span> <span class="s2">&quot;mid-May&quot;</span><span class="p">})</span>
+<span class="n">adf</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[9]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>index</th>
+      <th>Name</th>
+      <th>Item Purchased</th>
+      <th>Cost</th>
+      <th>Delivered</th>
+      <th>Feedback</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Store1</td>
+      <td>Chris</td>
+      <td>Sponge</td>
+      <td>22.5</td>
+      <td>True</td>
+      <td>Positive</td>
+      <td>December 1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Store1</td>
+      <td>Kevyn</td>
+      <td>Kitty Litter</td>
+      <td>2.5</td>
+      <td>True</td>
+      <td>None</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Store2</td>
+      <td>Filip</td>
+      <td>Spoon</td>
+      <td>5.0</td>
+      <td>True</td>
+      <td>Negative</td>
+      <td>mid-May</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#xA0;[10]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#&#x5C06;&#x4E24;&#x4E2A;DataFrame&#x8FDE;&#x63A5;&#x8D77;&#x6765;&#xFF0C;&#x8FD9;&#x4E24;&#x4E2A;DataFrame&#x6709;&#x91CD;&#x53E0;&#x7684;&#x90E8;&#x5206;</span>
+<span class="c1">#&#x8BBE;&#x7F6E;&#x4E24;&#x4E2A;DataFrame&#x4EE5;Name&#x4E3A;index</span>
+<span class="n">staff_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([{</span><span class="s2">&quot;Name&quot;</span> <span class="p">:</span> <span class="s2">&quot;Kelly&quot;</span><span class="p">,</span> <span class="s2">&quot;Role&quot;</span> <span class="p">:</span> <span class="s2">&quot;Director of HR&quot;</span><span class="p">},</span>
+                        <span class="p">{</span><span class="s2">&quot;Name&quot;</span> <span class="p">:</span> <span class="s2">&quot;Sally&quot;</span><span class="p">,</span> <span class="s2">&quot;Role&quot;</span> <span class="p">:</span> <span class="s2">&quot;Course liasion&quot;</span><span class="p">},</span>
+                        <span class="p">{</span><span class="s2">&quot;Name&quot;</span> <span class="p">:</span> <span class="s2">&quot;James&quot;</span><span class="p">,</span> <span class="s2">&quot;Role&quot;</span> <span class="p">:</span> <span class="s2">&quot;Grader&quot;</span><span class="p">}])</span>
+<span class="n">staff_df</span> <span class="o">=</span> <span class="n">staff_df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&quot;Name&quot;</span><span class="p">)</span>
+<span class="n">student_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([{</span><span class="s2">&quot;Name&quot;</span> <span class="p">:</span> <span class="s2">&quot;James&quot;</span><span class="p">,</span> <span class="s2">&quot;School&quot;</span> <span class="p">:</span> <span class="s2">&quot;Business&quot;</span><span class="p">},</span>
+                          <span class="p">{</span><span class="s2">&quot;Name&quot;</span> <span class="p">:</span> <span class="s2">&quot;Mike&quot;</span><span class="p">,</span> <span class="s2">&quot;School&quot;</span> <span class="p">:</span> <span class="s2">&quot;Law&quot;</span><span class="p">},</span>
+                          <span class="p">{</span><span class="s2">&quot;Name&quot;</span> <span class="p">:</span> <span class="s2">&quot;Sally&quot;</span><span class="p">,</span> <span class="s2">&quot;School&quot;</span> <span class="p">:</span> <span class="s2">&quot;Engineering&quot;</span><span class="p">}])</span>
+<span class="n">student_df</span> <span class="o">=</span> <span class="n">student_df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&quot;Name&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;staff_df is </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span><span class="n">staff_df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;student_df is </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">student_df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>staff_df is 
+                  Role
+Name                 
+Kelly  Director of HR
+Sally  Course liasion
+James          Grader
+student_df is 
+             School
+Name              
+James     Business
+Mike           Law
+Sally  Engineering
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>&#x5B98;&#x65B9;&#x6587;&#x6863;&#x89C1; <a target="_blank" rel="noopener" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.merge.html">&#x8FD9;&#x91CC;</a></li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#xA0;[11]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">staff_df</span><span class="p">,</span> <span class="n">student_df</span><span class="p">,</span> <span class="n">how</span> <span class="o">=</span> <span class="s2">&quot;outer&quot;</span><span class="p">,</span> <span class="n">left_index</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">right_index</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[11]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Role</th>
+      <th>School</th>
+    </tr>
+    <tr>
+      <th>Name</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>James</th>
+      <td>Grader</td>
+      <td>Business</td>
+    </tr>
+    <tr>
+      <th>Kelly</th>
+      <td>Director of HR</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>Mike</th>
+      <td>NaN</td>
+      <td>Law</td>
+    </tr>
+    <tr>
+      <th>Sally</th>
+      <td>Course liasion</td>
+      <td>Engineering</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#xA0;[&#xA0;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#xA0;[12]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">staff_df</span><span class="p">,</span> <span class="n">student_df</span><span class="p">,</span> <span class="n">how</span> <span class="o">=</span> <span class="s2">&quot;inner&quot;</span><span class="p">,</span> <span class="n">left_index</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">right_index</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[12]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Role</th>
+      <th>School</th>
+    </tr>
+    <tr>
+      <th>Name</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Sally</th>
+      <td>Course liasion</td>
+      <td>Engineering</td>
+    </tr>
+    <tr>
+      <th>James</th>
+      <td>Grader</td>
+      <td>Business</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#xA0;[13]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">staff_df</span><span class="p">,</span> <span class="n">student_df</span><span class="p">,</span> <span class="n">how</span> <span class="o">=</span> <span class="s2">&quot;left&quot;</span><span class="p">,</span> <span class="n">left_index</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">right_index</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[13]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Role</th>
+      <th>School</th>
+    </tr>
+    <tr>
+      <th>Name</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Kelly</th>
+      <td>Director of HR</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>Sally</th>
+      <td>Course liasion</td>
+      <td>Engineering</td>
+    </tr>
+    <tr>
+      <th>James</th>
+      <td>Grader</td>
+      <td>Business</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#xA0;[14]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">staff_df</span><span class="p">,</span> <span class="n">student_df</span><span class="p">,</span> <span class="n">how</span> <span class="o">=</span> <span class="s2">&quot;right&quot;</span><span class="p">,</span> <span class="n">left_index</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">right_index</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[14]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Role</th>
+      <th>School</th>
+    </tr>
+    <tr>
+      <th>Name</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>James</th>
+      <td>Grader</td>
+      <td>Business</td>
+    </tr>
+    <tr>
+      <th>Mike</th>
+      <td>NaN</td>
+      <td>Law</td>
+    </tr>
+    <tr>
+      <th>Sally</th>
+      <td>Course liasion</td>
+      <td>Engineering</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>&#x591A;index&#x3001;&#x591A;column&#x7684;&#x60C5;&#x51B5;</li>
+<li>&#x6709;&#x53EF;&#x80FD;&#x5B66;&#x751F;&#x7684;&#x540D;&#x662F;&#x76F8;&#x540C;&#x7684;&#xFF0C;&#x4F46;&#x662F;&#x6027;&#x4E0D;&#x540C;&#xFF0C;&#x8FD9;&#x79CD;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x4F7F;&#x7528;&#x591A;&#x4E2A;index/column&#x7684;list&#x4F5C;&#x4E3A;left_on/right_on&#x7684;key</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#xA0;[15]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">staff_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([{</span><span class="s2">&quot;Name&quot;</span> <span class="p">:</span> <span class="s2">&quot;Kelly&quot;</span><span class="p">,</span> <span class="s2">&quot;Role&quot;</span> <span class="p">:</span> <span class="s2">&quot;Director of HR&quot;</span><span class="p">,</span> <span class="s2">&quot;Location&quot;</span> <span class="p">:</span> <span class="s2">&quot;State Street&quot;</span><span class="p">},</span>
+                        <span class="p">{</span><span class="s2">&quot;Name&quot;</span> <span class="p">:</span> <span class="s2">&quot;Sally&quot;</span><span class="p">,</span> <span class="s2">&quot;Role&quot;</span> <span class="p">:</span> <span class="s2">&quot;Course liasion&quot;</span><span class="p">,</span> <span class="s2">&quot;Location&quot;</span> <span class="p">:</span> <span class="s2">&quot;Washington Avenue&quot;</span><span class="p">},</span>
+                        <span class="p">{</span><span class="s2">&quot;Name&quot;</span> <span class="p">:</span> <span class="s2">&quot;James&quot;</span><span class="p">,</span> <span class="s2">&quot;Role&quot;</span> <span class="p">:</span> <span class="s2">&quot;Grader&quot;</span><span class="p">,</span> <span class="s2">&quot;Location&quot;</span> <span class="p">:</span> <span class="s2">&quot;Washington Avenue&quot;</span><span class="p">}])</span>
+<span class="n">student_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([{</span><span class="s2">&quot;Name&quot;</span> <span class="p">:</span> <span class="s2">&quot;James&quot;</span><span class="p">,</span> <span class="s2">&quot;School&quot;</span> <span class="p">:</span> <span class="s2">&quot;Business&quot;</span><span class="p">,</span> <span class="s2">&quot;Location&quot;</span> <span class="p">:</span> <span class="s2">&quot;1024 Billiard Avenue&quot;</span><span class="p">},</span>
+                          <span class="p">{</span><span class="s2">&quot;Name&quot;</span> <span class="p">:</span> <span class="s2">&quot;Mike&quot;</span><span class="p">,</span> <span class="s2">&quot;School&quot;</span> <span class="p">:</span> <span class="s2">&quot;Law&quot;</span><span class="p">,</span> <span class="s2">&quot;Location&quot;</span> <span class="p">:</span> <span class="s2">&quot;Fraternity House #22&quot;</span><span class="p">},</span>
+                          <span class="p">{</span><span class="s2">&quot;Name&quot;</span> <span class="p">:</span> <span class="s2">&quot;Sally&quot;</span><span class="p">,</span> <span class="s2">&quot;School&quot;</span> <span class="p">:</span> <span class="s2">&quot;Engineering&quot;</span><span class="p">,</span> <span class="s2">&quot;Location&quot;</span> <span class="p">:</span> <span class="s2">&quot;512 Wilson Crescent&quot;</span><span class="p">}])</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">staff_df</span><span class="p">,</span> <span class="n">student_df</span><span class="p">,</span> <span class="n">how</span> <span class="o">=</span> <span class="s2">&quot;left&quot;</span><span class="p">,</span> <span class="n">left_on</span> <span class="o">=</span> <span class="s2">&quot;Name&quot;</span><span class="p">,</span> <span class="n">right_on</span> <span class="o">=</span> <span class="s2">&quot;Name&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[15]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>Role</th>
+      <th>Location_x</th>
+      <th>School</th>
+      <th>Location_y</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Kelly</td>
+      <td>Director of HR</td>
+      <td>State Street</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Sally</td>
+      <td>Course liasion</td>
+      <td>Washington Avenue</td>
+      <td>Engineering</td>
+      <td>512 Wilson Crescent</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>James</td>
+      <td>Grader</td>
+      <td>Washington Avenue</td>
+      <td>Business</td>
+      <td>1024 Billiard Avenue</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#xA0;[19]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">staff_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([{</span><span class="s2">&quot;First Name&quot;</span> <span class="p">:</span> <span class="s2">&quot;Kelly&quot;</span><span class="p">,</span> <span class="s2">&quot;Last Name&quot;</span> <span class="p">:</span> <span class="s2">&quot;Desjardins&quot;</span><span class="p">,</span> <span class="s2">&quot;Role&quot;</span> <span class="p">:</span> <span class="s2">&quot;Director of HR&quot;</span><span class="p">},</span>
+                        <span class="p">{</span><span class="s2">&quot;First Name&quot;</span> <span class="p">:</span> <span class="s2">&quot;Sally&quot;</span><span class="p">,</span> <span class="s2">&quot;Last Name&quot;</span> <span class="p">:</span> <span class="s2">&quot;Brooks&quot;</span><span class="p">,</span> <span class="s2">&quot;Role&quot;</span> <span class="p">:</span> <span class="s2">&quot;Course liasion&quot;</span><span class="p">},</span>
+                        <span class="p">{</span><span class="s2">&quot;First Name&quot;</span> <span class="p">:</span> <span class="s2">&quot;James&quot;</span><span class="p">,</span> <span class="s2">&quot;Last Name&quot;</span> <span class="p">:</span> <span class="s2">&quot;Wilde&quot;</span><span class="p">,</span> <span class="s2">&quot;Role&quot;</span> <span class="p">:</span> <span class="s2">&quot;Grader&quot;</span><span class="p">}])</span>
+<span class="n">student_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([{</span><span class="s2">&quot;First Name&quot;</span> <span class="p">:</span> <span class="s2">&quot;James&quot;</span><span class="p">,</span> <span class="s2">&quot;Last Name&quot;</span> <span class="p">:</span> <span class="s2">&quot;Hammond&quot;</span><span class="p">,</span> <span class="s2">&quot;School&quot;</span> <span class="p">:</span> <span class="s2">&quot;Business&quot;</span><span class="p">},</span>
+                          <span class="p">{</span><span class="s2">&quot;First Name&quot;</span> <span class="p">:</span> <span class="s2">&quot;Mike&quot;</span><span class="p">,</span> <span class="s2">&quot;Last Name&quot;</span> <span class="p">:</span> <span class="s2">&quot;Smith&quot;</span><span class="p">,</span>  <span class="s2">&quot;School&quot;</span> <span class="p">:</span> <span class="s2">&quot;Law&quot;</span><span class="p">},</span>
+                          <span class="p">{</span><span class="s2">&quot;First Name&quot;</span> <span class="p">:</span> <span class="s2">&quot;Sally&quot;</span><span class="p">,</span> <span class="s2">&quot;Last Name&quot;</span> <span class="p">:</span> <span class="s2">&quot;Brooks&quot;</span><span class="p">,</span>  <span class="s2">&quot;School&quot;</span> <span class="p">:</span> <span class="s2">&quot;Engineering&quot;</span><span class="p">}])</span>
+<span class="n">staff_df</span>
+<span class="n">student_df</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">staff_df</span><span class="p">,</span> <span class="n">student_df</span><span class="p">,</span> <span class="n">how</span> <span class="o">=</span> <span class="s2">&quot;inner&quot;</span><span class="p">,</span> <span class="n">left_on</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;First Name&quot;</span><span class="p">,</span> <span class="s2">&quot;Last Name&quot;</span><span class="p">],</span> <span class="n">right_on</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;First Name&quot;</span><span class="p">,</span> <span class="s2">&quot;Last Name&quot;</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[19]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Role</th>
+      <th>School</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Sally</td>
+      <td>Brooks</td>
+      <td>Course liasion</td>
+      <td>Engineering</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Test1">Test1</h2><blockquote><p>Here are two DataFrames, products and invoices. The product DataFrame has an identifier and a sticker price. The invoices DataFrame lists the people, product identifiers, and quantity. Assuming that we want to generate totals, how do we join these two DataFrames together so that we have one which lists all of the information we need?
+products DataFrame:</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#xA0;[26]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">products</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([{</span><span class="s2">&quot;ProductID&quot;</span> <span class="p">:</span> <span class="mi">4109</span><span class="p">,</span> <span class="s2">&quot;Price&quot;</span> <span class="p">:</span> <span class="mf">5.0</span><span class="p">,</span><span class="s2">&quot;Product&quot;</span> <span class="p">:</span> <span class="s2">&quot;Sushi Roll&quot;</span><span class="p">},</span>
+                       <span class="p">{</span><span class="s2">&quot;ProductID&quot;</span> <span class="p">:</span> <span class="mi">1412</span><span class="p">,</span> <span class="s2">&quot;Price&quot;</span> <span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span><span class="s2">&quot;Product&quot;</span> <span class="p">:</span> <span class="s2">&quot;Egg&quot;</span><span class="p">},</span>
+                       <span class="p">{</span><span class="s2">&quot;ProductID&quot;</span> <span class="p">:</span> <span class="mi">8931</span><span class="p">,</span> <span class="s2">&quot;Price&quot;</span> <span class="p">:</span> <span class="mf">1.5</span><span class="p">,</span><span class="s2">&quot;Product&quot;</span> <span class="p">:</span> <span class="s2">&quot;Bagel&quot;</span><span class="p">}])</span>
+<span class="n">products</span> <span class="o">=</span> <span class="n">products</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&quot;ProductID&quot;</span><span class="p">)</span>
+<span class="n">products</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[26]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Price</th>
+      <th>Product</th>
+    </tr>
+    <tr>
+      <th>ProductID</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>4109</th>
+      <td>5.0</td>
+      <td>Sushi Roll</td>
+    </tr>
+    <tr>
+      <th>1412</th>
+      <td>0.5</td>
+      <td>Egg</td>
+    </tr>
+    <tr>
+      <th>8931</th>
+      <td>1.5</td>
+      <td>Bagel</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#xA0;[32]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">invoices</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([{</span><span class="s2">&quot;Customer&quot;</span> <span class="p">:</span> <span class="s2">&quot;Ali&quot;</span><span class="p">,</span> <span class="s2">&quot;ProductID&quot;</span> <span class="p">:</span> <span class="mi">4109</span><span class="p">,</span> <span class="s2">&quot;Quantity&quot;</span> <span class="p">:</span> <span class="mi">1</span><span class="p">},</span>
+                       <span class="p">{</span><span class="s2">&quot;Customer&quot;</span> <span class="p">:</span> <span class="s2">&quot;Eric&quot;</span><span class="p">,</span> <span class="s2">&quot;ProductID&quot;</span> <span class="p">:</span> <span class="mi">1412</span><span class="p">,</span> <span class="s2">&quot;Quantity&quot;</span> <span class="p">:</span> <span class="mi">12</span><span class="p">},</span>
+                       <span class="p">{</span><span class="s2">&quot;Customer&quot;</span> <span class="p">:</span> <span class="s2">&quot;Ande&quot;</span><span class="p">,</span> <span class="s2">&quot;ProductID&quot;</span> <span class="p">:</span> <span class="mi">8931</span><span class="p">,</span> <span class="s2">&quot;Quantity&quot;</span> <span class="p">:</span> <span class="mi">6</span><span class="p">},</span>
+                       <span class="p">{</span><span class="s2">&quot;Customer&quot;</span> <span class="p">:</span> <span class="s2">&quot;Sam&quot;</span><span class="p">,</span> <span class="s2">&quot;ProductID&quot;</span> <span class="p">:</span> <span class="mi">4109</span><span class="p">,</span> <span class="s2">&quot;Quantity&quot;</span> <span class="p">:</span> <span class="mi">2</span><span class="p">}])</span>
+<span class="n">invoices</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[32]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Customer</th>
+      <th>ProductID</th>
+      <th>Quantity</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Ali</td>
+      <td>4109</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Eric</td>
+      <td>1412</td>
+      <td>12</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Ande</td>
+      <td>8931</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Sam</td>
+      <td>4109</td>
+      <td>2</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#xA0;[33]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">answer</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">products</span><span class="p">,</span> <span class="n">invoices</span><span class="p">,</span><span class="n">left_index</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span><span class="n">right_on</span> <span class="o">=</span> <span class="s2">&quot;ProductID&quot;</span><span class="p">)</span>
+<span class="n">answer</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[33]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Price</th>
+      <th>Product</th>
+      <th>Customer</th>
+      <th>ProductID</th>
+      <th>Quantity</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>5.0</td>
+      <td>Sushi Roll</td>
+      <td>Ali</td>
+      <td>4109</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>5.0</td>
+      <td>Sushi Roll</td>
+      <td>Sam</td>
+      <td>4109</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.5</td>
+      <td>Egg</td>
+      <td>Eric</td>
+      <td>1412</td>
+      <td>12</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1.5</td>
+      <td>Bagel</td>
+      <td>Ande</td>
+      <td>8931</td>
+      <td>6</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#xA0;[&#xA0;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+ 
+
+</div><p></p>
+</body></html>
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Coursera-notebooks/">Coursera-notebooks</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Start-with-Me/">Start with Me</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Python/">Python</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Coursera/">Coursera</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Applied-Data-Science-with-Python/">Applied Data Science with Python</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                      <a href="/py-data-science-02-pandas-idioms/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">[Data Science] Week 3 #2 - Pandas Idioms</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/deploy-hexo-with-github-actions-1/">
+                        <span class="hidden-mobile">[轮子再造] 使用 GitHub Actions 自动部署 Hexo 博客 - 上篇</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: 'article.markdown-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "[Data Science] Week 3 #1 - Merging DataFrames&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 80,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

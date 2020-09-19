@@ -1,0 +1,1106 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="Oreo">
+  <meta name="keywords" content="">
+  <title>[Data Science] Week 3 #5 - Pivot Table - Oreo</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script  src="/js/utils.js" ></script>
+<meta name="generator" content="Hexo 5.0.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>奥利奥小屋</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2020-09-19 16:14">
+      2020年9月19日 下午
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      20
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <html><head><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous"></head><body><p>&#x6240;&#x6709; Notebook &#x7684;&#x6E90;&#x6587;&#x4EF6;&#x90FD;&#x53EF;&#x4EE5;&#x5728; <a target="_blank" rel="noopener" href="https://github.com/Oreoxmt/Start-with-Me/tree/master/Applied Data Science with Python/Introduction to Data Science in Python/week3">GitHub</a> &#x4E0A;&#x8BBF;&#x95EE;&#x5230;&#x5440;~</p>
+<p></p><div id="notebook"><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Pivot-Tables-&#x900F;&#x89C6;&#x8868;">Pivot Tables &#x900F;&#x89C6;&#x8868;</h2><ul>
+<li>pivot_table &#x662F;&#x4E00;&#x79CD;&#x4E3A;&#x4E86;&#x7279;&#x5B9A;&#x76EE;&#x6807;&#x800C;&#x5BF9;dataframe&#x4E2D;&#x7684;&#x6570;&#x636E;&#x8FDB;&#x884C;&#x6C47;&#x603B;&#x7684;&#x4E00;&#x79CD;&#x65B9;&#x5F0F;</li>
+<li>&#x9891;&#x7E41;&#x4F7F;&#x7528;&#x805A;&#x5408;&#x529F;&#x80FD;aggregation</li>
+<li>pivot_table&#x672C;&#x8EAB;&#x662F;&#x4E00;&#x4E2A;dataframe&#xFF0C;&#x884C;&#x4EE3;&#x8868;&#x4F60;&#x611F;&#x5174;&#x8DA3;&#x7684;&#x4E00;&#x4E2A;&#x53D8;&#x91CF;&#xFF0C;&#x5217;&#x4EE3;&#x8868;&#x53E6;&#x4E00;&#x4E2A;&#x53D8;&#x91CF;&#xFF0C;&#x4EE5;&#x53CA;&#x5355;&#x5143;&#x683C;&#x7684;&#x4E00;&#x4E9B;aggregate&#x503C;</li>
+<li>pivot_table&#x8FD8;&#x4F1A;&#x5305;&#x62EC;&#x4E00;&#x4E9B;margina value&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x6BCF;&#x4E00;&#x884C;&#x3001;&#x5217;&#x7684;&#x603B;&#x548C;&#xFF0C;&#x8FD9;&#x5BF9;&#x4E8E;&#x89C2;&#x5BDF;&#x4E24;&#x4E2A;&#x53D8;&#x91CF;&#x4E4B;&#x95F4;&#x7684;&#x5173;&#x7CFB;&#x975E;&#x5E38;&#x65B9;&#x4FBF;</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#xA0;[6]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#xA0;[7]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#&#x6570;&#x636E;&#x6765;&#x6E90;&#x4E8E;&#x653F;&#x5E9C;&#x516C;&#x5F00;&#x6570;&#x636E;&#x96C6;&#xFF0C;&#x5176;&#x4E2D;&#x5305;&#x542B;&#x53EF;&#x4EE5;&#x8D2D;&#x4E70;&#x7684;&#x4E0D;&#x540C;&#x7535;&#x52A8;&#x8F66;&#x7684;&#x6548;&#x80FD;</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;cars.csv&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#xA0;[8]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#&#x901A;&#x8FC7;head&#x53EF;&#x4EE5;&#x770B;&#x5230;&#xFF0C;&#x6709;model\year\size\statistics</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[8]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>YEAR</th>
+      <th>Make</th>
+      <th>Model</th>
+      <th>Size</th>
+      <th>(kW)</th>
+      <th>Unnamed: 5</th>
+      <th>TYPE</th>
+      <th>CITY (kWh/100 km)</th>
+      <th>HWY (kWh/100 km)</th>
+      <th>COMB (kWh/100 km)</th>
+      <th>CITY (Le/100 km)</th>
+      <th>HWY (Le/100 km)</th>
+      <th>COMB (Le/100 km)</th>
+      <th>(g/km)</th>
+      <th>RATING</th>
+      <th>(km)</th>
+      <th>TIME (h)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2012</td>
+      <td>MITSUBISHI</td>
+      <td>i-MiEV</td>
+      <td>SUBCOMPACT</td>
+      <td>49</td>
+      <td>A1</td>
+      <td>B</td>
+      <td>16.9</td>
+      <td>21.4</td>
+      <td>18.7</td>
+      <td>1.9</td>
+      <td>2.4</td>
+      <td>2.1</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>100</td>
+      <td>7</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2012</td>
+      <td>NISSAN</td>
+      <td>LEAF</td>
+      <td>MID-SIZE</td>
+      <td>80</td>
+      <td>A1</td>
+      <td>B</td>
+      <td>19.3</td>
+      <td>23.0</td>
+      <td>21.1</td>
+      <td>2.2</td>
+      <td>2.6</td>
+      <td>2.4</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>117</td>
+      <td>7</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2013</td>
+      <td>FORD</td>
+      <td>FOCUS ELECTRIC</td>
+      <td>COMPACT</td>
+      <td>107</td>
+      <td>A1</td>
+      <td>B</td>
+      <td>19.0</td>
+      <td>21.1</td>
+      <td>20.0</td>
+      <td>2.1</td>
+      <td>2.4</td>
+      <td>2.2</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>122</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2013</td>
+      <td>MITSUBISHI</td>
+      <td>i-MiEV</td>
+      <td>SUBCOMPACT</td>
+      <td>49</td>
+      <td>A1</td>
+      <td>B</td>
+      <td>16.9</td>
+      <td>21.4</td>
+      <td>18.7</td>
+      <td>1.9</td>
+      <td>2.4</td>
+      <td>2.1</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>100</td>
+      <td>7</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2013</td>
+      <td>NISSAN</td>
+      <td>LEAF</td>
+      <td>MID-SIZE</td>
+      <td>80</td>
+      <td>A1</td>
+      <td>B</td>
+      <td>19.3</td>
+      <td>23.0</td>
+      <td>21.1</td>
+      <td>2.2</td>
+      <td>2.6</td>
+      <td>2.4</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>117</td>
+      <td>7</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#xA0;[9]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#pivot table&#x53EF;&#x4EE5;&#x5C06;&#x5176;&#x4E2D;&#x7684;&#x4E00;&#x5217;&#x900F;&#x89C6;&#x5230;&#x4E00;&#x4E2A;&#x65B0;&#x7684;column header&#x4E2D;&#xFF0C;&#x5E76;&#x548C;&#x5176;&#x5B83;&#x5217;&#x5BF9;&#x6BD4;</span>
+<span class="c1">#&#x76EE;&#x7684;&#xFF1A;&#x6BD4;&#x8F83;&#x7535;&#x52A8;&#x8F66;&#x7684;&#x54C1;&#x724C;&#x3001;&#x5E74;&#x4EFD;&#x3001;&#x7535;&#x6C60;&#x5BB9;&#x91CF;</span>
+<span class="c1">#&#x4F20;&#x5165;values&#x4E3A;(kW),index&#x4E3A;YEAR&#xFF0C;columns&#x4E3A;Make&#xFF0C;&#x6307;&#x5B9A;aggregation&#x51FD;&#x6570;&#x4E3A;np.mean</span>
+<span class="n">df</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span><span class="n">values</span> <span class="o">=</span> <span class="s2">&quot;(kW)&quot;</span><span class="p">,</span> <span class="n">index</span> <span class="o">=</span> <span class="s2">&quot;YEAR&quot;</span><span class="p">,</span> <span class="n">columns</span> <span class="o">=</span> <span class="s2">&quot;Make&quot;</span><span class="p">,</span> <span class="n">aggfunc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[9]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Make</th>
+      <th>BMW</th>
+      <th>CHEVROLET</th>
+      <th>FORD</th>
+      <th>KIA</th>
+      <th>MITSUBISHI</th>
+      <th>NISSAN</th>
+      <th>SMART</th>
+      <th>TESLA</th>
+    </tr>
+    <tr>
+      <th>YEAR</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2012</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>49.0</td>
+      <td>80.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2013</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>107.0</td>
+      <td>NaN</td>
+      <td>49.0</td>
+      <td>80.0</td>
+      <td>35.0</td>
+      <td>280.000000</td>
+    </tr>
+    <tr>
+      <th>2014</th>
+      <td>NaN</td>
+      <td>104.0</td>
+      <td>107.0</td>
+      <td>NaN</td>
+      <td>49.0</td>
+      <td>80.0</td>
+      <td>35.0</td>
+      <td>268.333333</td>
+    </tr>
+    <tr>
+      <th>2015</th>
+      <td>125.0</td>
+      <td>104.0</td>
+      <td>107.0</td>
+      <td>81.0</td>
+      <td>49.0</td>
+      <td>80.0</td>
+      <td>35.0</td>
+      <td>320.666667</td>
+    </tr>
+    <tr>
+      <th>2016</th>
+      <td>125.0</td>
+      <td>104.0</td>
+      <td>107.0</td>
+      <td>81.0</td>
+      <td>49.0</td>
+      <td>80.0</td>
+      <td>35.0</td>
+      <td>409.700000</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>&#x4ECE;&#x7ED3;&#x679C;&#x4E2D;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#xFF0C;&#x5176;&#x4E2D;&#x6709;&#x4E00;&#x4E9B;NaN&#xFF0C;&#x8FD9;&#x662F;&#x56E0;&#x4E3A;&#x6709;&#x4E00;&#x4E9B;&#x54C1;&#x724C;&#x5982;FORD&#x6CA1;&#x6709;2012&#x7684;&#x6761;&#x76EE;</li>
+<li>&#x8FD8;&#x53EF;&#x4EE5;&#x770B;&#x51FA;&#xFF0C;&#x5927;&#x90E8;&#x5206;&#x54C1;&#x724C;&#x968F;&#x7740;&#x65F6;&#x95F4;&#x63A8;&#x79FB;&#xFF0C;&#x7535;&#x6C60;&#x5BB9;&#x91CF;&#x5E76;&#x6CA1;&#x6709;&#x6539;&#x53D8;&#xFF0C;&#x9664;&#x4E86;TESLA</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Test">Test</h2><blockquote><p>Suppose we have a DataFrame with price and ratings for different bikes, broken down by manufacturer and type of bicycle. Creat a pivot table that shows the mean price and mean rating for every &quot;Manufacturer&quot; / &quot;Bike Type&quot; combination</p>
+</blockquote>
+<p>answer</p>
+<p><code>print(pd.pivot_table(Bikes, index=[&quot;Manufacturer&quot;,&quot;Bike Type&quot;]))</code></p>
+<p>mysolution</p>
+
+<pre><code>Bikes.pivot_table(values = [&quot;Price&quot;,&quot;Rating&quot;],index=[&quot;Manufacturer&quot;,&quot;Bike Type&quot;],aggfunc={&quot;Price&quot; : np.mean, &quot;Bike Type&quot;:np.mean})</code></pre>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#xA0;[5]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#aggfunc&#x4E0D;&#x4EC5;&#x4EC5;&#x53EF;&#x4EE5;&#x662F;&#x4E00;&#x4E2A;&#xFF0C;&#x8FD8;&#x53EF;&#x4EE5;&#x4F20;&#x9012;&#x591A;&#x4E2A;&#xFF0C;&#xFF0C;&#x4F7F;&#x7528;list/dict</span>
+<span class="n">df</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span><span class="n">values</span> <span class="o">=</span> <span class="s2">&quot;(kW)&quot;</span><span class="p">,</span> <span class="n">index</span> <span class="o">=</span> <span class="s2">&quot;YEAR&quot;</span><span class="p">,</span> <span class="n">columns</span> <span class="o">=</span> <span class="s2">&quot;Make&quot;</span><span class="p">,</span> <span class="n">aggfunc</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">],</span> <span class="n">margins</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[5]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead tr th {
+        text-align: left;
+    }
+
+    .dataframe thead tr:last-of-type th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr>
+      <th></th>
+      <th colspan="9" halign="left">mean</th>
+      <th colspan="9" halign="left">amin</th>
+    </tr>
+    <tr>
+      <th>Make</th>
+      <th>BMW</th>
+      <th>CHEVROLET</th>
+      <th>FORD</th>
+      <th>KIA</th>
+      <th>MITSUBISHI</th>
+      <th>NISSAN</th>
+      <th>SMART</th>
+      <th>TESLA</th>
+      <th>All</th>
+      <th>BMW</th>
+      <th>CHEVROLET</th>
+      <th>FORD</th>
+      <th>KIA</th>
+      <th>MITSUBISHI</th>
+      <th>NISSAN</th>
+      <th>SMART</th>
+      <th>TESLA</th>
+      <th>All</th>
+    </tr>
+    <tr>
+      <th>YEAR</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2012</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>49.0</td>
+      <td>80.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>64.500000</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>49.0</td>
+      <td>80.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>49</td>
+    </tr>
+    <tr>
+      <th>2013</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>107.0</td>
+      <td>NaN</td>
+      <td>49.0</td>
+      <td>80.0</td>
+      <td>35.0</td>
+      <td>280.000000</td>
+      <td>158.444444</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>107.0</td>
+      <td>NaN</td>
+      <td>49.0</td>
+      <td>80.0</td>
+      <td>35.0</td>
+      <td>270.0</td>
+      <td>35</td>
+    </tr>
+    <tr>
+      <th>2014</th>
+      <td>NaN</td>
+      <td>104.0</td>
+      <td>107.0</td>
+      <td>NaN</td>
+      <td>49.0</td>
+      <td>80.0</td>
+      <td>35.0</td>
+      <td>268.333333</td>
+      <td>135.000000</td>
+      <td>NaN</td>
+      <td>104.0</td>
+      <td>107.0</td>
+      <td>NaN</td>
+      <td>49.0</td>
+      <td>80.0</td>
+      <td>35.0</td>
+      <td>225.0</td>
+      <td>35</td>
+    </tr>
+    <tr>
+      <th>2015</th>
+      <td>125.0</td>
+      <td>104.0</td>
+      <td>107.0</td>
+      <td>81.0</td>
+      <td>49.0</td>
+      <td>80.0</td>
+      <td>35.0</td>
+      <td>320.666667</td>
+      <td>181.428571</td>
+      <td>125.0</td>
+      <td>104.0</td>
+      <td>107.0</td>
+      <td>81.0</td>
+      <td>49.0</td>
+      <td>80.0</td>
+      <td>35.0</td>
+      <td>280.0</td>
+      <td>35</td>
+    </tr>
+    <tr>
+      <th>2016</th>
+      <td>125.0</td>
+      <td>104.0</td>
+      <td>107.0</td>
+      <td>81.0</td>
+      <td>49.0</td>
+      <td>80.0</td>
+      <td>35.0</td>
+      <td>409.700000</td>
+      <td>252.263158</td>
+      <td>125.0</td>
+      <td>104.0</td>
+      <td>107.0</td>
+      <td>81.0</td>
+      <td>49.0</td>
+      <td>80.0</td>
+      <td>35.0</td>
+      <td>283.0</td>
+      <td>35</td>
+    </tr>
+    <tr>
+      <th>All</th>
+      <td>125.0</td>
+      <td>104.0</td>
+      <td>107.0</td>
+      <td>81.0</td>
+      <td>49.0</td>
+      <td>80.0</td>
+      <td>35.0</td>
+      <td>345.478261</td>
+      <td>190.622642</td>
+      <td>125.0</td>
+      <td>104.0</td>
+      <td>107.0</td>
+      <td>81.0</td>
+      <td>49.0</td>
+      <td>80.0</td>
+      <td>35.0</td>
+      <td>225.0</td>
+      <td>35</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#xA0;[&#xA0;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#xA0;[&#xA0;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+ 
+
+</div><p></p>
+</body></html>
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Coursera-notebooks/">Coursera-notebooks</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Start-with-Me/">Start with Me</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Python/">Python</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Coursera/">Coursera</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Applied-Data-Science-with-Python/">Applied Data Science with Python</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                      <a href="/py-data-science-06-date-time-functionality/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">[Data Science] Week 3 #6 - Date/Time Functionality</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/py-data-science-04-scales/">
+                        <span class="hidden-mobile">[Data Science] Week 3 #4 - Scales</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: 'article.markdown-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "[Data Science] Week 3 #5 - Pivot Table&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 80,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
